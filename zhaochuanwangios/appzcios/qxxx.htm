@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="swipe.js"></script>
+<script type="text/javascript">
+	var currPageNum=1;
+	var currPageNum2=1;
+	$(function(){
+		$.ajax({
+			type:'post',  
+			url : 'http://post/riversea',  //http://www.zcwjson.com18.cn
+			data:{"pagenum":"1"},
+			jsonp:"jsoncallback",  
+			success  : function(data) {
+				data=$.trim(data);  
+				try{
+					var json=$.parseJSON(data);
+					var son=json.river;
+					for(var i=0;i<son.length;i++){
+						var currjson=son[i];
+						
+						var id=currjson.id;
+						var title=currjson.title; 
+						var date=currjson.date;
+						
+						var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
+						
+						$("#listbody").append(tmp);
+					}
+					
+					var son2=json.river;
+					for(var i=0;i<son2.length;i++){
+						var currjson=son2[i];
+						
+						var id=currjson.id;
+						var title=currjson.title; 
+						var date=currjson.date;
+						
+						var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
+						
+						$("#listbody2").append(tmp);
+					}
+					
+				}catch(e){
+				}
+			},  
+			error : function() {
+			}  
+		});
+		
+		
+		$("#more").click(function(){
+			currPageNum++;
+			$.ajax({
+				type:'post',  
+				url : 'http://post/river', 
+				data:{"pagenum":currPageNum},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+					data=$.trim(data);  
+					try{
+						
+						if(data!="over" && data!="0"){
+							var json=$.parseJSON(data);
+							var son=json.river;
+							for(var i=0;i<son.length;i++){
+								var currjson=son[i];
+								
+								var id=currjson.id;
+								var title=currjson.title; 
+								var date=currjson.date;
+								
+									var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
+								
+								$("#listbody").append(tmp);
+							}	
+						}else if(data="over"){
+							$("#more").html('没有更多啦');
+							$("#more").unbind("click");
+						}
+					}catch(e){
+						alert(e.message);
+					}
+				},  
+				error : function() {
+				}  
+			});	
+		});
+		
+		
+		$("#more2").click(function(){
+			currPageNum++;
+			$.ajax({
+				type:'post',  
+				url : 'http://post/sea', 
+				data:{"pagenum":currPageNum},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+					data=$.trim(data);  
+					try{
+						
+						if(data!="over" && data!="0"){
+							var json=$.parseJSON(data);
+							var son=json.sea;
+							for(var i=0;i<son.length;i++){
+								var currjson=son[i];
+								
+								var id=currjson.id;
+								var title=currjson.title; 
+								var date=currjson.date;
+								
+								var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
+								
+								$("#listbody2").append(tmp);
+							}	
+						}else if(data="over"){
+							$("#more2").html('没有更多啦');
+							$("#more2").unbind("click");
+						}
+					}catch(e){
+						alert(e.message);
+					}
+				},  
+				error : function() {
+				}  
+			});	
+		});
+		
+		
+	});
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content mt10">
+  <article class="mbox">
+    	<h3 class="tit">长江、运河及两坝水位</h3>
+      <ul class="mnews-b" id="listbody">
+       
+	</ul>
+      <div class="more"><a href="javascript:;" id="more" class="mt10">查看更多<i class="phone-icon mico"></i></a></div>
+	</article>
+    <div class="mt20"></div>
+    <div style="-webkit-transform:translate3d(0,0,0);">
+      <div style="visibility: visible;" id="banner_box" class="box_swipe">
+        <ul style="list-style: none outside none; width: 3200px; transition-duration: 500ms; transform: translate3d(-1280px, 0px, 0px);">
+          <li style="width: 640px; display: table-cell; vertical-align: top;"> <a href="#"> <img src="baner1.jpg" alt="找船网" style="width:100%;"> </a> </li>
+          <li style="width: 640px; display: table-cell; vertical-align: top;"> <a href="#"> <img src="baner2.jpg" alt="找船网" style="width:100%;"> </a> </li>
+          <li style="width: 640px; display: table-cell; vertical-align: top;"> <a href="#"> <img src="baner3.jpg" alt="找船网" style="width:100%;"> </a> </li>
+        </ul>
+        <ol>
+          <li class=""></li>
+          <li class=""></li>
+          <li class="on"></li>
+        </ol>
+      </div>
+    </div>
+    <div class="mt20"></div>
+    <script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script>
+    <article class="mbox" >
+    	<h3 class="tit">海况信息</h3>
+      <ul class="mnews-b" id="listbody2">
+      	
+	</ul>
+      <div class="more"><a href="javascript:;" id="more2" class="mt10">查看更多<i class="phone-icon mico"></i></a></div>
+	</article>
+    
+    
+    <article class="mbox" >
+    	<h3 class="tit">天气信息</h3>
+      <ul class="mnews-b" id="listbody2">
+      	<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=55" style="border:solid 1px #7ec8ea" width="100%" height="294" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+	  </ul>
+	</article>
+    
+    </section>
+</div>
+<footer class="foot mt10">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
+  <p>Copyright © 2014 找船网</p>
+</footer>
+<script src="saved_resource.js"></script>
+<script src="header.js"></script>
+<script src="bcktotop.js"></script>
+<script>TMall.BackTop.init();</script>
+</body>
+</html>

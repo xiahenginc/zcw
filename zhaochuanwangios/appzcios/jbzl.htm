@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="ny.css" media="all">
+<script type="text/javascript">
+	$(function(){
+		var uid="<%=uid%>";
+		$.ajax({
+			type:'post',
+			url:"http://post/basicdata",  //lx2:9013/Boat
+			data:{"uid":uid},
+			success : function(json) {
+				try{
+					var data=$.parseJSON(json);
+					var img=data.imageurl;
+					if(img==null || img=="" || img=="http://"){
+						img="avatar.png";
+					}
+					var nick=data.nick;
+					var contact=data.contact;
+					var email=data.email;
+					var qq=data.qq;
+					var sline=data.sline;
+					var eline=data.eline;
+					var name=data.name;
+					var CNAME=data.CNAME;
+					var regclass=data.regclass;
+					
+					$("#spname").html(nick);
+					$("#TX").attr("src",img);
+					$("#yxsp").html(email);
+					$("#lxfs").html(contact);
+					$("#qq").html(qq);
+					$("#tname").html(name);
+					$("#CNAME").html(CNAME);
+					$("#zclx").html(regclass);
+				}catch(e){
+				}
+			},  
+			error : function(XHR, textStatus, errorThrown) { 
+				
+			}  
+		});
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content mt10">
+  <div class="jbzl">
+  <ul><Li>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+   <tr style="height:60px; line-height:60px">
+    <th>头像</th>
+    <td><img src="avatar.jpg" id="TX"></td>
+  </tr>
+  <tr>
+    <th>公司名称</th>
+    <td><span id="CNAME"></span></td>
+  </tr>
+    <tr>
+    <th>昵称</th>
+    <td><span id="spname"></span></td>
+  </tr>
+   <tr style="height:60px; line-height:60px">
+    <th>注册类型</th>
+    <td><span id="zclx"></span></td>
+  </tr>
+   <tr>
+    <th>姓名</th>
+    <td><span id="tname"></span></td>
+  </tr>
+   <tr>
+    <th>联系方式</th>
+    <td><span id="lxfs"></span></td>
+  </tr>
+  <tr>
+    <th>QQ</th>
+    <td><span id="qq"></span></td>
+  </tr>
+  <tr>
+    <th>邮箱</th>
+    <td><span id="yxsp"></span></td>
+  </tr>
+</table>
+  <div class="row" style="margin:15px 0px"> <a href="javascript:;" onClick="location.href='http://localperson/jbzl_bj.htm'" id="loginbtn">编辑</a> </div>
+<!--<div class="row" style="margin:15px 0px"> <a href="http://localperson/tc.htm" id="loginbtn">退出</a> </div>-->
+  </Li></ul> 
+  </div> 
+  </section>
+</div>
+
+
+</body>
+</html>

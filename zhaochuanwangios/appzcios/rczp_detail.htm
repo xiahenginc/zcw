@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript">
+	$(function(){
+		$.ajax(  
+			{  
+				type:'post',  
+				url : 'http://post/recjobdetail',
+				data:{"id":"<%=id%>"},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+					data=$.trim(data);  
+					try{
+						var json=$.parseJSON(data);
+						json.id
+						$("#id").val(json.id);
+						$("#title").html(json.title);
+						$("#titlesp").html(json.title);
+						$("#position").html(json.position);
+						$("#salary").html(json.salary);
+						$("#pnum").html(json.pnum);
+						$("#age").html(json.age);
+						$("#exp").html(json.exp);
+						$("#gender").html(json.gender);
+						$("#cert").html(json.cert);
+						$("#deadline").html(json.deadline);//期限
+						$("#pdate").html(json.pdate);
+						$("#enterprise").html(json.enterprise); //招聘企业
+						$("#contact").html(json.contact);
+						$("#mphone").html(json.mphone);
+						$("#telephone").html(json.telephone);
+						$("#email").html(json.email);
+						$("#qq").html(json.qq);
+						$("#address").html(json.address);
+						$("#note").html(json.note);
+						$("#zsxm").html(json.zsxm);
+						$("#hit").html(json.hit);
+					}catch(e){
+					}
+				},  
+				error : function() {
+				}  
+			}  
+		);
+		
+		
+		$("#addsc").click(function(){
+			$.ajax(  
+				{  
+					type:'post',  
+					url : 'http://post/recjobadd',
+					data:{"id":"<%=id%>","uid":"<%=uid%>"},
+					jsonp:"jsoncallback",  
+					success  : function(data) {
+						alert('收藏成功！');
+					},  
+					error : function() {
+						alert('数据错误，请稍后重试！');
+					}  
+				}  
+			);
+		});
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+  
+  <section class="content" style="margin:0px">
+    <article class="mbox" style="background-color:#eee">
+    	<h1 style="font-size:15px; line-height:32px; padding:8px 0px; text-align:center; border-bottom:1px  dashed #CCC; margin-bottom:10px"><span id="titlesp"></span>
+        <span style="font-size:12px; font-weight:normal; display:block"><span style="color:#f00; padding-right:5px" id="pdate"></span>点击数(<span id="hit"></span>) <a href="javascript:;" id="addsc">加入收藏</a></span>
+        </h1>
+        <div class="cardexplain">
+          <ul class="round" style="border:none">
+    <form action="javascript:;" method="post">
+              <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>标题:</th>
+                      <td><span id="title"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+              
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>招聘岗位:</th>
+                      <td><span id="position"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>薪资:</th>
+                      <td><span id="salary"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>招聘人数:</th>
+                      <td><span id="pnum"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>年龄要求:</th>
+                      <td><span id="age"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>工作经验:</th>
+                      <td><span id="exp"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>性别要求:</th>
+                      <td><span id="gender"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>联系人:</th>
+                      <td><span id="contact"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>联系手机:</th>
+                      <td><span id="mphone"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>证书要求:</th>
+                      <td><span id="cert"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>招聘期限:</th>
+                      <td><span id="deadline"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>联系电话:</th>
+                      <td><span id="telephone"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>电子邮件:</th>
+                      <td><span id="email"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>QQ号:</th>
+                      <td><span id="qq"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>公司名称:</th>
+                      <td><span id="enterprise"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>备注:</th>
+                      <td><span id="note"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+            </form>
+  </ul>
+        </div>
+
+	</article>
+  </section>
+</div>
+<footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
+  <p>Copyright © 2014 找船网</p>
+</footer>
+</body>
+</html>

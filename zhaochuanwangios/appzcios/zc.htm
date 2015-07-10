@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui">
+<title>用户登录</title>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript">
+	$(function(){
+		$("#showcard").click(function(){
+				//var uid="";
+//				var regtype=encodeURIComponent($("#db_zclx").val());
+//				var cname=encodeURIComponent($("#cname").val());
+//				var mname=encodeURIComponent($("#mname").val());
+//				var rname=encodeURIComponent($("#Rname").val());
+//				var contact=encodeURIComponent($("#contact").val());
+//				var pswd=encodeURIComponent($("#pswd").val());
+//				var qq=encodeURIComponent($("#qq").val());
+//				var email=encodeURIComponent($("#email").val());
+//				var rpswd=encodeURIComponent($("#rpswd").val());
+//				var type=encodeURIComponent($("#type").val());
+//				var ton=encodeURIComponent($("#ton").val());
+//				var length=encodeURIComponent($("#length").val());
+//				var width=encodeURIComponent($("#width").val());
+//				var height=encodeURIComponent($("#height").val());
+//				var draft=encodeURIComponent($("#draft").val());
+//				var storenum=encodeURIComponent($("#storenum").val());
+				
+				var uid="";
+				var regtype=($("#db_zclx").val());
+				var cname=($("#cname").val());
+				var mname=($("#mname").val());
+				var rname=($("#Rname").val());
+				var contact=($("#contact").val());
+				var pswd=($("#pswd").val());
+				var qq=($("#qq").val());
+				var email=($("#email").val());
+				var rpswd=($("#rpswd").val());
+				var type=($("#type").val());
+				var ton=($("#ton").val());
+				var length=($("#length").val());
+				var width=($("#width").val());
+				var height=($("#height").val());
+				var draft=($("#draft").val());
+				var storenum=($("#storenum").val());
+				var cbname=($("#cbname").val());
+				
+				
+				
+				var json={uid:uid,regtype:regtype,cname:cname,mname:mname,rname:rname,contact:contact,pswd:pswd,qq:qq,email:email,rpswd:rpswd,type:type,ton:ton,length:length,width:width,height:height,draft:draft,storenum:storenum,cbname:cbname};
+				
+				var data=JSON.stringify(json);
+				
+				$.ajax(  
+					{  
+						type:'post',  
+						url : 'http://post/register', 
+						data:{"register":encodeURIComponent(data)},
+						contentType: "application/jsonp; charset=utf-8",
+						success  : function(json) {  
+							try{
+								var data=$.parseJSON(json);
+								location.href='http://skip/index.htm';
+							}catch(e){
+								if(json=="0"){
+								alert('注册失败，请稍后重试！');
+							}else{
+									alert(json);
+							}
+							}
+							
+						},  
+						error : function(json) { 
+							alert('注册失败，请稍后重试！');
+						}  
+					}  
+				);  
+		});
+	})
+</script>
+<script type="text/javascript">
+$(function(){
+	$("input[name='zclx']").click(function(){
+		var val=$('input:radio[name="zclx"]:checked').val();
+		$("#db_zclx").val(val); 
+	});
+	
+	$("#hz").click(function(){
+		$("#boatship").hide();
+	});
+	$("#cd").click(function(){
+		$("#boatship").show();
+	});
+	$("#chd").click(function(){
+		$("#boatship").hide();
+	});	
+	
+});
+</script>
+</head>
+<body>
+<div class="container">
+  <div id="content">
+    <section class="content">
+      <div class="cardexplain">
+        <ul class="round">
+          <li class="title mb"><span class="none">注册后不可修改</span></li>
+          <li class="nob">
+            <input name="formhash" id="formhash" value="2be3071a" type="hidden">
+            <input name="db_zclx" id="db_zclx" value="货主" type="hidden">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label>*</label>
+                    注册类型</th>
+                  <td style="padding:5px 0px">
+                  	<input type="radio" name="zclx" id="hz" value="货主" class="zclx" checked="checked">
+                    货主
+                    <input type="radio" name="zclx" id="cd" value="船东" class="zclx" >
+                    船东
+                    <input type="radio" name="zclx" id="chd" value="船货代" class="zclx" >
+                    船货代 </td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <form action="javascript:;" method="post">
+          <div id="boatship" style="display:none;">
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th>船名</th>
+                    <td>
+                       <input name="cbname" class="px" id="cbname" value="" placeholder="" type="text">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th>船型</th>
+                    <td>
+                        <select name="type" class="px" id="type" value="" placeholder="" >
+                        	<option value="散货船">散货船</option>
+                            <option value="集装箱船">集装箱船</option>
+                            <option value="油船">油船</option>
+                            <option value="液化船">液化船</option>
+                            <option value="其他船型">其他船型</option>
+                        </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th>载重吨位</th>
+                    <td><input name="ton" class="px" id="ton" value="" placeholder="" type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th><label>*</label>
+                      船长</th>
+                    <td><input name="length" class="px" id="length" value="" placeholder="" type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th><label>*</label>
+                      船宽</th>
+                    <td><input name="width" class="px" id="width" value="" placeholder="" type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th><label>*</label>
+                      船高</th>
+                    <td><input name="height" class="px" id="height" value="" placeholder="" type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th><label>*</label>
+                      吃水深度</th>
+                    <td><input name="draft" class="px" id="draft" value="" placeholder="" type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th>仓口数</th>
+                    <td><input name="storenum" class="px" id="storenum" value="" placeholder="" type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            </div>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th>公司名称</th>
+                    <td><input name="cname" class="px" id="cname" value="" placeholder="" type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th>会员名</th>
+                    <td><input name="mname" class="px" id="mname" value="" placeholder="" type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th><label>*</label>
+                      真实姓名</th>
+                    <td><input name="Rname" class="px" id="Rname" value="" placeholder="" type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th><label>*</label>
+                      联系方式</th>
+                    <td><input name="contact" class="px" id="contact" value="" placeholder="" type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th><label>*</label>
+                      注册密码</th>
+                    <td><input name="pswd" class="px" id="pswd" value="" placeholder="" type="password"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th><label>*</label>
+                      确认密码</th>
+                    <td><input name="rpswd" class="px" id="rpswd" value="" placeholder="" type="password"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th> QQ号</th>
+                    <td><input name="qq" class="px" id="qq" value="" placeholder="" type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="nob">
+              <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th>邮箱地址</th>
+                    <td><input type="text" class="px hasDatepicker" name="email" value="" id="email"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+          </form>
+        </ul>
+        <div class="footReturn">
+          <input id="showcard" class="submit" value="提交" type="button">
+          <div class="window" id="windowcenter">
+            <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+            <div class="content">
+              <div id="txt"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="swrap1 none" id="mobileNotice">
+      <div class="sRegBox">
+        <div class="sRegActi">
+          <p class="tip" id="regInfo">尊敬的<span id="mobilenum"></span>用户，您已完成注册。 </p>
+          <p>恭喜你成为找船网用户！</p>
+        </div>
+      </div>
+      <a class="sBtn03 mt10" href="#">去论坛逛逛</a> </section>
+  </div>
+</div>
+</body>
+</html>

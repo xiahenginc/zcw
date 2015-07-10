@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#showcard").click(function(){
+				var uid="<%=uid%>";
+				var title=$("#title").val();
+				var type=$("#type").val();
+				var ton=$("#ton").val();
+				var byear=$("#byear").val();
+				var long=$("#long").val();
+				var width=$("#width").val();
+				var height=$("#height").val();
+				var draft=$("#draft").val();
+				var price=$("#price").val();
+				var contact=$("#contact").val();
+				var mphone=$("#mphone").val();
+				var address=$("#address").val();
+				var deadline=$("#deadline").val();
+				var note=$("#note").val();
+				
+				if(title==null || title==""){
+					alert("标题为空！");
+					return;
+				}
+				if(type==null || type==""){
+					alert("船型为空！");
+					return;
+				}
+				if(ton==null || ton==""){
+					alert("装载吨位为空！");
+					return;
+				}
+				if(byear==null || byear==""){
+					alert("建造年份为空！");
+					return;
+				}
+				if(mphone==null || mphone==""){
+					alert("联系电话为空！");
+					return;
+				}
+				
+				var json={uid:uid,title:title,type:type,ton:ton,byear:byear,long:long,width:width,height:height,draft:draft,price:price,contact:contact,mphone:mphone,address:address,deadline:deadline,note:note};
+				
+				var data=JSON.stringify(json);
+				
+				$.ajax(  
+					{  
+						type:'post',  
+						url : 'http://post/charrelease',
+						data:{"charrelease":data},
+						success  : function(data) {  
+							if(data=="1"){
+								alert('发布成功！');
+								location.href='http://skip/cbjy.htm';
+							}else{
+								alert('发布失败！请稍后重试！');
+							}
+						},  
+						error : function() { 
+							alert('发布失败！请稍后重试！');
+						}  
+					}  
+				);  
+		});
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content">
+    <div class="cardexplain"> 
+          <ul class="round roundyellow" style="display:none;">
+    <li class="userinfo"><a href="#"><span>请完善个人资料再填表单</span></a></li>
+  </ul>
+          
+          <!--粉丝填写过的信息的，直接就显示名字电话，粉丝没有填写过信息的话，这里就直接留空让粉丝填写-->
+          
+          <ul class="round">
+    <form action="javascript:;" method="post">
+              <li class="title mb"><span class="none">请保持您的联系方式畅通，方便我们工作人员及时与您联系！</span></li>
+              <li class="nob">
+        <input name="formhash" id="formhash" value="2be3071a" type="hidden">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>标题</th>
+                      <td><input name="title" class="px" id="title" value="" type="text"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+              
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>船型:</th>
+                      <td><select name="type" id="type">
+                        	<option value="散货船">散货船</option>
+                            <option value="集装箱船">集装箱船</option>
+                            <option value="油船">油船</option>
+                            <option value="液化船">液化船</option>
+                            <option value="其他船型">其他船型</option>
+                        </select></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>装载吨位</th>
+                      <td><input type="text" class="px hasDatepicker" name="ton" value="" id="ton"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>建造年份</th>
+                      <td><input type="text" class="px hasDatepicker" name="byear" value="" id="byear" style="width:40%; display:inline-block">年</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>船长</th>
+                      <td><input type="text" class="px hasDatepicker" name="long" value="" id="long"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>船宽</th>
+                      <td><input type="text" class="px hasDatepicker" name="width" value="" id="width" style="width:40%; display:inline-block">米</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>船高</th>
+                      <td><input type="text" class="px hasDatepicker" name="height" value="" id="height" style="width:40%; display:inline-block">米</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>吃水</th>
+                      <td><input type="text" class="px hasDatepicker" name="draft" value="" id="draft" style="width:40%; display:inline-block">米</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>报价</th>
+                      <td><input type="text" class="px hasDatepicker" name="price" value="" id="price"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>联系人</th>
+                      <td><input type="text" class="px hasDatepicker" name="contact" value="" id="contact" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>联系电话</th>
+                      <td><input type="text" class="px hasDatepicker" name="mphone" value="" id="mphone" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th> 联系地址</th>
+                      <td><input type="text" class="px hasDatepicker" name="address" value="" id="address"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>求租期限</th>
+                      <td><input type="text" class="px hasDatepicker" name="deadline" value="" id="deadline" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>备注</th>
+                      <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入备注信息"></textarea></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+            </form>
+  </ul>
+          <div class="footReturn">
+    <input id="showcard" class="submit" value="提交" type="button">
+    <div class="window" id="windowcenter">
+              <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+              <div class="content">
+        <div id="txt"></div>
+      </div>
+            </div>
+  </div>
+        </div>
+  </section>
+</div>
+<footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
+  <p>Copyright © 2014 找船网</p>
+</footer>
+</body>
+</html>

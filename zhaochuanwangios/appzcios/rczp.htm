@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript">
+	$(function(){
+		$("#showcard").click(function(){
+				var uid="<%=uid%>";
+				if(uid==""){
+					alert('登录后才能进行发布信息操作！');
+					location.href='http://<%=host%>/dl0.htm';
+					return;
+				}
+				var title=$("#title").val();
+				var position=$("#position").val();
+				var salary=$("#salary").val();
+				var pnum=$("#pnum").val();
+				var age=$("#age").val();
+				var exp1=$("#exp").val();
+				var gender=$("#gender").val();
+				var contact=$("#contact").val();
+				var mphone=$("#mphone").val();
+				var cert=$("#cert").val();
+				var deadline=$("#deadline").val();
+				var telephone=$("#telephone").val();
+				var email=$("#email").val();
+				var qq=$("#qq").val();
+				var cname=$("#cname").val();
+				var enterprise=$("#enterprise").val();
+				var note=$("#note").val();
+				
+				if(title==null || title==""){
+					alert("标题不能为空！");
+					return;
+				}
+				if(position==null || position==""){
+					alert("招聘职位不能为空！");
+					return;
+				}
+				if(salary==null || salary==""){
+					alert("薪资不能为空！");
+					return;
+				}
+				if(pnum==null || pnum==""){
+					alert("招聘人数不能为空！");
+					return;
+				}
+				if(contact==null || contact==""){
+					alert("联系人不能为空！");
+					return;
+				}if(mphone==null || mphone==""){
+					alert("联系方式不能为空！");
+					return;
+				}
+				if(deadline==null || deadline==""){
+					alert("招聘期限不能为空！");
+					return;
+				}
+				var json={uid:uid,title:title,position:position,salary:salary,pnum:pnum,age:age,"exp":exp1,cname:cname,gender:gender,mphone:mphone,cert:cert,deadline:deadline,telephone:telephone,email:email,qq:qq,note:note,contact:contact,enterprise:enterprise};
+				
+				var data=JSON.stringify(json);
+				
+				$.ajax(  
+					{  
+						type:'post',  
+						url : 'http://post/recrelease', 
+						data:{"recrelease":data},
+						jsonp:"jsoncallback",  
+						success  : function(data) {  
+							if(data=="1"){
+								alert('发布成功！');
+								location.href='http://skip/hr.htm';
+							}else{
+								alert('发布失败！请稍后重试！');
+							}
+						},  
+						error : function() { 
+							alert('发布失败！请稍后重试！');
+						}  
+					}  
+				);  
+		});
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content">
+    <div class="cardexplain"> 
+          <ul class="round roundyellow" style="display:none;">
+    <li class="userinfo"><a href="#"><span>请完善个人资料再填表单</span></a></li>
+  </ul>
+          
+          <!--粉丝填写过的信息的，直接就显示名字电话，粉丝没有填写过信息的话，这里就直接留空让粉丝填写-->
+          
+          <ul class="round">
+    <form action="javascript:;" method="post">
+              <li class="title mb"><span class="none">请保持您的联系方式畅通，方便我们工作人员及时与您联系！</span></li>
+              <li class="nob">
+        <input name="formhash" id="formhash" value="2be3071a" type="hidden">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>标题</th>
+                      <td><input name="title" class="px" id="title" value="" type="text"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+              
+              
+              <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>招聘职位</th>
+                      <td><input type="text" class="px" name="position" value="" id="position" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>薪资:</th>
+                      <td><input type="text" class="px hasDatepicker" name="salary" value="" id="salary" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>招聘人数</th>
+                      <td><input type="text" class="px hasDatepicker" name="pnum" value="" id="pnum" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>年龄要求</th>
+                      <td><input type="text" class="px hasDatepicker" name="age" value="" id="age" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>工作经验</th>
+                      <td><select name="exp" id="exp">
+                <option value="一年">一年</option>
+                <option value="两年">两年</option>
+                <option value="三年">三年</option>
+                <option value="三年以上">三年以上</option>
+                <option value="不限">不限</option>
+              </select></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>性别要求</th>
+                      <td><select name="gender" id="gender">
+                <option value="男">男</option>
+                <option value="女">女</option>
+              </select></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>联系人</th>
+                      <td><input type="text" class="px hasDatepicker" name="contact" value="" id="contact" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>联系手机</th>
+                      <td><input type="text" class="px hasDatepicker" name="mphone" value="" id="mphone" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>证书要求</th>
+                      <td><input type="text" class="px hasDatepicker" name="cert" value="" id="cert" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>招聘期限</th>
+                      <td><select name="deadline" id="deadline" >
+                	<option value="3">3</option>
+                    <option value="7">7</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="长期">长期</option>
+                </select></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>联系电话</th>
+                      <td><input type="text" class="px hasDatepicker" name="telephone" value="" id="telephone" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+          <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>电子邮件</th>
+                      <td><input type="text" class="px hasDatepicker" name="email" value="" id="email" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>QQ号</th>
+                      <td><input type="text" class="px hasDatepicker" name="qq" value="" id="qq" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob" style="display:None;">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>公司名称</th>
+                      <td><input type="text" class="px hasDatepicker" name="cname" value="" id="cname" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>招聘企业</th>
+                      <td><input type="text" class="px hasDatepicker" name="enterprise" value="" id="enterprise" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>备注</th>
+                      <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入备注信息"></textarea></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+            </form>
+  </ul>
+          <div class="footReturn">
+    <input id="showcard" class="submit" value="提交" type="button">
+    <div class="window" id="windowcenter">
+              <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+              <div class="content">
+        <div id="txt"></div>
+      </div>
+            </div>
+  </div>
+        </div>
+  </section>
+</div>
+<footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
+  <p>Copyright © 2014 找船网</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui">
+<title>船友之家</title>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="Stylesheet" type="text/css" href="logindialog.css" />
+<link rel="Stylesheet" type="text/css" href="1-default.css" />
+<script type="text/javascript">
+	var pagenum="1";
+	var bid="<%=id%>";
+	var uid="<%=uid%>";
+	$(function(){
+		if(uid==""){
+			$("#fatiea").click(function(){
+				alert('您还没有登录，请先登录！');
+				location.href='http://local/dl2.htm';
+			});	
+		}else{
+			$("#fatiea").attr("href","http://localperson/lt_2.htm");
+		}
+		
+		
+		$.ajax({
+			type:'post',
+			url:"http://post/bbsdetail",
+			data:{"bid":bid,"pagenum":pagenum},
+			success : function(json) {
+				try{
+					var data=$.parseJSON(json);
+					var detail=data.detail;
+
+					var title=detail.title;
+					var date=detail.date;
+					var hits=detail.hits;
+					var reps=detail.reps;
+					var content=detail.content;
+					var memid=detail.memid;
+
+					$("#titlesp").html(title);
+					$("#datesp").html(date);
+					$("#hitsp").html(hits);
+					$("#repsp").html(reps);
+					$("#contentsp").html(content);
+					$("#addgzsp").attr("memid",memid);
+					
+					//判断当前查看的用户是不是发布这个帖子的用户
+					if(memid==uid){
+						//var tmp="&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"http://localperson/lt2_2.htm?id="+ bid +"\">编辑</a>";
+						var tmp="&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"javascript:;\" onclick=\"delBbs()\">删除</a>";
+						$("#replace_edit").replaceWith(tmp);
+					}
+						
+					var hfdata=data.hfdata;
+					if(hfdata!=null && hfdata.length>0){
+						$("#zansp").html(hfdata.length);
+						for(var i=0;i<hfdata.length;i++){
+							var jcurrjson=hfdata[i];
+							
+							var did=jcurrjson.did;
+							var reply=jcurrjson.reply;
+							var date=jcurrjson.date;
+							var upname=jcurrjson.upname;
+							var upid=jcurrjson.upid;
+							
+							var tmp="<div class=\"ybhui\"><div class=\"ren\"><figure><img src=\"50.gif\" alt=\"\"></figure><h5>"+ (i+1) +"楼</h5><p>"+date  +"</p><span></span> </div><div class=\"cone\"><h6>"+ upname +"<span><a href=\"javascript:;\" name='btnhfdetail' did='"+ did +"'>回复</a></span><a href=\"javascript:;\" class=\"add\" onclick='addgz("+ upid +")'>+关注</a></h6><p>"+ reply +"</p></div></div>";
+							$("#lcsp").append(tmp);
+						}
+					}
+					
+				}catch(e){
+					
+				}
+			},  
+			error : function(XHR, textStatus, errorThrown) { 
+			}  
+		});
+		
+		$("#addgzsp").click(function(){
+				var memid=$(this).attr("memid");
+				addgz(memid);
+		});
+		
+		$("#zansp").click(function(){
+			dianzan(bid);
+		});
+		
+
+	});
+	
+	window.onload=function(){
+		//-------------加载  回复框
+		//弹出登录
+		$("#btnhf").hover(function () {
+			$(this).stop().animate({
+				opacity: '1'
+			}, 600);
+		}).on('click', function () {
+			$("body").append("<div id='mask_1'></div>");
+			$("#mask_1").addClass("mask_1").fadeIn("slow");
+			$("#LoginBox_1").fadeIn("slow");
+			$("#btnhfSubmit").off('click').on('click',function(){
+				bbshf("0");
+			});
+		});
+		
+		$("a[name='btnhfdetail']").hover(function () {
+			$(this).stop().animate({
+				opacity: '1'
+			}, 600);
+		}).on('click', function () {
+			$("body").append("<div id='mask_1'></div>");
+			$("#mask_1").addClass("mask_1").fadeIn("slow");
+			$("#LoginBox_1").fadeIn("slow");
+			//取出当前回复的id
+			var did=$(this).attr("did");
+			$("#btnhfSubmit").on('click',function(){
+				bbshf(did);
+			});
+		});
+		//
+		//按钮的透明度
+		$("#loginbtn").hover(function () {
+			$(this).stop().animate({
+				opacity: '1'
+			}, 600);
+		}, function () {
+			$(this).stop().animate({
+				opacity: '0.8'
+			}, 1000);
+		});
+		//关闭
+		$(".close_btn").hover(function () { $(this).css({ color: 'black' }) }, function () { $(this).css({ color: '#999' }) }).on('click', function () {
+			$("#LoginBox_1").fadeOut("fast");
+			$("#mask_1").css({ display: 'none' });
+		});
+		//-------------加载  回复框结束
+	}
+	
+	
+	function bbshf(upid){
+		var content=$("#hfcontent").val();
+		var tmp={"bid":bid,"uid":uid,"upid":upid,"content":content};
+			var data=JSON.stringify(tmp);;
+			
+			$.ajax({
+				type:'post',
+				url:"http://post/huitie",
+				data:{huitie:data},
+				success : function(json) {
+					if(json=="1"){
+						alert('提交成功！');
+						location.href='http://detail/lt2_1.htm?id='+bid;
+						//location.reload();
+					}else{
+						alert('提交失败！请稍后重试！');
+					}
+				},  
+				error : function(XHR, textStatus, errorThrown) { 
+					alert('提交失败！请稍后重试！');
+				}  
+			});
+	}
+	
+	function addgz(memid){
+		$.ajax({
+			type:'post',
+			url:"http://post/notice",
+			data:{"uid":uid,"upid":memid},
+			success : function(json) {
+				try{
+					if(json=="1"){
+						alert('关注成功！');
+					}else if(json=="0"){
+						alert('服务器正忙，请稍后重试！');
+					}else if(json=="-1"){
+						alert('您已关注过了！');
+					}
+					return false;
+				}catch(e){
+				}
+			},  
+			error : function(XHR, textStatus, errorThrown) { 
+			}  
+		});	
+	}
+	
+	function delBbs(){
+		var v = confirm('确认删除这个帖子吗？');
+		if(!v){
+			return;
+		}
+		$.ajax({
+			type:'post',
+			url:"http://post/delmybbs",
+			data:{"uid":uid,bid:bid},
+			success : function(json) {
+				try{
+					if(json=="1"){
+						alert('删除成功！');
+						location.href='http://localperson/wdft.htm';
+					}else{
+						alert("删除失败，请稍后重试！");
+					}
+				}catch(e){
+				}
+			},  
+			error : function(XHR, textStatus, errorThrown) { 
+			}  
+		});
+	}
+	
+	function dianzan(id){
+		$.ajax({
+			type:'post',
+			url:"http://post/favs",
+			data:{"uid":uid,bid:id},
+			success : function(json) {
+				try{
+					if(json=="1"){
+						var currNum=$("#zansp").html();
+						$("#zansp").html(parseInt(currNum)+1);
+					}else if(json=="0"){
+						alert('服务器正忙，请稍后重试！');
+					}else if(json=="-1"){
+						alert('已经点过赞了！');
+					}
+					return false;
+				}catch(e){
+				}
+			},  
+			error : function(XHR, textStatus, errorThrown) { 
+			}  
+		});
+	}
+	
+</script>
+</head>
+<body>
+<div class="container">
+  <div id="content">
+    <header class=" none ">
+      <div class="header"> <a href="javascript:;" onclick="history.back(-1)"><span class="none">返回</span></a> 找船网商务咨询有限责任公司 <a class="other" href="javascript:;" id="navShowR"><span class="none">其它</span></a> </div>
+    </header>
+   <!-- <div class="sCrumbs"> <a href="index.htm">找船网首页</a> <span>&gt;</span> <a href="cylt.htm">船友之家首页</a> <span>&gt;</span> <em class="cur">主题帖详情页</em> </div>-->
+    <div class="ybbt">
+      <h1 id="titlesp"></h1>
+      <p><span id="datesp"></span> | 阅读 <span id="hitsp"></span>  回复 <span id="repsp"></span><span id="replace_edit"></span></p>
+    </div>
+    
+    <!-- 后加弹出框 -->
+    <div id="LoginBox_1">
+    <div class="row1">
+        回复<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+    </div>
+   		<table width="100%" class="table_form">
+          <tbody>
+            <tr id="dr_row_tuoyun">
+        	  <td align="center">
+              	<textarea class="input-text" id="hfcontent" style="border:1px solid #ccc;width:99%;height:100px;" ></textarea>	
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    <div class="row" style="height:60px;">
+        <a href="javascript:;" id="btnhfSubmit" class="loginbtn">提交</a>
+    </div>
+    </div>
+	<!-- 后加弹出框结束 -->    
+    
+    <div class="ybzhu">
+      <div class="lou">
+        <figure><img src="50.gif" alt=""></figure>
+        <span></span> </div>
+      <p class="shu"><a href="javascript:;" class="add" id="btnhf" style="right:200px"><img src="hf.png" width="14px" style="margin-right:4px">回复</a><a href="javascript:;" class="add" id="addgzsp">+关注</a> <a class="zan zanCur" href="javascript:;" id="zansp"></a> | <span>分享:</span><a class="sinawb" href="javascript:;" data-url="javascript:;"><span class="none">新浪微博</span></a> <a class="wx" href="javascript:;" id="shareBtn"><span class="none">微信</span></a> </p>
+    </div>
+    <div class="ybconetent" id="contentsp"></div>
+    <div class="ybhui-box" id="lcsp">
+      
+    </div>
+        <!--<div class="ybjia"> <a href="javascript:;"> <img style="display: none" src="b4cf7680895aa192750cc57f74b_p10_mk10.gif" alt=""> <span class="more" type="all">点击加载更多内容</span> </a> </div>-->
+    
+    <!--各种浮动--> 
+    <!--<a class="ybxie" href="javascript:;" id="fatiea"></a>-->
+    <div class="yufx" style="display: none;"> <img alt="" src="fx.png"> </div>
+    <!--分享层-->
+    <div class="yhfx" style="display: none;">
+      <h3>分享到</h3>
+      <div class="con">
+        <div> <a href="#"> <img src="sina.png" alt="">
+          <p>新浪微博</p>
+          </a> </div>
+        <div> <a href="#"> <img src="weixin.png" alt="">
+          <p>微信</p>
+          </a> </div>
+        <div> <a href="#"> <img src="kaixin.png" alt="">
+          <p>开心</p>
+          </a> </div>
+        <div> <a href="#"> <img src="QQ.png" alt="">
+          <p>QQ</p>
+          </a> </div>
+      </div>
+      <div class="ipt">
+        <input type="button" value="取消">
+      </div>
+    </div>
+    <input type="hidden" id="praiseUrl" value="#">
+    <input type="hidden" id="shareUrl" value="#">
+    <input type="hidden" id="moreUrl" value="#">
+    <script type="text/template" id="template">
+    {{#thread}}
+        <p>{{author}}：{{message}} <span>{{js_reply_last_time}}</span></p>
+    {{/thread}}
+</script> 
+    <script type="text/javascript" src="sea.js"></script> 
+    <script type="text/javascript">
+    seajs.use("http://m.leju.com/resources/dist/app/mBBSV1/threadIndex.js");
+</script> 
+    <script type="text/javascript">
+var lon = '';
+var lat = '';
+//var uid = '';
+var location_city = '';
+var city = '';
+var level1_page = 'thread';
+var level2_page = 't_ind';
+var custom_id = '1413628355981143';
+
+
+//wechat
+var imgUrl = "http://m.bbs.house.sina.com.cn/wxshareimg.png";
+var lineLink = "http://m.bbs.house.sina.com.cn/thread/index?pid=850.gif678418215893&msource=weixin";
+var descContent = '船友之家';
+var shareTitle = '船友之家';
+var appid = '';
+
+function shareFriend() {
+	WeixinJSBridge.invoke('sendAppMessage',{
+		"appid": appid,
+		"img_url": imgUrl,
+		"img_width": "200",
+		"img_height": "200",
+		"link": lineLink,
+		"desc": descContent,
+		"title": shareTitle
+	}, function(res) {
+		//_report('send_msg', res.err_msg);
+	})
+}
+function shareTimeline() {
+	WeixinJSBridge.invoke('shareTimeline',{
+		"img_url": imgUrl,
+		"img_width": "200",
+		"img_height": "200",
+		"link": lineLink,
+		"desc": descContent,
+		"title": descContent
+	}, function(res) {
+		//_report('timeline', res.err_msg);
+	});
+}
+function shareWeibo() {
+	WeixinJSBridge.invoke('shareWeibo',{
+		"content": descContent,
+		"url": lineLink,
+	}, function(res) {
+		//_report('weibo', res.err_msg);
+	});
+}
+// 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+	// 发送给好友
+	WeixinJSBridge.on('menu:share:appmessage', function(argv){
+		shareFriend();
+	});
+	// 分享到朋友圈
+	WeixinJSBridge.on('menu:share:timeline', function(argv){
+		shareTimeline();
+	});
+	// 分享到微博
+	WeixinJSBridge.on('menu:share:weibo', function(argv){
+		shareWeibo();
+	});
+}, false);
+</script> 
+  </div>
+  <!-- content --> 
+</div>
+<script type="application/javascript" src="gather.source.js"></script>
+</body>
+</html>

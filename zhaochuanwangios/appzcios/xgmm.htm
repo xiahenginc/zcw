@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="ny.css" media="all">
+<script type="text/javascript">
+	$(function(){
+		$("#loginbtn").click(function(){
+			var uid='<%=uid%>';
+			if(uid==""){
+				alert('登录后才能进行发布信息操作！');
+				location.href='http://<%=host%>/dl0.htm';
+				return;
+			}
+			var pwd=$("#pwd").val();
+			var npwd2=$("#npwd2").val();
+			var npwd=$("#npwd").val();
+			if(pwd==""){
+				alert('原密码不能为空！');
+				return;
+			}
+			if(npwd==""){
+				alert('新密码不能为空！');
+				return;
+			}
+			if(npwd2==""){
+				alert('确认密码不能为空！');
+				return;
+			}
+			if(npwd2!=npwd){
+				alert('两次密码不一致！');
+				return;
+			}
+			
+			var json={uid:uid,pswd:pwd,npswd:npwd,cpswd:npwd2};
+				
+			var data=JSON.stringify(json);
+			
+			$.ajax({
+				type:'post',
+				url:"http://post/changepassword",
+				data:{"changepassword":data},
+				success : function(datastr) {
+					if(datastr=='has'){
+						alert('原密码不正确！请重新输入！');
+					}
+					if(datastr=="no"){
+						alert('两次密码不一致！请重新输入！');
+					}
+					if(datastr=="1"){
+						alert('修改成功！');
+						location.href='http://skip/grzx.htm';
+					}
+					if(datastr=="0"){
+						alert('修改失败，请稍后重试！');
+					}
+				},  
+				error : function(XHR, textStatus, errorThrown) { 
+					
+				}  
+			});
+		});
+	});
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content mt10">
+    <div class="m-tool" style="display: block;">
+    <table width="100%" class="tab">
+      <tbody>
+      <tr>
+          <th></th>
+        </tr>
+        <tr>
+          <th>原密码：</th>
+        </tr>
+        <tr><td><input class="px" type="password" name="tuoyun1" id="pwd" value=""></td></tr>
+        <tr>
+          <th>新密码：</th>
+        </tr>
+         <tr>
+          <td><input class="px" type="password" id="npwd" value=""></td>
+        </tr>
+        <tr>
+          <th>确定密码：</th>
+        </tr>
+        <tr>
+          <td><input class="px" type="password" id="npwd2" value=""></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row" style="margin:15px 0px"> <a href="javascript:;" id="loginbtn">保存</a> </div>
+  </div>
+  </section>
+</div>
+</body>
+</html>

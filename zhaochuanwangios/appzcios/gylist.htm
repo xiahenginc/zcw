@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="swipe.js"></script>
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="swipe.js"></script>
+<script type="text/javascript">
+	var currPageNum=1;
+	var uid="<%=uid%>";
+	var abtn="position: absolute;right: 10px;margin-top: -32px;background-color: #119504;padding: 2px 6px;color: #fff;border-radius: 5px;cursor:pointer";
+	$(function(){
+		$.ajax({
+			type:'post',  
+			url : 'http://post/mysuplist', 
+			data:{"pagenum":"1","uid":uid},
+			jsonp:"jsoncallback",  
+			success  : function(data) {
+				data=$.trim(data);  
+				try{
+					var json=$.parseJSON(data);
+					var son=json.supinfo;
+					for(var i=0;i<son.length;i++){
+						var currjson=son[i];
+						
+						var id=currjson.id;
+						var title=currjson.sname; 
+						var imageurl=currjson.imageurl;
+						var pdate=currjson.pdate;
+						
+						//var tmp="<li><a href=\"http://detailperson/gyxx_detail2.htm?id="+ id +"\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
+						
+						var tmp="<li><a style=\"cursor:auto\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2><span href=\"javascript:;\" onclick=\"if(!confirm('确定删除吗？')){return false;};delNode("+ id +",this);\" style=\""+ abtn +"\">删除</span></div></a></li>";
+						
+						$("#listbody").append(tmp);
+					}
+				}catch(e){
+				}
+			},  
+			error : function() {
+			}  
+		});
+		
+		
+		$("#more").click(function(){
+			currPageNum++;
+			$.ajax({
+				type:'post',  
+				url : 'http://post/purinfo', 
+				data:{"pagenum":currPageNum,"uid":uid},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+					data=$.trim(data);
+					if(data=="over"){
+						$("#more").html('没有更多啦');
+						$("#more").unbind("click");
+					}else{
+						try{
+							var json=$.parseJSON(data);
+							var son=json.purinfo;
+							for(var i=0;i<son.length;i++){
+								var currjson=son[i];
+								
+								var id=currjson.id;
+								var title=currjson.sname; 
+								var imageurl=currjson.imageurl;
+								var pdate=currjson.pdate;
+								
+								//var tmp="<li><a href=\"http://detailperson/gyxx_detail2.htm?id="+ id +"\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
+								var tmp="<li><a style=\"cursor:auto\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2><span href=\"javascript:;\" onclick=\"if(!confirm('确定删除吗？')){return false;};delNode("+ id +",this);\" style=\""+ abtn +"\">删除</span></div></a></li>";
+								
+								$("#listbody").append(tmp);
+							}
+						}catch(e){
+						}
+					}
+				},  
+				error : function() {
+				}  
+			});	
+		});
+	});
+	
+	function delNode(id,dom){
+		$.ajax(  
+			{  
+				type:'post',  
+				url : 'http://post/delSupData',
+				data:{"id":id,"uid":uid}, 
+				success  : function(data) {
+					if(data=="1"){
+						$(dom).parent().parent().parent().remove();	
+						//location.href='http://localperson/gylist.htm';
+					}else{
+						alert('删除失败，请稍后重试！');
+					}
+				},  
+				error : function() {
+					alert('删除失败，请稍后重试！');
+				}  
+			}  
+		);
+	}
+	
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content mt10">
+    <article class="mbox" >
+      <h3 class="tit">供应信息</h3>
+      <div class="list">
+        <ul id="listbody">
+          
+        </ul>
+      </div>
+      <div class="more"><a class="mt10" id="more">查看更多<i class="phone-icon mico"></i></a></div>
+    </article>
+  </section>
+</div>
+<footer class="foot mt10">
+  <p>Copyright © 2014 找船网</p>
+</footer>
+<script src="saved_resource.js"></script> 
+<script src="header.js"></script> 
+<script src="bcktotop.js"></script> 
+<script>TMall.BackTop.init();</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="ny.css" media="all">
+<script type="text/javascript">
+	$(function(){
+		var uid="<%=uid%>";
+		$.ajax(  
+			{  
+				type:'post',  
+				url : 'http://post/myft',
+				data:{"uid":uid},
+				success  : function(data) {
+					try{
+						var arys=eval(data);
+						if(arys!=null && arys.length>0){
+							for(var i=0;i<arys.length;i++){
+								var json=arys[i];
+								
+								var bid=json.bid;
+								var title=json.title;
+								var content=json.content;
+								var date=json.date;
+								
+								var tmp="<li class=\"volist clearfix\"><div class=\"mainbox\"> <a class=\"touch\" href=\"http://detailperson/lt2_1.htm?id="+ bid +"\"><div class=\"itemcontent\"><h2>"+ title +"<i class=\"arrow-right\"></i><br/><span style=\"font-size:12px;\">"+ date +"</span></h2> <p>"+ content +"</p></div></a></div></li>";
+								$("#mainList").append(tmp);
+								
+							}		
+						}
+					}catch(e){	
+					}
+				},  
+				error : function() { 
+				}
+			}  
+		);  
+	});
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content">
+    <article class="scroll">
+      <ul id="mainList" class="mainList list">
+        
+        
+      </ul>
+    </article>
+  </section>
+</div>
+</body>
+</html>

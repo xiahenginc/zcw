@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<script type="text/javascript">
+		var ary=null;
+		var shipary=null;
+	$(function(){
+		$.ajax(  
+			{  
+				type:'post',  
+				url : 'http://post/predinit', 
+				data:{"uid":"<%=uid%>"},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+					try{
+						var json=$.parseJSON(data);
+						ary=json.predinit;
+						for(var i=0;i<ary.length;i++){
+							var currjson=ary[i];
+							var type=currjson.type;
+							var id_=currjson.id;
+							var tmp="<option value='"+ id_ +"'>"+ type +"</option>";
+							$("#ddlmyship").append(tmp);
+							if(i==0){
+								var dport=currjson.dport;
+								var ddate=currjson.ddate;
+								var kdate=currjson.kdate;
+								var node=currjson.node;
+								var cbhx=currjson.cbhx;
+								$("#dport").val(dport);
+								$("#ddate").val(ddate);
+								$("#kdate").val(kdate);
+								$("#node").val(node);
+								$("#cbhx").val(cbhx);
+							}
+						}
+					}catch(e){
+					}
+					
+				},  
+				error : function() { 
+				}  
+			}  
+		); 
+		
+		$("#ddlmyship").change(function(){
+			var selval=$(this).val();
+			for(var i=0;i<ary.length;i++){
+				var currjson=ary[i];
+				var id_=currjson.id;
+				if(selval==id_){
+					var dport=currjson.dport;
+					var ddate=currjson.ddate;
+					var kdate=currjson.kdate;
+					var node=currjson.node;
+					$("#dport").val(dport);
+					$("#ddate").val(ddate);
+					$("#kdate").val(kdate);
+					$("#node").val(node);
+					break;
+				}
+			}
+		});
+		
+		$("#btnsub").click(function(){
+			
+			var uid="<%=uid%>";
+			var id=$("#ddlmyship").val();
+			var dport=$("#dport").val();
+			var ddate=$("#ddate").val();
+			var kdate=$("#kdate").val();
+			var node=$("#node").val();
+			var cbhx=$("#cbhx").val();
+			
+			var datatmp={uid:uid,id:id,dport:dport,ddate:ddate,kdate:kdate,node:node,cbhx:cbhx};
+			
+			var datas=JSON.stringify(datatmp);
+				
+			
+			$.ajax(  
+				{  
+					type:'post',  
+					url : 'http://post/predrelease', 
+					data:{"predrelease":datas},
+					jsonp:"jsoncallback",  
+					success  : function(data) {  
+						try{
+							if(data=="1"){
+								alert('更新成功！');
+								location.href='http://skip/index.htm';
+							}else{
+								alert('更新失败！请稍后重试！');
+							}
+						}catch(e){
+							alert('更新失败！请稍后重试！');
+						}
+						
+					},  
+					error : function() { 
+						alert('更新失败！请稍后重试！');
+					}  
+				}  
+			);
+		});
+		 
+	});
+	 
+	$(function(){
+		$.ajax(  
+			{  
+				type:'post',  
+				url : 'http://post/boatdatainit', 
+				data:{"uid":"<%=uid%>"},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+					try{
+						var json=$.parseJSON(data);
+						shipary=json.boatdatainit;
+						for(var i=0;i<shipary.length;i++){
+							var currjson=shipary[i];
+							var type=currjson.type;
+							var id_=currjson.id;
+							var tmp="<option value='"+ id_ +"'>"+ type +"</option>";
+							$("#ddlmyship2").append(tmp);
+							if(i==0){
+								var ctype=currjson.type;
+								var cton=currjson.ton;
+								var clength=currjson.length;
+								var cwidth=currjson.width;
+								var cheight=currjson.height;
+								var cdraft=currjson.draft;
+								var cstorenum=currjson.storenum;
+								var cbname=currjson.cbname;
+								
+								$("#ctype").val(cbname);
+								$("#cton").val(cton);
+								$("#clength").val(clength);
+								$("#cwidth").val(cwidth);
+								$("#cheight").val(cheight);
+								$("#cdraft").val(cdraft);
+								$("#cstorenum").val(cstorenum);
+							}
+						}
+					}catch(e){
+						
+					}
+					
+				},  
+				error : function() { 
+				}  
+			}  
+		); 
+		
+		$("#ddlmyship2").change(function(){
+			var selval=$(this).val();
+			for(var i=0;i<shipary.length;i++){
+				var currjson=shipary[i];
+				var id_=currjson.id;
+				if(selval==id_){
+					var ctype=currjson.type;
+					var cton=currjson.ton;
+					var clength=currjson.length;
+					var cwidth=currjson.width;
+					var cheight=currjson.height;
+					var cdraft=currjson.draft;
+					var cstorenum=currjson.storenum;
+					var cbname=currjson.cbname;
+					
+					$("#ctype").val(cbname);
+					$("#cton").val(cton);
+					$("#clength").val(clength);
+					$("#cwidth").val(cwidth);
+					$("#cheight").val(cheight);
+					$("#cdraft").val(cdraft);
+					$("#cstorenum").val(cstorenum);
+					break;
+				}
+			}
+		});
+		
+		$("#btnsub2").click(function(){
+			
+			var uid="<%=uid%>";
+			var id=$("#ddlmyship2").val();
+			var ctype=$("#ctype").val();
+			var cton=$("#cton").val();
+			var clength=$("#clength").val();
+			var cwidth=$("#cwidth").val();
+			var cheight=$("#cheight").val();
+			var cdraft=$("#cdraft").val();
+			var cstorenum=$("#cstorenum").val();
+			
+			
+			var datatmp={uid:uid,id:id,type:ctype,ton:cton,length:clength,width:cwidth,height:cheight,draft:cdraft,storenum:cstorenum};
+			
+			var datas=JSON.stringify(datatmp);
+				
+			
+			$.ajax(  
+				{  
+					type:'post',  
+					url : 'http://post/bdatarelease', 
+					data:{"bdatarelease":datas},
+					jsonp:"jsoncallback",  
+					success  : function(data) {  
+						try{
+							if(data=="1"){
+								alert('更新成功！');
+								location.href='http://skip/index.htm';
+							}else{
+								alert('更新失败！请稍后重试！');
+							}
+						}catch(e){
+							alert('更新失败！请稍后重试！');
+						}
+						
+					},  
+					error : function() { 
+						alert('更新失败！请稍后重试！');
+					}  
+				}  
+			);
+		});
+		 
+	});
+</script>
+</head>
+<body>
+<div class="warp">
+<section class="content">
+  <div class="m-tool" style="display: block;">
+    <table width="100%" class="tab">
+      <tbody>
+      <tr>
+          <th></th>
+        </tr>
+         <tr>
+          <th>我的船舶：<select name="" id="ddlmyship"></select></th>
+        </tr>
+        <tr>
+          <th>预到达港口名称：</th>
+        </tr>
+        <tr><td><input class="px" type="text" name="dport" id="dport" value=""></td></tr>
+        <tr>
+          <th>预到达港口日期：</th>
+        </tr>
+         <tr>
+          <td><input class="px" type="text" id="ddate" name="ddate" value=""></td>
+        </tr>
+        <tr>
+          <th>预空船日期：</th>
+        </tr>
+        <tr>
+          <td><input class="px" type="text" id="kdate" name="kdate" value=""></td>
+        </tr>
+        <tr>
+          <th>船舶航向：</th>
+        </tr>
+        <tr>
+          <td><input class="px" type="text" id="cbhx" name="cbhx" value=""></td>
+        </tr>
+        <tr>
+          <th>装载备注：</th>
+        </tr>
+        <tr>
+          <td><textarea name="node" id="node" cols="" rows="" class="pxtextarea" style=" height:99px;overflow-y:visible"></textarea></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row" style="margin:15px 0px"> <a href="javascript:;" id="btnsub" class="loginbtn">提交</a> </div>
+  </div>
+  <div class="m-tool" style="display: none;">
+    <table width="100%" class="tab">
+      <tbody>
+      <tr>
+          <th></th>
+        </tr>
+         <tr>
+          <th>船型：<select name="" id="ddlmyship2"></select></th>
+        </tr>
+        <tr>
+          <th>船舶名称：</th>
+        </tr>
+        <tr><td><input class="px" type="text" name="ctype" id="ctype" value=""></td></tr>
+        <tr>
+          <th>载重吨位：</th>
+        </tr>
+         <tr>
+          <td><input class="px" type="text" id="cton" name="cton" value=""></td>
+        </tr>
+        <tr>
+          <th>船长：</th>
+        </tr>
+        <tr>
+          <td><input class="px" type="text" id="clength" name="clength" value=""></td>
+        </tr>
+         <tr>
+          <th>船宽：</th>
+        </tr>
+        <tr>
+          <td><input class="px" type="text" id="cwidth" name="cwidth" value=""></td>
+        </tr>
+         <tr>
+          <th>船高：</th>
+        </tr>
+        <tr>
+          <td><input class="px" type="text" id="cheight" name="cheight" value=""></td>
+        </tr>
+         <tr>
+          <th>吃水深度：</th>
+        </tr>
+        <tr>
+          <td><input class="px" type="text" id="cdraft" name="cdraft" value=""></td>
+        </tr>
+        <tr>
+          <th>仓口数：</th>
+        </tr>
+        <tr>
+          <td><input class="px" type="text" id="cstorenum" name="cstorenum" value=""></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row" style="margin:15px 0px"> <a href="javascript:;" id="btnsub2" class="loginbtn">提交</a> </div>
+  </div>
+</section> 
+</div>
+<footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
+  <p>Copyright © 2014 找船网</p>
+</footer>
+<div style="height:60px"></div>
+<aside class="phoneBox" style="line-height:50px">
+  <div class="g-tool">
+    <ul>
+      <li class="first"><a href="javascript:void(0);">预报港</a></li>
+      <li class=""><a href="javascript:void(0);">我的船舶资料</a></li>
+    </ul>
+  </div>
+</aside>
+<script type="text/javascript">
+	var form_url="";	
+					
+	$(document).ready(function(){
+		$(".g-tool li").click(function(){
+		$(".g-tool li").eq($(this).index()).addClass("first").siblings().removeClass('first');
+		$(".m-tool").hide().eq($(this).index()).show();
+		});
+	});						
+</script>
+</body>
+</html>

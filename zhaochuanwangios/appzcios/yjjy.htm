@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="ny.css" media="all">
+<script type="text/javascript">
+	$(function(){
+		$("#submit").click(function(){
+				var msg=$("#message").val();
+				if(msg==null || $.trim(msg)==""){
+					alert('请填写内容！');
+					return;
+				}
+				$.ajax(  
+					{  
+						type:'post',  
+						url : 'http://post/opinion',
+						data:{"content":msg,"uid":"<%=uid%>"},
+						jsonp:"jsoncallback",  
+						success  : function(data) {  
+							if(data=="1"){
+								alert('发布成功！');
+								location.href='http://skip/index.htm';
+							}else{
+								alert('发布失败！请稍后重试！');
+							}
+						},  
+						error : function() { 
+							alert('发布失败！请稍后重试！');
+						}  
+					}  
+				);  
+		});
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+    <section class="sWritePostsBox">
+      <textarea class="textarea" name="message" id="message" cols="" rows="" placeholder="有什么想说的尽管来吐槽吧" style="font-family:microsoft yahei"></textarea>
+<div class="swrap">
+        <section class="sUpPhotoBox">
+            <ul class="clearfix" style="display:none;">
+                <li id="imgLastLi">
+                    <a class="add uploadImgBtn" href="javascript:;"><span>上传</span></a>
+                </li>
+            </ul>
+        </section>
+	        <a class="sBtn01" href="javascript:;" id="submit">发表</a>
+    </div>
+</section>
+</div>
+</body>
+</html>

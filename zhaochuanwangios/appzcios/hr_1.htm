@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="swipe.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax(  
+			{  
+				type:'post',  
+				url : 'http://post/recjobdetail',
+				data:{"id":"<%=id%>"},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+					data=$.trim(data);  
+					try{
+						var json=$.parseJSON(data);
+						var title=json.title;
+						var position=json.position;
+						var salary=json.salary;
+						var pnum=json.pnum;
+						var age=json.age;
+						var exp2=json.exp;
+						var gender=json.gender;
+						var contact=json.contact;
+						var mphone=json.mphone;
+						var cert=json.cert;
+						var deadline=json.deadline;
+						var telephone=json.telephone;
+						var email=json.email;
+						var qq=json.qq;
+						var note=json.note;
+						var pdate=json.pdate;
+						var enterprise=json.enterprise;
+						var hit=json.hit;
+						var zsxm=json.zsxm;
+						
+						$("#titlesp").html(title);
+						$("#hitssp").html(hit);
+						$('#timesp').html(pdate);
+						$("#positionsp").html(position);
+						$("#salarysp").html(salary);
+						$("#pnumsp").html(pnum);
+						$("#expsp").html(exp2);
+						$("#gendersp").html(gender);
+						$("#agesp").html(age);
+						$("#telephonesp").html(telephone);
+						$("#deadlinesp").html(deadline);
+						$("#certsp").html(cert);
+						$("#contactsp").html(contact);
+						$("#mphonesp").html(mphone);
+						$("#qqsp").html(qq);
+						$("#emailsp").html(email);
+						$("#notesp").html(note);
+						$("#enterprisesp").html(enterprise);
+					}catch(e){
+					}
+				},  
+				error : function() {
+				}  
+			}  
+		);
+		
+		$("#addsc").click(function(){
+			$.ajax(  
+				{  
+					type:'post',  
+					url : 'http://post/recjobadd',
+					data:{"id":"<%=id%>","uid":"<%=uid%>"},
+					jsonp:"jsoncallback",  
+					success  : function(data) {
+					},  
+					error : function() {
+					}  
+				}  
+			);
+		});
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content">
+    <article class="mbox" >
+    	<h1 style="font-size:15px; line-height:32px; padding:8px 0px; text-align:center; border-bottom:1px  dashed #CCC; margin-bottom:10px">
+        	<span id="titlesp"></span>
+        <span style="font-size:12px; font-weight:normal; display:block"><span style="color:#f00; padding-right:5px"><span id="timesp"></span>点击数(<span id="hitssp"></span>) <a href="javascript:;" id="addsc">加入收藏</a></span>
+        </h1>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="hr">
+  <tr>
+    <td align="right" width="28%" class="gr">招聘职位:</td>
+    <td><span id="positionsp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">招聘人数:</td>
+    <td><span id="pnumsp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">年龄要求:</td>
+    <td><span id="agesp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">性别要求:</td>
+    <td><span id="gendersp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">证书要求:</td>
+    <td><span id="certsp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">招聘期限:</td>
+    <td><span id="deadlinesp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">薪资:</td>
+    <td><span id="salarysp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">工作经验:</td>
+    <td><span id="expsp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">联系人:</td>
+    <td><span id="contactsp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">联系手机:</td>
+    <td><span id="mphonesp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">联系电话:</td>
+    <td><span id="telephonesp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">QQ号:</td>
+    <td><span id="qqsp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">邮箱:</td>
+    <td><span id="emailsp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">招聘企业:</td>
+    <td><span id="enterprisesp"></span></td>
+  </tr>
+  <tr>
+    <td align="right" class="gr">备注:</td>
+    <td><span id="notesp"></span></td>
+  </tr>
+</table>
+
+	</article>
+  </section>
+</div>
+<footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
+  <p>Copyright © 2014 找船网</p>
+</footer>
+
+<script src="saved_resource.js"></script>
+<script src="header.js"></script>
+<script src="bcktotop.js"></script>
+<script>TMall.BackTop.init();</script>
+</body>
+</html>

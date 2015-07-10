@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="ny.css" media="all">
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			type:'post',  
+			url : 'http://post/concernother',
+			data:{"pagenum":"1","uid":"<%=uid%>"},
+			jsonp:"jsoncallback",  
+			success  : function(data) {
+				data=$.trim(data);  
+				try{
+					var json=$.parseJSON(data);
+					var son=json.concernother;
+					for(var i=0;i<son.length;i++){
+						var currjson=son[i];
+						
+						var id=currjson.id;
+						var username=currjson.username; 
+						var imageurl=currjson.imageurl;
+						
+						var tmp="<li><img src=\""+ imageurl +"\"><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"javascript:;\">"+ username +"</a> </li>";
+
+						
+						$("#listbody").append(tmp);
+					}
+					
+				}catch(e){
+				}
+			},  
+			error : function() {
+			}  
+		});	
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content">
+    <div class="m-tool">
+      <ul class="mnews-b" id="listbody">
+       
+      </ul>
+    </div>
+  </section>
+</div>
+</body>
+</html>

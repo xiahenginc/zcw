@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+	$(function(){
+		$("#showcard").click(function(){
+				var uid="";
+				var uname=$("#uname").val();
+				var upswd=$("#upswd").val();
+				
+				if(uname==""){
+					alert('用户名不能为空！');
+					return;
+				}
+				if(upswd==""){
+					alert('密码不能为空！');
+					return;
+				}
+				
+				var json={uid:"",uname:uname,upswd:upswd};
+				
+				var data=JSON.stringify(json);
+				
+				$.ajax(  
+					{  
+						type:'post',  
+						url : 'http://post/login', 
+						data:{"login":encodeURIComponent(data)},
+						success  : function(json) {
+							if(json!="0"){
+								location.href='http://skip/grzx.htm';	
+							}else{
+								alert("登录失败!");
+							}
+						},  
+						error : function(XHR, textStatus, errorThrown) { 
+							alert("登录失败!");
+						}  
+					}  
+				);  
+		});
+	})
+</script>
+</head>
+<body>
+	<div class="container">
+	<div id="content">
+		<script type="text/javascript" src="sinasso.js"></script>
+<section class="swrap1">
+	<h1 class="sSinaLogo"><img src="logo_1.png"></h1>
+	<div class="sLoginBox">
+		<div class="userNameBox">
+			<input class="userName" name="uname" id="uname" type="text" placeholder="请输入您的用户名">
+		</div>
+		<div class="passwordBox">
+			<input class="password" name="upswd" id="upswd" type="password" placeholder="请输入您的密码">
+		</div>
+		<!--<div class="codeBox xVarInput" id="verify_html">
+			<input id="verify_input" type="text" class="code" placeholder="请输入验证码" value="">
+			<div class="codeCon xVarImg">
+				<img id="verify_img" src="http://www.zcwjson.com18.cn/image.jsp">
+				<a href="javascript:$('#verify_img').attr('src','http://www.zcwjson.com18.cn/image.jsp?'+new Date());" onclick="">看不清？</a>
+			</div>
+		</div>-->
+	</div>
+	<div id="errorMsg" class="sLoginWrongTip" style="display: none;">登录名或密码错误</div>
+	<a class="sBtn02" href="javascript:;" id="showcard">登录</a>
+	<div class="clearfix sRegPW mt15">
+		<a class="register" href="http://localperson/zc.htm">立即注册</a>		<a class="forgotPw" href="http://localperson/zhmm.htm">忘记密码</a>
+	</div>
+</section>
+<script type="text/javascript">
+	window.houseSSOController = new HouseSSOController({'site':'leju','errorId':'errorMsg'});
+</script>
+<script type="text/javascript">
+var lon = '';
+var lat = '';
+var uid = '';
+var location_city = '';
+var city = '';
+var level1_page = 'f_login';
+var level2_page = '';
+var custom_id = '';
+</script>	</div><!-- content -->
+</div>
+    <script type="application/javascript" src="gather.source.js"></script>
+</body></html>

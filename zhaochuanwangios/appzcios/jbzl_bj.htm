@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="ny.css" media="all">
+<script type="text/javascript">
+	var uid="<%=uid%>";
+	$(function(){
+		$.ajax({
+			type:'post',
+			url:"http://post/Boat/basicdata",  //lx2:9013/Boat
+			data:{"uid":uid},
+			success : function(json) {
+				try{
+					var data=$.parseJSON(json);
+					var img=data.imageurl;
+					if(img==null || img=="" || img=="http://"){
+						img="avatar.png";
+					}
+					var nick=data.nick;
+					var contact=data.contact;
+					var email=data.email;
+					var qq=data.qq;
+					var sline=data.sline;
+					var eline=data.eline;
+					var name=data.name;
+					var CNAME=data.CNAME;
+					var regclass=data.regclass;
+					
+					$("#spname").html(nick);
+					$("#TX").attr("src",img);
+					$("#yxsp").val(email);
+					$("#lxfs").val(contact);
+					$("#qq").val(qq);
+					$("#tname").val(name);
+					$("#CNAME").val(CNAME);
+					$("#zclx").html(regclass);
+				}catch(e){
+				}
+			},  
+			error : function(XHR, textStatus, errorThrown) { 
+				
+			}  
+		});
+	})
+	
+	function save(){
+		var yxsp=$("#yxsp").val();
+		var lxfs=$("#lxfs").val();
+		var qq=$("#qq").val();
+		var tname=$("#tname").val();
+		var cname=$("#CNAME").val();
+		
+		var json={uid:uid,yxsp:yxsp,lxfs:lxfs,qq:qq,tname:tname,cname:cname};
+				
+		var data=JSON.stringify(json);
+		
+		$.ajax({
+			type:'post',
+			url:"http://post/Boat/saveUserInfo",  //lx2:9013/Boat
+			data:{info:data},
+			success : function(json) {
+				json=$.trim(json);
+				if(json=="1"){
+					alert('修改成功！');
+					location.href='http://skip/jbzl.htm '
+				}else{
+					alert('修改失败，请稍后重试！');
+				}
+			},  
+			error : function(XHR, textStatus, errorThrown) { 
+				alert('修改失败，请稍后重试！');
+			}  
+		});
+	}
+	
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content mt10">
+  <div class="jbzl">
+  <ul><Li>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+   <tr style="height:60px; line-height:60px">
+    <th>头像</th>
+    <td><img src="avatar.jpg" id="TX"></td>
+  </tr>
+    <tr>
+    <th>昵称</th>
+    <td><span id="spname"></span></td>
+  </tr>
+  
+  <tr>
+    <th>公司名称</th>
+    <td><input type="text" id="CNAME" /></td>
+  </tr>
+   <tr style="height:60px; line-height:60px">
+    <th>注册类型</th>
+    <td><span id="zclx"></span></td>
+  </tr>
+   <tr>
+    <th>姓名</th>
+    <td><input type="text" id="tname"></td>
+  </tr>
+   <tr>
+    <th>联系方式</th>
+    <td><input type="text" id="lxfs"></td>
+  </tr>
+  <tr>
+    <th>QQ</th>
+    <td><input type="text" id="qq"></td>
+  </tr>
+  <tr>
+    <th>邮箱</th>
+    <td><input type="text" id="yxsp"></td>
+  </tr>
+  </table>
+  <div class="row" style="margin:15px 0px"> <a href="javascript:;" onClick="save()" id="loginbtn">保存</a> </div>
+<!--<div class="row" style="margin:15px 0px"> <a href="http://localperson/tc.htm" id="loginbtn">退出</a> </div>-->
+  </Li></ul> 
+  </div> 
+  </section>
+</div>
+
+
+</body>
+</html>

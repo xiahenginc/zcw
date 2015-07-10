@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="telephone=no" name="format-detection">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>找船网</title>
+<link rel="stylesheet" type="text/css" href="indexall.css">
+<script type="text/javascript" src="zepto.js"></script>
+<script type="text/javascript" src="swipe.js"></script>
+</head>
+<body>
+<div class="index-nav"><img src="logo.jpg" class="logo"></div>
+<div class="floor w">
+    <div class="app01 floor-area">
+    <div style="-webkit-transform:translate3d(0,0,0);">
+    <div style="visibility: visible;" id="banner_box" class="box_swipe">
+      <ul style="list-style: none outside none; width: 3200px; transition-duration: 500ms; transform: translate3d(-1280px, 0px, 0px);">
+        <li style="width: 640px; display: table-cell; vertical-align: top;"> <a href="#"> <img src="baner4.jpg" alt="找船网" style="width:100%;"> </a> </li>
+        <li style="width: 640px; display: table-cell; vertical-align: top;"> <a href="#"> <img src="baner3.jpg" alt="找船网" style="width:100%;"> </a> </li>
+        <li style="width: 640px; display: table-cell; vertical-align: top;"> <a onclick="return false;"> <img src="baner2.jpg" alt="找船网" style="width:100%;"> </a> </li>
+      </ul>
+      <ol>
+        <li class=""></li>
+        <li class=""></li>
+        <li class="on"></li>
+      </ol>
+    </div>
+  </div>
+  <script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script>
+    
+    </div>
+    <div class="app03 floor-area">
+      <ul class="app03-pic01 wbox">
+        <li><a href="http://local/fbxx.htm"><img alt="" src="index1.jpg"></a></li>
+        <li><a href="http://local/hp.htm"><img alt="" src="index2.jpg"></a></li>
+        <li><a href="http://local/cp.htm"><img alt="" src="index3.jpg"></a></li>
+      </ul>
+    </div>
+    <div class="app04 floor-area">
+      <ul class="app04-pic01 wbox">
+        <li><a href="http://local/zxtb.htm"><img alt="" src="index4.png"></a></li>
+        <li><a href="http://local/cywz.htm"><img alt="" src="index5.png"></a></li>
+        <li><a href="http://local/cbjy.htm"><img alt="" src="index6.png"></a></li>
+      </ul>
+    </div>
+    <div class="app02 floor-area">
+      <div class="w nav-carousel pr" id="navCarousel_box">
+        <div class="nav-carousel-box" id="navCarousel">
+          <ul class="slide_ul">
+            <li><a href="http://local/hr.htm"><img alt="" src="index7.jpg"><span>人才中心</span></a><a href="http://local/ssxw.htm"><img alt="" src="index8.jpg"><span>时事新闻</span></a><a href="http://local/qxxx.htm"><img alt="" src="index9.jpg"><span>气象信息</span></a><a href="http://local/cylt.htm"><img alt="" src="index10.jpg"><span>船友之家</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div><a href="http://local/gxcb.htm"><img alt="" src="index11.jpg"></a></div>
+  </div>
+<footer class="footer">
+  <div class="tc copyright">Copyright © 2014 找船网</div>
+</footer>
+</body>
+</html>

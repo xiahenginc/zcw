@@ -1,0 +1,249 @@
+/* suning.com 1423757194872 */ @charset "utf-8";
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, section, article, aside, header, footer, nav, dialog, figure, hgroup {
+	margin: 0;
+	padding: 0
+}
+.box_swipe{
+	overflow:hidden;
+	position:relative;
+}
+.box_swipe ul{
+    -webkit-padding-start: 0px;
+}
+
+.box_swipe>ol{
+    height:20px;
+    position: relative;
+    z-index:10;
+    margin-top:-25px;
+    text-align:right;
+    padding-right:15px;
+}
+.box_swipe>ol>li{
+    display:inline-block;
+    margin:5px 0;
+    width:8px;
+    height:8px;
+    background-color:#178ed0;
+    border-radius: 8px;
+}
+.box_swipe>ol>li.on{
+    background-color:#ffffff;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%
+}
+ul, ol, li {
+	list-style: none
+}
+em, i {
+	font-style: normal
+}
+img {
+	border: 0;
+	max-width: 100%
+}
+input, img {
+	vertical-align: middle
+}
+input:focus, a:focus {
+	outline: 0
+}
+a {
+	color: #333;
+	text-decoration: none
+}
+a:hover {
+opacity:
+}
+* {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-box-sizing: border-box
+}
+html {
+	overflow-y: scroll
+}
+html, body {
+	font-family: "microsoft yahei", Helvetica, STHeiTi, sans-serif
+}
+.clearfix:before, .clearfix:after {
+	content: " ";
+	display: table
+}
+.clearfix:after {
+	clear: both
+}
+html {
+	color: #000;
+	background: #f8f8f8;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%
+}
+html * {
+	outline: 0;
+	-webkit-text-size-adjust: none;
+	-webkit-tap-highlight-color: transparent
+}
+html {
+	font-size: 12px
+}
+body {
+	min-width: 320px;
+	line-height: 1.5;
+	color: #333;
+	background: #f8f8f8
+}
+.w {
+	max-width: 640px;
+	margin: 0 auto
+}
+
+.cl {
+	clear: both
+}
+.fl {
+	float: left
+}
+.fr {
+	float: right
+}
+.block {
+	display: block
+}
+
+.tr {
+	text-align: right
+}
+.tc {
+	text-align: center
+}
+
+.bold {
+	font-weight: 700
+}
+.of {
+	overflow: hidden;
+	word-wrap: break-word;
+	word-break: break-all;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.wbox {
+	display: -webkit-box
+}
+
+.logo {
+	width: 100%;
+}
+.index-nav{ text-align:center}
+.nav-carousel {
+	background: #FFF
+}
+.nav-carousel-box {
+	overflow: hidden
+}
+.nav-carousel .slide_ul {
+	overflow: hidden; margin-left:5px; margin-right:5px
+}
+.nav-carousel .slide_ul li {
+	position: relative;
+	float: left;
+	padding: 10px 0 0 0;
+	width: 100%;
+	overflow: hidden;
+	-webkit-box-sizing: border-box;
+	font-size: 0
+}
+.nav-carousel .slide_ul li a {
+	display: inline-block;
+	text-align: center;
+	width: 25%;
+	margin-bottom: 10px;
+	overflow: hidden
+}
+.nav-carousel .slide_ul li a span {
+	display: block;
+	margin: 5px 0 0 0;
+	font-size: 14px;
+	color: #707070;
+	height: 18px;
+	overflow: hidden
+}
+#navCarousel .slide_ul img {
+	width: 55px;
+	-webkit-transition: all .5s ease-in-out
+}
+
+.nav-slide-trigger {
+	text-align: center;
+	position: relative;
+	margin: 7px;
+	font-size: 0
+}
+.nav-slide-trigger li {
+	display: inline-block;
+	width: 7px;
+	height: 7px;
+	border: 1px solid #DDD;
+	background: 0 0;
+	margin-right: 5px
+}
+.nav-slide-trigger li.cur {
+	background: #F70;
+	border: 1px solid #F70
+}
+
+
+.app12-pic li a {
+	float: left
+}
+.app03-pic01 li {
+	width: 33.3333%
+}
+.app03 img {
+	min-height: 138px
+}
+.app04{
+	background-color: #eee
+}
+.app04-pic01 li {
+	width: 33.3333%;
+}
+.app04 img, .app04-pic02 img {
+	min-width: 105px
+}
+.app04 img {
+	min-height: 79px
+}
+.footer {
+	margin-top: 10px; margin-bottom:15px
+}
+
+.copyright {
+	color: #707070;
+	padding: 5px 0;
+	font-size: 12px
+}
+.phoneBox { z-index:99; width: 100%; height: 50px; text-align:center; position:fixed; left: 0; bottom: 0; display: block; }
+.top_bar{
+    width:100%;
+    left:0;
+    z-index:100;
+}
+.top_menu{
+    display:-webkit-box; background-color:#efefef
+}
+
+.top_bar .top_menu>li{
+    -webkit-box-flex:1;
+    height:50px;
+    position:relative;
+    text-align:center;
+}
+.top_bar .top_menu>li>a img{padding:0;height:32px;width:32px;color:#fff;line-height:40px;vertical-align:middle;}
+.top_bar .top_menu li a label{padding:0px 0 5px 0px;font-size:12px;overflow:hidden; display:block}

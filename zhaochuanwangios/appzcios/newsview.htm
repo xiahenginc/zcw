@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			type:'post',  
+			url : 'http://post/newsdetail', 
+			data:{"id":"<%=id%>"},
+			jsonp:"jsoncallback",  
+			success  : function(data) {
+				try{
+					var json=$.parseJSON(data);
+					var content=json.detailcontent;
+					var title=json.title;
+					var hit=json.hit;
+					var pdate=json.pdate;
+					
+					$("#content").html(content);
+					$("#title").html(title);
+					$("#hit").html(hit);
+					$("#pdate").html(pdate);
+				}catch(e){
+				}
+			},  
+			error : function() {
+			}  
+		});
+		
+		$("#addsc").click(function(){
+			$.ajax(  
+				{  
+					type:'post',  
+					url : 'http://post/newsadd',
+					data:{"id":"<%=id%>","uid":"<%=uid%>"},
+					jsonp:"jsoncallback",  
+					success  : function(data) {
+						if(data=="1"){
+							alert('收藏成功！');
+						}else{
+							alert('收藏失败，请稍后重试！');
+						}
+					},  
+					error : function() {
+						alert('收藏失败，请稍后重试！');
+					}  
+				}  
+			);
+		});
+		
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+  <article class="mbox mt10">
+        <h1 style="font-size:15px; line-height:32px; padding:8px 0px; text-align:center; border-bottom:1px  dashed #CCC; margin-bottom:10px">
+        <span id="title"></span>
+        <span style="font-size:12px; font-weight:normal; display:block"><span style="color:#f00; padding-right:5px"><span id="pdate"></span></span>点击数(<span id="hit"></span>) <a href="javascript:;" id="addsc">加入收藏</a></span>
+        </h1>
+		<div id="content"></div>
+	 <div class="mb20"></div>       
+	</article>
+    </section>
+</div>
+
+<script>
+    $(function($) {
+        $('ul.categoryList').not($('ul.categoryList')[0]).hide();
+        $('div.categoryBtn').click(function(event) {
+            $('div.over').removeClass('over');
+            $('ul.categoryList:visible').hide();
+            $(this).addClass('over').next('ul').show();
+        });
+        $('div.header a.menu').click(function(event) {
+            $('div.popup_overlay').height($(document).height()).show();
+            $('div.popup_container').show();
+            return false;
+        });
+        $('div.popup_overlay').click(function(event) {
+            $(this).next('div.popup_container').andSelf().hide();
+        });
+        $('div.letter > a').click(function(event) {
+            var top = $('dl.letterRow > dd').eq($(this).index()).offset().top - 80;
+            $('html,body').animate({
+                scrollTop: top
+            }, 'fast');
+            return false;
+            top
+        });
+        $('p.more > a').click(function(event) {
+            if ($(this).text() == '更多 >') {
+                $(this).text('< 收起');
+            } else {
+                $(this).text('更多 >');
+            }
+            ;
+            $(this).parent().prev().toggleClass("control");
+        });
+    });
+</script>
+<div class="popup_overlay" style="height: 919px; display: none;">&nbsp;</div>
+<div class="popup_container" style="display: none;">
+  <div class="arrow_up">&nbsp;</div>
+  <ul class="subNavi">
+    <li><a href="index.htm"><i><img src="plugmenu6.png" alt=""></i>首页</a></li>
+    <li><a href="#"><i><img src="n1.png" alt="更新我的船舶" title="更新我的船舶"></i>更新我的船舶</a></li>
+    <li><a href="fbxx.htm"><i><img src="n2.png" alt="信息发布" title="信息发布"></i>信息发布</a></li>
+    <li><a href="hp.htm"><i><img src="n3.png" alt="货盘信息" title="货盘信息"></i>货盘信息</a></li>
+    <li><a href="cp.htm"><i><img src="n4.png" alt="船盘信息" title="船盘信息"></i>船盘信息</a></li>
+    <li><a href="zxtb.htm"><i><img src="n5.png" alt="在线投保" title="在线投保"></i>在线投保</a></li>
+    <li><a href="cywz.htm"><i><img src="n6.png" alt="物资市场" title="物资市场"></i>物资市场</a></li>
+    <li><a href="cbjy.htm"><i><img src="n7.png" alt="船舶交易" title="船舶交易"></i>船舶交易</a></li>
+    <li><a href="hr.htm"><i><img src="n8.png" alt="人才中心" title="人才中心"></i>人才中心</a></li>
+  </ul>
+</div>
+
+<script src="saved_resource.js"></script>
+<script src="header.js"></script>
+<script src="bcktotop.js"></script>
+<script>TMall.BackTop.init();</script>
+</body>
+</html>

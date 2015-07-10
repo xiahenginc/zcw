@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="WdatePicker.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="WdatePicker.css" rel="stylesheet" type="text/css">
+<link href="datepicker.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript">
+	$(function(){
+		//获取用户基本信息
+		$.ajax(  
+			{  
+				type:'post',  
+				url : 'http://post/boatinit',
+				data:{"uid":"<%=uid%>"},
+				success  : function(data2) {  
+					var json=data2.code;  
+					try{
+						$("#linkman").val(json.mname);
+						$("#phone").val(json.phone);
+						$("#email").val(json.email);
+						$("#qq").val(json.qq);
+						$("#cname").val(json.cname);
+					}catch(e){
+					}
+				},  
+				error : function() { 
+					
+				}  
+			}  
+		);  
+		
+		$("#showcard").click(function(){
+				var uid="<%=uid%>";
+				if(uid==""){
+					alert('登录后才能进行发布信息操作！');
+					location.href='http://<%=host%>/dl0.htm';
+					return;
+				}
+				var type=$("#type").val();
+				var ton=$("#ton").val();
+				var emptyport=$("#emptyport").val();
+				var eport=$("#eport").val();
+				var edate=$("#edate").val();
+				var deadline=$("#deadline").val();
+				var cname=$("#cname").val();
+				var address=$("#address").val();
+				var linkman=$("#linkman").val();
+				var phone=$("#phone").val();
+				var email=$("#email").val();
+				var qq=$("#qq").val();
+				var note=$("#note").val();
+				if(type==null || type==""){
+					alert("船型不能为空！");
+					return;
+				}
+				if(ton==null || ton==""){
+					alert("载货吨位不能为空！");
+					return;
+				}
+				
+				if(emptyport==null || emptyport==""){
+					alert("空船港不能为空！");
+					return;
+				}
+				if(eport==null || eport==""){
+					alert("到达港不能为空！");
+					return;
+				}
+				if(edate==null || edate==""){
+					alert("空船日期不能为空！");
+					return;
+				}
+				if(deadline==null || deadline==""){
+					alert("有效期限不能为空！");
+					return;
+				}
+				
+				var json={uid:uid,type:type,ton:ton,emptyport:emptyport,eport:eport,edate:edate,deadline:deadline,cname:cname,address:address,linkman:linkman,phone:phone,email:email,qq:qq,note:note};
+				
+				var data=JSON.stringify(json);
+				
+				$.ajax(  
+					{  
+						type:'post',  
+						url : 'http://post/brelease',
+						data:{"brelease":(data)},
+						success  : function(data) {  
+							if(data=="1"){
+								alert('发布成功！');
+								location.href='http://skip/cp.htm';
+							}else{
+								alert('发布失败！请稍后重试！');
+							}
+						},  
+						error : function() { 
+							alert('发布失败！请稍后重试！');
+						}  
+					}  
+				);  
+		});
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content">
+    <div class="cardexplain">
+      <ul class="round roundyellow" style="display:none;">
+        <li class="userinfo"><a href="javascript:;"><span>请完善个人资料再填表单</span></a></li>
+      </ul>
+      
+      <!--粉丝填写过的信息的，直接就显示名字电话，粉丝没有填写过信息的话，这里就直接留空让粉丝填写-->
+      
+      <ul class="round">
+        <form action="javascript:;" method="post">
+          <li class="title mb"><span class="none">请保持您的联系方式畅通，方便我们工作人员及时与您联系！</span></li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label>*</label>
+                    船型</th>
+                  <td><select name="type" id="type">
+                      <option value="散货船">散货船</option>
+                      <option value="集装箱船">集装箱船</option>
+                      <option value="油船">油船</option>
+                      <option value="液化船">液化船</option>
+                      <option value="其它船舶">其它船型</option>
+                    </select></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label>*</label>
+                    载货吨</th>
+                  <td><input name="ton" class="px" id="ton" value="" placeholder="" type="text"></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label>*</label>
+                    空船港</th>
+                  <td><input name="emptyport" class="px" id="emptyport" value="" placeholder="" type="text"></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label>*</label>
+                    到达港</th>
+                  <td><input name="eport" class="px" id="eport" value="" placeholder="" type="text"></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label>*</label>
+                    空船日期</th>
+                  <td><input name="edate" class=" Wdate px" id="edate" value="" placeholder="" type="text" onClick="WdatePicker({readOnly:true})"></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label>*</label>
+                    有效期限</th>
+                  <td>
+                  <select name="deadline" id="deadline" >
+                	<option value="3">3</option>
+                    <option value="7">7</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="长期">长期</option>
+                </select></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label></label>
+                    公司名称</th>
+                  <td><input name="cname" class="px" id="cname" value="" placeholder="" type="text"></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label></label>
+                    公司地址</th>
+                  <td><input type="text" class="px" name="address" value="" id="address" ></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label></label>
+                    联系人:</th>
+                  <td><input type="text" class="px hasDatepicker" name="linkman" value="" id="linkman" ></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label></label>
+                    联系电话</th>
+                  <td><input type="text" class="px hasDatepicker" name="phone" value="" id="phone" ></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label></label>
+                    电子邮件</th>
+                  <td><input type="text" class="px hasDatepicker" name="email" value="" id="email" ></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label></label>
+                    QQ</th>
+                  <td><input type="text" class="px hasDatepicker" name="qq" value="" id="qq" ></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th>备注</th>
+                  <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入备注信息"></textarea></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </form>
+      </ul>
+      <div class="footReturn">
+        <input id="showcard" class="submit" value="提交" type="button">
+        <div class="window" id="windowcenter">
+          <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+          <div class="content">
+            <div id="txt"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
+  <p>Copyright © 2014 找船网</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	$(function(){
+		var uid="<%=uid%>";
+		$.ajax({
+			type:'post',
+			url:"http://post/basicdata",
+			data:{"uid":uid},
+			success : function(json) {
+				try{
+					var data=$.parseJSON(json);
+					var img=data.imageurl;
+					var nick=data.nick;
+					var contact=data.contact;
+					var email=data.email;
+					$("#spname").html(nick);
+					$("#TX").attr("src",img);
+				}catch(e){
+					alert(e.message);
+				}
+			},  
+			error : function(XHR, textStatus, errorThrown) { 
+				
+			}  
+		});
+	})
+</script>
+</head>
+<body style="background: #F2F2F2;">
+<div class="warp">
+  <section>
+    <div class="avatar-wrap" style="background:url(avatar_bg.png) no-repeat center center;background-size:cover;">
+	<div class="avatar rel mts-accountcenter-pic">
+		<div class="img">
+			<img src="6040461843_00_120x120.jpg" onerror="this.style.display=&#39;none&#39;" style="display: none;">
+			<img src="" id="TX">	
+		</div>
+	</div>
+	<div class="uname">hi,<span id="spname"></span></div>
+</div>
+<ul class="list-mine">
+	<li class="sn-block sn-list-div pr  ac-yz">
+    <img src="myxx.png">
+		<a class="of" href="http://localperson/jbzl.htm">基本资料<span style="font-size:12px; color:#999;display:none;">(完善资料，可提高关注度)</span></a>
+	</li>
+	<li class="sn-block sn-list-div pr  ac-ygq">
+     <img src="xx.png">
+		<a class="of" href="http://localperson/xxtx.htm">消息提醒</a>
+	</li>
+</ul>
+<ul class="list-mine" style="margin-bottom:60px">
+	<li class="sn-block sn-list-div pr  ac-yz">
+    <img src="ft.png">
+		<a class="of" href="http://localperson/wdft.htm">我的发贴</a>
+	</li>
+    <li class="sn-block sn-list-div pr  ac-yz">
+    <img src="wdfb.png">
+		<a class="of" href="http://localperson/gr_wdfb.htm">我的发布</a>
+	</li>
+	<li class="sn-block sn-list-div pr  ac-ygq">
+     <img src="gz.png">
+		<a class="of" href="http://localperson/gz.htm">谁关注我</a>
+	</li>
+	<li class="sn-block sn-list-div pr  ac-meb">
+     <img src="hy.png">
+		<a class="of" href="http://localperson/mygz.htm">我的关注</a>
+	</li>
+	<li class="sn-block sn-list-div pr  ac-meb">
+     <img src="xgmm.png">
+		<a class="of" href="http://localperson/xgmm.htm">修改密码</a>
+	</li>
+
+    <li class="sn-block sn-list-div pr  ac-meb">
+     <img src="dljl.png">
+		<a class="of" href="http://localperson/bz.htm">帮助</a>
+	</li>
+     <li class="sn-block sn-list-div pr  ac-meb">
+     <img src="tc.png">
+		<a class="of" href="http://localperson/tc.htm">退出</a>
+	</li>
+</ul>
+  </section>
+</div>
+</body>
+</html>

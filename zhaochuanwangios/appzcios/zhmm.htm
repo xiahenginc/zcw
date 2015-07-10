@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui">
+<title>用户登录</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#showcard").click(function(){
+			var uname=$("#username").val();
+			if(uname!=null && uname!=""){
+				$.ajax(  
+					{  
+						type:'post',  
+						url : 'http://post/reppwd', 
+						data:{"reppwd":uname},
+						success  : function(json) {  
+							if(json=="0"){
+								alert('发送邮件失败，请稍后重试！');							
+							}else if(json=="none"){
+								alert("您输入的账号不存在，请重新输入!");			
+							}else if(json=="err"){
+								alert('发送邮件失败，请稍后重试！');	
+							}else if(json=="no"){
+								alert('发送邮件失败，请稍后重试！');	
+							}else{
+								var idjson=$.parseJSON(json);
+								location.href='http://localperson/zhmm_s2.htm?uid='+idjson.uid;
+							}
+						},  
+						error : function(json) { 
+							alert('发送邮件失败，请稍后重试！');
+						}  
+					}  
+				);  
+			}
+		});
+	});
+</script>
+</head>
+<body>
+<div class="container">
+  <div id="content"> 
+<!--    <header>
+      <div class="header"> <a href="javascript:;" onclick="history.back(-1)"><span class="none">返回</span></a>找回密码 </div>
+    </header>-->
+    <section class="content mt60">
+    <div class="cardexplain"> 
+           <ul class="round_1"><li class="nob"><input name="" type="text" id="username" class="px" placeholder="请输入登录账号"></li>
+          <!--<li class="nob"><input name="" type="text" class="px" value="验证码" style="width:68%; display:inline-block"><img src="api.png" style=" position:absolute; right:10px; margin-top:15px"></li>-->
+          </ul>
+          <div class="footReturn">
+    <input id="showcard" class="submit" value="下一步" type="button">
+    <div class="window" id="windowcenter">
+              <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+              <div class="content">
+        <div id="txt"></div>
+      </div>
+            </div>
+  </div>
+        </div>
+  </section>
+      
+    <section class="swrap1 none" id="mobileNotice">
+      <div class="sRegBox">
+        <div class="sRegActi">
+          <p class="tip" id="regInfo">尊敬的<span id="mobilenum"></span>用户，您已完成注册。 </p>
+          <p>恭喜你成为找船网用户！</p>
+        </div>
+      </div>
+      <a class="sBtn03 mt10" href="#">去论坛逛逛</a>
+    </section>
+   </div>
+</div>
+</body>
+</html>

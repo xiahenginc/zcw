@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="WdatePicker.js"></script>
+<link href="WdatePicker.css" rel="stylesheet" type="text/css">
+<link href="datepicker.css" rel="stylesheet" type="text/css">
+<link href="index.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript">
+	$(function(){
+		$("#showcard").click(function(){
+				var uid="<%=uid%>";
+				if(uid==""){
+					alert('登录后才能进行发布信息操作！');
+					location.href='http://<%=host%>/dl0.htm';
+					return;
+				}
+				var iname=$("#iname").val();
+				var iaddress=$("#iaddress").val();
+				var invoicen=$("#invoicen").val();
+				var waybilln=$("#waybilln").val();
+				var gname=$("#gname").val();
+				var weight =$("#weight").val();
+				var packingn=$("#packingn").val();
+				var bname=$("#bname").val();
+				var bdate=$("#bdate").val();
+				var splace=$("#splace").val();
+				var eplace=$("#eplace").val();
+				var stime=$("#stime").val();
+				var itype=$("#itype").val();
+				var money=$("#money").val();
+				var ibrand=$("#ibrand").val();
+				if(iname==null || iname==""){
+					alert("被保险人名称为空！");
+					return;
+				}
+				if(iaddress==null || iaddress==""){
+					alert("地址为空！");
+					return;
+				}
+				if(gname==null || gname==""){
+					alert("承运货物名称为空！");
+					return;
+				}
+				if(weight==null || weight==""){
+					alert("重量为空！");
+					return;
+				}
+				if(packingn==null || packingn==""){
+					alert("包装及件数为空！");
+					return;
+				}
+				if(bname==null || bname==""){
+					alert("船名为空！");
+					return;
+				}
+				if(bdate==null || bdate==""){
+					alert("船舶建造日期为空！");
+					return;
+				}
+				if(splace==null || splace==""){
+					alert("启运地为空！");
+					return;
+				}
+				if(eplace==null || eplace==""){
+					alert("目的地为空！");
+					return;
+				}
+				if(stime==null || stime==""){
+					alert("启运日期为空！");
+					return;
+				}
+				if(itype==null || itype==""){
+					alert("投保险别为空！");
+					return;
+				}
+				if(money==null || money==""){
+					alert("投保金额为空！");
+					return;
+				}
+				
+				var json={uid:uid,iname:iname,iaddress:iaddress,invoicen:invoicen,waybilln:waybilln,gname:gname,weight:weight,packingn :packingn,bname:bname,bdate:bdate,splace:splace,eplace:eplace,stime:stime,itype:itype,money:money,ibrand:ibrand};
+				
+				var data=JSON.stringify(json);
+				
+				$.ajax(  
+					{  
+						type:'post',  
+						url : 'http://post/insrelease', 
+						data:{"insrelease":data},
+						success  : function(data) {  
+							if(data.toString()=="1"){
+								alert('投保成功！');
+								location.href='http://skip/index.htm';
+							}
+						},  
+						error : function() { 
+							alert('投保失败！请稍后重试！');
+						}  
+					}  
+				);  
+		});
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content">
+    <div class="cardexplain"> 
+          <ul class="round roundyellow" style="display:none;">
+    <li class="userinfo"><a href="#"><span>请完善个人资料再填表单</span></a></li>
+  </ul>
+          
+          <!--粉丝填写过的信息的，直接就显示名字电话，粉丝没有填写过信息的话，这里就直接留空让粉丝填写-->
+          
+          <ul class="round">
+    <form action="javascript:;" method="post">
+              <li class="title mb"><span class="none">请保持您的联系方式畅通，方便我们工作人员及时与您联系！</span></li>
+              <li class="nob">
+        <input name="formhash" id="formhash" value="2be3071a" type="hidden">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>被保险人名称</th>
+                      <td><input name="iname" class="px" id="iname" value="" type="text"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+              <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>地址</th>
+                      <td><input name="iaddress" class="px" id="iaddress" value="" type="text"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+              <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>发票号</th>
+                      <td><input type="text" class="px" name="invoicen" value="" id="invoicen" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+              <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>运单号</th>
+                      <td><input type="text" class="px" name="waybilln" value="" id="waybilln" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>承运货物名称</th>
+                      <td><input type="text" class="px hasDatepicker" name="gname" value="" id="gname" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>重量</th>
+                      <td><input type="text" class="px hasDatepicker" name="weight" value="" id="weight" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>包装及件数</th>
+                      <td><input type="text" class="px hasDatepicker" name="packingn" value="" id="packingn" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>船名</th>
+                      <td><input type="text" class="px hasDatepicker" name="bname" value="" id="bname" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>船舶建造日期</th>
+                      <td><input type="text" class="Wdate px hasDatepicker" name="bdate" value="" id="bdate" onClick="WdatePicker({readOnly:true})"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>启运地</th>
+                      <td><input type="text" class="px hasDatepicker" name="splace" value="" id="splace" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>目的地</th>
+                      <td><input type="text" class="px hasDatepicker" name="eplace" value="" id="eplace" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>启运日期</th>
+                      <td><input type="text" class="Wdate px hasDatepicker" name="stime" value="" id="stime" onClick="WdatePicker({readOnly:true})"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>投保险别</th>
+                      <td><select name="itype" id="itype" class="dropdown-select">
+                          <option value="基本险" selected="">基本险</option>
+                          <option value="综合险">综合险</option>
+                        </select></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>投保金额</th>
+                      <td><input type="text" class="px hasDatepicker" name="money" value="" id="money" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>保险品牌</th>
+                      <td><select name="ibrand" id="ibrand" class="dropdown-select">
+                          <option value="人保财险" selected="">人保财险</option>
+                        </select></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <!-- <li class="nob" style="border-bottom:none">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>验证码</th>
+                      <td><input type="text" class="px hasDatepicker" name="date" value="" id="dateline" >
+                      </td>
+                    </tr>
+                    <tr><td colspan="2" align="right"><div class="codeCon xVarImg">
+				<img id="verify_img" src="api.png" style=" margin-top:8px">
+				<a href="#" onclick="">看不清？</a>
+			</div></td></tr>
+          </tbody>
+                </table>
+      </li>-->
+            </form>
+  </ul>
+          <div class="footReturn">
+    <input id="showcard" class="submit" value="提交" type="button">
+    <div class="window" id="windowcenter">
+              <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+              <div class="content">
+        <div id="txt"></div>
+      </div>
+            </div>
+  </div>
+        </div>
+  </section>
+</div>
+<footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
+  <p>Copyright © 2014 找船网</p>
+</footer>
+
+</body>
+</html>

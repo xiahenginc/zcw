@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui">
+<title>船友之家</title>
+<link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="swipe.js"></script>
+<script type="text/javascript" src="tab.js"></script>
+<script type="text/javascript">
+
+function bindmyfriend(){
+		var len=$("#mycyul > li").length;
+		if(len==0){
+			//我的船友
+			$.ajax({
+				type:'post',
+				url:"http://post/myfriend",
+				data:{"uid":"<%=uid%>"},
+				success : function(json) {
+					try{
+						var data=$.parseJSON(json);
+						var ary=data.myfriend;
+						if(ary!=null && ary.length>0){
+							for(var i=0;i<ary.length;i++){
+								var currjson=ary[i];
+								var uname=currjson.uname;
+								var imgurl=currjson.imgurl;
+								
+								var tmp="<li><img src=\""+ imgurl +"\"> <a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"javascript:;\">"+ uname +"</a> </li>";
+								
+								$("#mycyul").append(tmp);
+							}
+						}else{
+							
+						}
+					}catch(e){
+					}
+				},  
+				error : function(XHR, textStatus, errorThrown) { 
+				}  
+			});
+		}
+	}
+
+	var allpagenum=1;
+	var jhpagenum=1;
+	$(function(){
+		var uid="<%=uid%>";
+		if(uid==""){
+			$("#dlspan").html("<a class=\"\" href=\"http://local/dl2.htm\">登录</a>&nbsp;&nbsp;<a href=\"http://local/zc.htm\">免费注册</a>");
+		}else{
+			$.ajax({
+				type:'post',
+				url:"http://post/basicdata",
+				data:{"uid":uid},
+				success : function(json) {
+					try{
+						var data=$.parseJSON(json);
+						var nick=data.nick;
+						$("#dlspan").html(nick);
+					}catch(e){
+					}
+				},  
+				error : function(XHR, textStatus, errorThrown) { 
+				}  
+			});
+		}
+
+		setTimeout(function(){
+				//加载全部	
+				$.ajax({
+					type:'post',
+					url:"http://post/bbsall",
+					data:{"uid":uid,"pagenum":"1"},
+					success : function(json) {
+						try{
+							var data=$.parseJSON(json);
+							var ary=data.bbsall;
+							if(ary!=null && ary.length>0){
+								for(var i=0;i<ary.length;i++){
+									var currjson=ary[i];
+									var bid=currjson.bid;
+									var title=currjson.title;
+									var uname=currjson.uname;
+									var date=currjson.date;
+									var like=currjson.like;
+									
+									var tmp="<li><div class=\"ybun\"><a href=\"http://detail/lt_1.htm?id="+ bid +"\"><h3>"+ title +"</h3></a><div class=\"me\"> <span class=\"t1\">"+ uname +"</span> <em>"+ date +"</em><p><span class=\"t3\" id=\"dzsp"+ bid +"\" onclick='dianzan("+ bid +")'>"+ like +"</span></p></div></div></li>";
+									
+									$("#alllistul").append(tmp);
+								}
+							}
+						}catch(e){
+						}
+					},  
+					error : function(XHR, textStatus, errorThrown) { 
+					}  
+				});
+			},500);
+		
+			setTimeout(function(){
+				//精华列表
+				$.ajax({
+					type:'post',
+					url:"http://post/bbsess",
+					data:{"uid":uid,"pagenum":"1"},
+					success : function(json) {
+						try{
+							var data=$.parseJSON(json);
+							var ary=data.bbsess;
+							if(ary!=null && ary.length>0){
+								for(var i=0;i<ary.length;i++){
+									var currjson=ary[i];
+									var bid=currjson.bid;
+									var title=currjson.title;
+									var uname=currjson.uname;
+									var date=currjson.date;
+									var like=currjson.like;
+									
+									var tmp="<li><div class=\"ybun\"><a href=\"http://detail/lt_1.htm?id="+ bid +"\"><h3>"+ title +"</h3></a><div class=\"me\"> <span class=\"t1\">"+ uname +"</span> <em>"+ date +"</em><p><span class=\"t3\" id=\"dzsp"+ bid +"\" onclick='dianzan("+ bid +")'>"+ like +"</span></p></div></div></li>";
+									
+									$("#alllistul2").append(tmp);
+								}
+							}else{
+								
+							}
+						}catch(e){
+						}
+					},  
+					error : function(XHR, textStatus, errorThrown) { 
+					}  
+				});
+			},1000);
+			
+			setTimeout(function(){
+					bindmyfriend()
+			},1500)
+			
+		$("#moreall").click(function(){
+			allpagenum++;
+			$.ajax({
+				type:'post',
+				url:"http://post/bbsall",
+				data:{"uid":uid,"pagenum":allpagenum},
+				success : function(json) {
+					if(json=="over"||json=="0"){
+						$("#moreall").html("没有更多啦");
+						return;
+					}
+					try{
+						var data=$.parseJSON(json);
+						var ary=data.bbsall;
+						if(ary!=null && ary.length>0){
+							for(var i=0;i<ary.length;i++){
+								var currjson=ary[i];
+								var bid=currjson.bid;
+								var title=currjson.title;
+								var uname=currjson.uname;
+								var date=currjson.date;
+								var like=currjson.like;
+								
+								var tmp="<li><div class=\"ybun\"><a href=\"http://detail/lt_1.htm?id="+ bid +"\"><h3>"+ title +"</h3></a><div class=\"me\"> <span class=\"t1\">"+ uname +"</span> <em>"+ date +"</em><p><span class=\"t3\" id=\"dzsp"+ bid +"\" onclick='dianzan("+ bid +")'>"+ like +"</span></p></div></div></li>";
+								
+								$("#alllistul").append(tmp);
+							}
+						}else{
+							
+						}
+					}catch(e){
+					}
+				},  
+				error : function(XHR, textStatus, errorThrown) { 
+				}  
+			});
+		});
+		
+		$("#morejh").click(function(){
+			jhpagenum++;
+			$.ajax({
+				type:'post',
+				url:"http://post/bbsess",
+				data:{"uid":uid,"pagenum":jhpagenum},
+				success : function(json) {
+					if(json=="over"||json=="0"){
+						$("#morejh").html("没有更多啦");
+						return;
+					}
+					try{
+						var data=$.parseJSON(json);
+						var ary=data.bbsess;
+						if(ary!=null && ary.length>0){
+							for(var i=0;i<ary.length;i++){
+								var currjson=ary[i];
+								var bid=currjson.bid;
+								var title=currjson.title;
+								var uname=currjson.uname;
+								var date=currjson.date;
+								var like=currjson.like;
+								
+								var tmp="<li><div class=\"ybun\"><a href=\"http://detail/lt_1.htm?id="+ bid +"\"><h3>"+ title +"</h3></a><div class=\"me\"> <span class=\"t1\">"+ uname +"</span> <em>"+ date +"</em><p><span class=\"t3\" id=\"dzsp"+ bid +"\" onclick='dianzan("+ bid +")'>"+ like +"</span></p></div></div></li>";
+								
+								$("#alllistul2").append(tmp);
+							}
+						}else{
+							
+						}
+					}catch(e){
+					}
+				},  
+				error : function(XHR, textStatus, errorThrown) { 
+				}  
+			});
+		});
+
+	})
+	
+	function dianzan(id){
+		$.ajax({
+			type:'post',
+			url:"http://post/favs",
+			data:{"uid":"<%=uid%>",bid:id},
+			success : function(json) {
+				try{
+					if(json=="1"){
+						var currNum=$("#dzsp"+id).html();
+						$("#dzsp"+id).html(parseInt(currNum)+1);
+					}else if(json=="0"){
+						alert('服务器正忙，请稍后重试！');
+					}else if(json=="-1"){
+						alert('已经点过赞了！');
+					}
+					return false;
+				}catch(e){
+				}
+			},  
+			error : function(XHR, textStatus, errorThrown) { 
+			}  
+		});
+	}
+	
+</script>
+</head>
+<body>
+<div class="m-tool mb60" style="display: block;">
+  <div class="container">
+    <div id="content">
+      <header class=" none ">
+        <div class="header"> <a href="javascript:;" onclick="history.back(-1)"><span class="none">返回</span></a> 找船网商务咨询有限责任公司 <a href="javascript:;" id="navShowR" class="other"><span class="none">其它</span></a> </div>
+      </header>
+      <div class="ybjin">欢迎来到船友之家 <span id="dlspan"></span></div>
+      <div class="ybbox">
+        <div class="ybzy"> <img src="13839625541224.png" alt="找船网商务咨询有限责任公司">
+          <h2>找船网商务咨询有限责任公司</h2>
+          <p>&nbsp;</p><!--主题: 21 | 回复: 23-->
+          <div class="ab">
+            <div class="share"> 分享: <a href="#"><span class="none">新浪微博</span></a> <a href="javascript:;" id="shareBtn"><span class="none">微信</span></a> </div>
+          </div>
+        </div>
+        <div class="ybqie2" id="Tab1"> <a href="javascript:;" class="hover" id="one1" onclick="setTab('one',1,2)">全部</a> <a href="javascript:;" id="one2" onclick="setTab('one',2,2);">精华</a> </div>
+      </div>
+      <!---------全部开始------------>
+      <div  id="con_one_1">
+        <div tabcontent="all">
+          <div class="ybbox2">
+            <ul type="all" id="alllistul">
+              
+            </ul>
+          </div>
+          <div class="ybjia"> <a href="javascript:;" id="moreall"> <img style="display: none" src="b4cf7680895aa192750cc57f74b_p10_mk10.gif" alt=""> <span class="more" type="all">点击加载更多内容</span> </a> </div>
+        </div>
+      </div>
+      <!---------全部结束------------> 
+      <!---------精华开始------------>
+      <div id="con_one_2" style="display:none">
+        <div class="ybbox2">
+          <ul type="dt" id="alllistul2">
+            
+          </ul>
+        </div>
+        <!---------精华结束------------>
+        <div class="ybjia"> <a href="javascript:;" id="morejh"> <img style="display: none" src="b4cf7680895aa192750cc57f74b_p10_mk10.gif" alt=""> <span class="more" type="all">点击加载更多内容</span> </a> </div>
+      </div>
+      <div class="yufx" style="display: none;"> <img alt="" src="fx.png"> </div>
+      <a class="ybxie" href="http://local/lt_2.htm"></a></div>
+  </div>
+</div>
+<div class="m-tool mb60" style="display: none;">
+  <ul class="mnews-b" id="mycyul">
+    
+  </ul>
+</div>
+<aside class="phoneBox">
+  <div class="g-tool">
+    <ul>
+      <li class="first"><a href="javascript:void(0);">论坛</a></li><li class="" onClick="bindmyfriend()"><a href="javascript:void(0);">我的船友</a></li>
+    </ul>
+  </div>
+</aside>
+<script type="text/javascript">
+	var form_url="";	
+					
+	$(document).ready(function(){
+		$(".g-tool li").click(function(){
+		$(".g-tool li").eq($(this).index()).addClass("first").siblings().removeClass('first');
+		$(".m-tool").hide().eq($(this).index()).show();
+		});
+	});						
+</script>
+</body>
+</html>

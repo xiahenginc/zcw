@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui">
+<title>回复主题</title>
+<link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+	var uid="<%=uid%>";
+	$(function(){
+		//主题分类处理
+		$("ul[class='clearfix'] > li").click(function(){
+					var themeval=$(this).text();
+					$(this).prevAll("li").removeClass("cur");
+					$(this).nextAll("li").removeClass("cur");
+					$(this).addClass("cur");
+					$("#theme").val(themeval);
+				});
+		
+		$("#submit").click(function(){
+			if(uid==""){
+				alert('您还没有登录，请先登录！');
+				location.href='http://local/dl2.htm';
+				return;
+			}
+			
+			var txttitle=$("#txttitle").val();
+			var txtcontent=$("#contentTextarea").val();
+			var txttheme=$("#theme").val();
+			
+			var tmp={uid:uid,title:txttitle,theme:txttheme,content:txtcontent};
+			var data=JSON.stringify(tmp);;
+			
+			$.ajax({
+				type:'post',
+				url:"http://post/fatie",
+				data:{"suprelease":data},
+				success : function(json) {
+					try{
+						if(json=="1"){
+							alert('发帖成功！');
+							location.href='http://skip/cylt.htm';
+						}else{
+							alert('发帖失败，请稍后重试！');
+						}
+					}catch(e){
+						alert('发帖失败，请稍后重试！');
+					}
+				},  
+				error : function(XHR, textStatus, errorThrown) { 
+				}  
+			});	
+		
+		});
+	});
+</script>
+</head>
+<body>
+<div class="container">
+  <div id="content">
+    <header class=" none ">
+      <div class="header"> <a href="javascript:;" onclick="history.back(-1)"><span class="none">返回</span></a> 发表回复 <a class="post" href="#">发帖</a> </div>
+    </header>
+    <form method="post" id="pub" action="#">
+      <section class="headBox">
+        <figure> <img src="50.gif" alt="" width="32" height="32"> </figure>
+        </section>
+      <section class="sWritePostsBox">
+        <div class="pl15">
+          <input class="titInput" type="text" name="title" id="txttitle" placeholder="请输入标题">
+          <textarea class="textarea" id="contentTextarea" name="message" cols="" rows="" placeholder="请输入内容"></textarea>
+        </div>
+        <div class="swrap"> 
+          <!--			验证码$--> 
+          <a class="sBtn01" href="javascript:;" id="submit">发表帖子</a> </div>
+      </section>
+      <section class="sFaceBox" id="face" style="display:none">
+        <div class="sFaceSel">
+          <div class="sFaceSelBox">
+            <ul>
+              <li><a href="javascript:;"><img src="001.png"></a></li>
+              <li><a href="javascript:;"><img src="002.png"></a></li>
+              <li><a href="javascript:;"><img src="003.png"></a></li>
+              <li><a href="javascript:;"><img src="004.png"></a></li>
+              <li><a href="javascript:;"><img src="005.png"></a></li>
+              <li><a href="javascript:;"><img src="006.png"></a></li>
+              <li><a href="javascript:;"><img src="007.png"></a></li>
+              <li><a href="javascript:;"><img src="008.png"></a></li>
+              <li><a href="javascript:;"><img src="009.png"></a></li>
+              <li><a href="javascript:;"><img src="010.png"></a></li>
+            </ul>
+            <ul>
+              <li><a href="javascript:;"><img src="011.png" data-code="#mascot11#"></a></li>
+              <li><a href="javascript:;"><img src="012.png" data-code="#mascot12#"></a></li>
+              <li><a href="javascript:;"><img src="013.png" data-code="#mascot13#"></a></li>
+              <li><a href="javascript:;"><img src="014.png" data-code="#mascot14#"></a></li>
+              <li><a href="javascript:;"><img src="015.png" data-code="#mascot15#"></a></li>
+              <li><a href="javascript:;"><img src="016.png" data-code="#mascot16#"></a></li>
+              <li><a href="javascript:;"><img src="017.png" data-code="#mascot17#"></a></li>
+              <li><a href="javascript:;"><img src="018.png" data-code="#mascot18#"></a></li>
+              <li><a href="javascript:;"><img src="019.png" data-code="#mascot19#"></a></li>
+              <li><a href="javascript:;"><img src="020.png" data-code="#mascot20#"></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="sFaceDot"> <a class="cur" href="javascript:;"><span class="none">1</span></a> <a href="javascript:;"><span class="none">2</span></a> </div>
+      </section>
+      <section class="sClassify">
+        <h1>主题分类</h1>
+        <ul class="clearfix">
+          <li class="cur"><a class="subjectType" data-type="1688987299217481" href="javascript:;">我要提问</a></li>
+          <li class=""><a class="subjectType" data-type="1688987299217480" href="javascript:;">货盘信息</a></li>
+          <li class=""><a class="subjectType" data-type="1688987299217499" href="javascript:;">船盘信息</a></li>
+          <li class=""><a class="subjectType" data-type="1688987299217479" href="javascript:;">我要爆料</a></li>
+        </ul>
+        <input type="hidden" name="" id="theme" value="我要提问" />
+      </section>
+      <input type="hidden" name="images" value="">
+      <input type="hidden" name="fid" value="1408680553677861">
+      <input type="hidden" name="uppid" value="845730616390312">
+      <input type="hidden" name="pid" value="845730616390312">
+      <input type="hidden" name="page" value="1">
+      <input type="hidden" name="msource" value="">
+    </form>
+    <script type="text/template" id="imgViewTmp">
+	<li class="imgLi">
+		<img class="photoImg" src="" width="64" height="64">
+		<input type="hidden" name="" />
+
+		<div class="upBg"></div>
+		<div class="loading"></div>
+		<a class="iconX delImgBtn" href="javascript:;"><span class="none">关闭</span></a>
+	</li>
+</script>
+    <input style="opacity: 0;height:0;width:0;" type="file" id="fileImg" name="uploadImg" accept="image/jpeg,image/png,image/bmp">
+    <script type="text/javascript" src="sea.js"></script> 
+    <script type="text/javascript">
+	seajs.use("http://m.leju.com/resources/dist/app/mBBSV1/publishSubject.js");
+</script> 
+    <script type="text/javascript">
+var lon = '';
+var lat = '';
+//var uid = '845730616390312';
+var location_city = '';
+var city = '';
+var level1_page = 'post';
+var level2_page = 'p_reply';
+var custom_id = '1408680553677861';
+</script> 
+  </div>
+  <!-- content --> 
+</div>
+<script type="application/javascript" src="gather.source.js"></script>
+</body>
+</html>

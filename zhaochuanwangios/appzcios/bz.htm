@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="ny.css" media="all">
+<script type="text/javascript">
+	$(function(){
+		var uid="<%=uid%>";
+		$.ajax({
+			type:'post',
+			url:"http://post/help",
+			data:{"uid":uid},
+			success : function(data) {
+				data=$.trim(data); 
+				if(data!="0" && data!="" && data!="over"){
+					try{
+						var json=$.parseJSON(data);
+						var son=json.help;
+						for(var i=0;i<son.length;i++){
+							var currjson=son[i];
+							
+							var id=currjson.id;
+							var title=currjson.title;
+							var imageurl=currjson.imageurl; 
+							var date=currjson.date;
+							var content=currjson.content;
+							
+							
+							var tmp="<li class=\"volist clearfix\"><div class=\"mainbox\"> <a class=\"touch\" href=\"javascript:;\"><div class=\"itemcontent\"><h2>"+ title +"<i class=\"arrow-right\"></i></h2><p>"+ content +"</p></div></a> </div></li>";
+							
+							$("#mainList").append(tmp);
+						}	
+						
+					}catch(e){
+						alert(e.message);
+					}	
+				}else{
+					
+				}
+			},  
+			error : function(XHR, textStatus, errorThrown) { 
+				
+			}  
+		});
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content mt10" style="margin-bottom:70px">
+    <article class="scroll">
+      <ul id="mainList" class="mainList list">
+
+      </ul>
+    </article>
+  </section>
+</div>
+</body>
+</html>
