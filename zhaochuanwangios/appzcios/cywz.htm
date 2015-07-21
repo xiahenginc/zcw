@@ -25,13 +25,16 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="swipe.js"></script>
 <script type="text/javascript">
+
+	var uid="<%=uid%>";
+
 	var currPageNum=1;
 	var currPageNum2=1;
 	$(function(){
 		$.ajax({
 			type:'post',  
 			url : 'http://post/suppur',  //http://www.zcwjson.com18.cn
-			data:{"pagenum":"1","uid":"<%=uid%>"},
+			data:{"pagenum":"1","uid":uid},
 			jsonp:"jsoncallback",  
 			success  : function(data) {
 				data=$.trim(data);  
@@ -79,7 +82,7 @@
 			$.ajax({
 				type:'post',  
 				url : 'http://post/supinfo', 
-				data:{"pagenum":currPageNum2,"uid":"<%=uid%>"},
+				data:{"pagenum":currPageNum,"uid":uid},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);
@@ -100,7 +103,7 @@
 								
 								var tmp="<li><a href=\"http://detail/cgxx_detail.htm?id="+ id +"\"><div class=\"list-img\"><b><img src='icon23.png' /></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
 								
-								$("#listbody2").append(tmp);
+								$("#listbody").append(tmp);
 							}
 						}catch(e){
 						}
@@ -117,7 +120,7 @@
 			$.ajax({
 				type:'post',  
 				url : 'http://post/purinfo', 
-				data:{"pagenum":currPageNum,"uid":"<%=uid%>"},
+				data:{"pagenum":currPageNum2,"uid":uid},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);
@@ -138,7 +141,7 @@
 								
 								var tmp="<li><a href=\"http://detail/gyxx_detail.htm?id="+ id +"\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
 								
-								$("#listbody").append(tmp);
+								$("#listbody2").append(tmp);
 							}
 						}catch(e){
 						}

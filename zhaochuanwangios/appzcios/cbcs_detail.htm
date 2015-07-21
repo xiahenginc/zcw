@@ -21,12 +21,14 @@
 <link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
+	var id="<%=id%>";
+	var uid="<%=uid%>";
 	$(function(){
 		$.ajax(  
 			{  
 				type:'post',  
 				url : 'http://post/salebuydetail',
-				data:{"id":"<%=id%>"},
+				data:{"id":id},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
@@ -59,7 +61,7 @@
 				{  
 					type:'post',  
 					url : 'http://post/salebuyadd',
-					data:{"id":"<%=id%>","uid":"<%=uid%>"},
+					data:{"id":id,"uid":uid},
 					jsonp:"jsoncallback",  
 					success  : function(data) {
 						alert('收藏成功！');
@@ -125,26 +127,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
-        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tbody>
-            <tr>
-                      <th>船籍所在地:</th>
-                      <td><span id="cjszd"></span></td>
-                    </tr>
-          </tbody>
-                </table>
-      </li>
-      <li class="nob">
-        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tbody>
-            <tr>
-                      <th>船体状况:</th>
-                      <td><span id="situation"></span></td>
-                    </tr>
-          </tbody>
-                </table>
-      </li>
+      
       <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
@@ -155,6 +138,28 @@
           </tbody>
                 </table>
       </li>
+      
+      <li class="nob" style="display:none;">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>船籍所在地:</th>
+                      <td><span id="cjszd"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob" style="display:none;">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>船体状况:</th>
+                      <td><span id="situation"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+
       <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
@@ -185,7 +190,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>

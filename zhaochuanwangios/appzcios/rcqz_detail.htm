@@ -21,12 +21,14 @@
 <link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
+	var id="<%=id%>";
+	var uid="<%=uid%>";
 	$(function(){
 		$.ajax(  
 			{  
 				type:'post',  
 				url : 'http://post/recjobdetail',
-				data:{"id":"<%=id%>"},
+				data:{"id":id},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
@@ -39,9 +41,9 @@
 						$("#position").html(json.position);
 						$("#salary").html(json.salary);
 						$("#pnum").html(json.pnum);
-						$("#age").html(json.age);
+						$("#age").html(json.zsnl);
 						$("#exp").html(json.exp);
-						$("#gender").html(json.gender);
+						$("#gender").html(json.xb);
 						$("#cert").html(json.cert);
 						$("#deadline").html(json.deadline);//期限
 						$("#pdate").html(json.pdate);
@@ -69,7 +71,7 @@
 				{  
 					type:'post',  
 					url : 'http://post/recjobadd',
-					data:{"id":"<%=id%>","uid":"<%=uid%>"},
+					data:{"id":id,"uid":uid},
 					jsonp:"jsoncallback",  
 					success  : function(data) {
 						alert('收藏成功！');
@@ -125,7 +127,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -179,13 +181,13 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th>联系手机:</th>
+                      <th>联系电话:</th>
                       <td><span id="mphone"></span></td>
                     </tr>
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -195,7 +197,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>

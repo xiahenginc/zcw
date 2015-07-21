@@ -21,34 +21,36 @@
 <link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
+	var id="<%=id%>";
+	var uid="<%=uid%>";
 	$(function(){
 		$.ajax(  
 			{  
 				type:'post',  
 				url : 'http://post/suppurdetail',//www.zcwjson.com18.cn
-				data:{"id":"<%=id%>"},
+				data:{"id":id},
 				success  : function(data) {
 					data=$.trim(data);  
 					try{
 						var json=$.parseJSON(data);
 						json.id
 						$("#titlesp").html(json.sname);
-						$("#sname").val(json.sname);
+						$("#sname").html(json.sname);
 						$("#models").html(json.models);
-						$("#quantity1").val(json.quantity1);
+						$("#quantity1").html(json.quantity1);
 						//$("#dealtype").val(json.dealtype);
 						//$("#stime").val(json.stime);
 						$("#ptime").html(json.ptime);
-						$("#vtime").val(json.vtime);
-						$("#pdate").val(json.pdate);
-						$("#cname").val(json.cname);
-						$("#contact").val(json.contact);
-						$("#mphone").val(json.mphone);
+						$("#vtime").html(json.vtime);
+						$("#pdate").html(json.pdate);
+						$("#cname").html(json.cname);
+						$("#contact").html(json.contact);
+						$("#mphone").html(json.mphone);
 						//$("#telephone").val(json.telephone);
-						$("#email").val(json.email);
-						$("#qq").val(json.qq);
-						$("#address").val(json.address);
-						$("#note").val(json.note);
+						$("#email").html(json.email);
+						$("#qq").html(json.qq);
+						$("#address").html(json.address);
+						$("#note").html(json.note);
 						$("#hit").html(json.hit)
 					}catch(e){
 					}
@@ -64,7 +66,7 @@
 				{  
 					type:'post',  
 					url : 'http://post/suppuradd',
-					data:{"id":"<%=id%>","uid":"<%=uid%>"},
+					data:{"id":id,"uid":uid},
 					success  : function(data) {
 						alert('收藏成功！');
 					},  
@@ -119,7 +121,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -135,26 +137,6 @@
             <tr>
                       <th>采购期限:</th>
                       <td><span id="vtime"></span></td>
-                    </tr>
-          </tbody>
-                </table>
-      </li>
-      <li class="nob">
-        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tbody>
-            <tr>
-                      <th>公司名称:</th>
-                      <td><span id="cname"></span></td>
-                    </tr>
-          </tbody>
-                </table>
-      </li>
-      <li class="nob">
-        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tbody>
-            <tr>
-                      <th>公司地址:</th>
-                      <td><span id="address"></span></td>
                     </tr>
           </tbody>
                 </table>
@@ -195,6 +177,26 @@
             <tr>
                       <th> QQ:</th>
                       <td><span id="qq"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>公司名称:</th>
+                      <td><span id="cname"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>公司地址:</th>
+                      <td><span id="address"></span></td>
                     </tr>
           </tbody>
                 </table>

@@ -21,25 +21,29 @@
 <link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
+	var id="<%=id%>";
+	var uid="<%=uid%>";
 	$(function(){
 		$.ajax(  
 			{  
 				type:'post',  
 				url : 'http://post/recjobdetail',
-				data:{"id":"<%=id%>"}, 
+				data:{"id":id},
+				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
 					try{
 						var json=$.parseJSON(data);
+						json.id
 						$("#id").val(json.id);
-						$("#title").html(json.title);
 						$("#titlesp").html(json.title);
+						$("#title").html(json.title);
 						$("#position").html(json.position);
 						$("#salary").html(json.salary);
 						$("#pnum").html(json.pnum);
-						$("#age").html(json.age);
+						$("#age").html(json.zsnl);
 						$("#exp").html(json.exp);
-						$("#gender").html(json.gender);
+						$("#gender").html(json.xb);
 						$("#cert").html(json.cert);
 						$("#deadline").html(json.deadline);//期限
 						$("#pdate").html(json.pdate);
@@ -67,7 +71,7 @@
 				{  
 					type:'post',  
 					url : 'http://post/recjobadd',
-					data:{"id":"<%=id%>","uid":"<%=uid%>"},
+					data:{"id":id,"uid":uid},
 					jsonp:"jsoncallback",  
 					success  : function(data) {
 						alert('收藏成功！');
@@ -79,28 +83,6 @@
 			);
 		});
 	})
-	
-	function delNode(id,dom){
-		$.ajax(  
-			{  
-				type:'post',  
-				url : 'http://post/delJobData',
-				data:{"id":id,"uid":uid}, 
-				success  : function(data) {
-					if(data=="1"){
-						//$(dom).parent().remove();	
-						location.href='http://localperson/rcqzlist.htm';
-					}else{
-						alert('删除失败，请稍后重试！');
-					}
-				},  
-				error : function() {
-					alert('删除失败，请稍后重试！');
-				}  
-			}  
-		);
-	}
-	
 </script>
 </head>
 <body>
@@ -109,7 +91,7 @@
   <section class="content" style="margin:0px">
     <article class="mbox" style="background-color:#eee">
     	<h1 style="font-size:15px; line-height:32px; padding:8px 0px; text-align:center; border-bottom:1px  dashed #CCC; margin-bottom:10px"><span id="titlesp"></span>
-        <span style="font-size:12px; font-weight:normal; display:block"><span style="color:#f00; padding-right:5px" id="pdate">2015-02-27 10:30:10</span>点击数(<span id="hit"></span>) <a href="javascript:;" id="addsc">加入收藏</a></span>
+        <span style="font-size:12px; font-weight:normal; display:block"><span style="color:#f00; padding-right:5px" id="pdate"></span>点击数(<span id="hit"></span>) <a href="javascript:;" id="addsc">加入收藏</a></span>
         </h1>
         <div class="cardexplain">
           <ul class="round" style="border:none">
@@ -145,7 +127,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -199,13 +181,13 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th>联系手机:</th>
+                      <th>联系电话:</th>
                       <td><span id="mphone"></span></td>
                     </tr>
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -215,12 +197,12 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
                       <th>联系电话:</th>
-                      <td><span id="qq"></span></td>
+                      <td><span id="telephone"></span></td>
                     </tr>
           </tbody>
                 </table>
@@ -257,14 +239,16 @@
           </tbody>
                 </table>
       </li>
+
             </form>
   </ul>
         </div>
+
 	</article>
   </section>
-<div class="row" style="margin:15px 0px"> <a href="javascript:;" id="loginbtn" onclick="javascript:if(!confirm('确定删除吗？')){return false;};delNode(<%=id%>,this);" style="background-color:#e60012">删除</a> </div>
 </div>
 <footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
   <p>Copyright © 2014 找船网</p>
 </footer>
 </body>

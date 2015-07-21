@@ -71,7 +71,6 @@
 				type:'post',  
 				url : 'http://post/goodsinfo', 
 				data:{"pagenum":currPageNum,"goodsinfo":searchJson},
-				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
 					try{
@@ -258,7 +257,7 @@
                   <td><input class="input-text" type="text" name="eport" id="eport" value=""></td>
                 </tr>
                 <tr id="dr_row_kport2">
-                  <th><label style="color:#f00">*</label> 货种： </th>
+                  <th><label style="color:#f00">*</label> 货源名称： </th>
                   <td><input class="input-text" type="text" name="type" id="type" value=""></td>
                 </tr>
                 <tr id="dr_row_kport2">
@@ -308,7 +307,7 @@
                   </tr>
                   <tr id="dr_row_hfdate2">
                     <th> 备注：</th>
-                    <td><textarea name="note" class="input-text" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入备注信息"></textarea></td>
+                    <td><textarea name="note" class="input-text" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入详细要求"></textarea></td>
               </tbody>
             </table>
         <div class="row">
@@ -368,7 +367,7 @@
                   <td><input class="input-text" name="eport_" id="eport_" value=""></td>
                 </tr>
                 <tr id="dr_row_gclass">
-                  <th> 货种： </th>
+                  <th> 货源名称： </th>
             <td><input class="input-text" name="type_" id="type_" value=""></td>
                 </tr>
                 <tr id="dr_row_bfdate">

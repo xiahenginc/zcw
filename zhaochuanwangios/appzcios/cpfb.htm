@@ -22,16 +22,20 @@
 <link href="datepicker.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
+
+	var uid="<%=uid%>";
+
 	$(function(){
 		//获取用户基本信息
 		$.ajax(  
 			{  
 				type:'post',  
 				url : 'http://post/boatinit',
-				data:{"uid":"<%=uid%>"},
+				data:{"uid":uid},
 				success  : function(data2) {  
-					var json=data2.code;  
+					var json_=$.trim(data2);  
 					try{
+						var json=$.parseJSON(json_); 
 						$("#linkman").val(json.mname);
 						$("#phone").val(json.phone);
 						$("#email").val(json.email);
@@ -47,7 +51,6 @@
 		);  
 		
 		$("#showcard").click(function(){
-				var uid="<%=uid%>";
 				if(uid==""){
 					alert('登录后才能进行发布信息操作！');
 					location.href='http://<%=host%>/dl0.htm';
@@ -66,6 +69,8 @@
 				var email=$("#email").val();
 				var qq=$("#qq").val();
 				var note=$("#note").val();
+				var hxlb=$("#hxlb").val();//航线类别
+				
 				if(type==null || type==""){
 					alert("船型不能为空！");
 					return;
@@ -91,8 +96,18 @@
 					alert("有效期限不能为空！");
 					return;
 				}
+				if(linkman==null || linkman==""){
+					alert("联系人不能为空！");
+					return;
+				}
+				if(phone==null || phone==""){
+					alert("联系电话不能为空！");
+					return;
+				}
 				
-				var json={uid:uid,type:type,ton:ton,emptyport:emptyport,eport:eport,edate:edate,deadline:deadline,cname:cname,address:address,linkman:linkman,phone:phone,email:email,qq:qq,note:note};
+				
+				
+				var json={uid:uid,type:type,ton:ton,emptyport:emptyport,eport:eport,edate:edate,deadline:deadline,gsname:cname,gsaddr:address,czname:linkman,czphone:phone,email:email,QQqq:qq,note:note,hxlb:hxlb};
 				
 				var data=JSON.stringify(json);
 				
@@ -139,6 +154,7 @@
                     船型</th>
                   <td><select name="type" id="type">
                       <option value="散货船">散货船</option>
+                      <option value="海轮">海轮</option>
                       <option value="集装箱船">集装箱船</option>
                       <option value="油船">油船</option>
                       <option value="液化船">液化船</option>
@@ -154,7 +170,7 @@
                 <tr>
                   <th><label>*</label>
                     载货吨</th>
-                  <td><input name="ton" class="px" id="ton" value="" placeholder="" type="text"></td>
+                  <td><input name="ton" class="px" id="ton" value="" placeholder="" type="text" onKeyUp="value=value.replace(/[^\d&^\.]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d&^\.]/g,''))" style="width:40%; display:inline-block">(吨)</td>
                 </tr>
               </tbody>
             </table>
@@ -175,8 +191,24 @@
               <tbody>
                 <tr>
                   <th><label>*</label>
-                    到达港</th>
+                    航向</th>
                   <td><input name="eport" class="px" id="eport" value="" placeholder="" type="text"></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label></label>
+                    航线类别</th>
+                  <td><select name="hxlb" id="hxlb" >
+                    <option value="长江-内河" selected="">长江-内河</option>
+                    <option value="内河">内河</option>
+                    <option value="江海联运">江海联运</option>
+                    <option value="海运">海运</option>
+                </select></td>
                 </tr>
               </tbody>
             </table>
@@ -200,11 +232,9 @@
                     有效期限</th>
                   <td>
                   <select name="deadline" id="deadline" >
-                	<option value="3">3</option>
-                    <option value="7">7</option>
-                    <option value="15">15</option>
-                    <option value="30">30</option>
-                    <option value="长期">长期</option>
+                	<option value="3">3天</option>
+                    <option value="7">7天</option>
+                    <option value="15">15天</option>
                 </select></td>
                 </tr>
               </tbody>
@@ -214,29 +244,7 @@
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
-                  <th><label></label>
-                    公司名称</th>
-                  <td><input name="cname" class="px" id="cname" value="" placeholder="" type="text"></td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
-          <li class="nob">
-            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
-              <tbody>
-                <tr>
-                  <th><label></label>
-                    公司地址</th>
-                  <td><input type="text" class="px" name="address" value="" id="address" ></td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
-          <li class="nob">
-            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
-              <tbody>
-                <tr>
-                  <th><label></label>
+                  <th><label>*</label>
                     联系人:</th>
                   <td><input type="text" class="px hasDatepicker" name="linkman" value="" id="linkman" ></td>
                 </tr>
@@ -247,7 +255,7 @@
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
-                  <th><label></label>
+                  <th><label>*</label>
                     联系电话</th>
                   <td><input type="text" class="px hasDatepicker" name="phone" value="" id="phone" ></td>
                 </tr>
@@ -280,8 +288,30 @@
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
+                  <th><label></label>
+                    公司名称</th>
+                  <td><input name="cname" class="px" id="cname" value="" placeholder="" type="text"></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label></label>
+                    公司地址</th>
+                  <td><input type="text" class="px" name="address" value="" id="address" ></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
                   <th>备注</th>
-                  <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入备注信息"></textarea></td>
+                  <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入详细要求"></textarea></td>
                 </tr>
               </tbody>
             </table>

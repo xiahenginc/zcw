@@ -22,13 +22,14 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="swipe.js"></script>
 <script type="text/javascript">
+	var uid="<%=uid%>";
 	var currPageNum=1;
 	var currPageNum2=1;
 	$(function(){
 		$.ajax({
 			type:'post',  
 			url : 'http://post/recjob',  //http://www.zcwjson.com18.cn
-			data:{"pagenum":"1","uid":"<%=uid%>"},
+			data:{"pagenum":"1","uid":uid},
 			jsonp:"jsoncallback",  
 			success  : function(data) {
 				data=$.trim(data);  
@@ -72,7 +73,7 @@
 			$.ajax({
 				type:'post',  
 				url : 'http://post/rec', 
-				data:{"pagenum":currPageNum,"uid":"<%=uid%>"},
+				data:{"pagenum":currPageNum,"uid":uid},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);
@@ -108,7 +109,7 @@
 			$.ajax({
 				type:'post',  
 				url : 'http://post/job', 
-				data:{"pagenum":currPageNum2,"uid":"<%=uid%>"},
+				data:{"pagenum":currPageNum2,"uid":uid},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);

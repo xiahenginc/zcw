@@ -19,9 +19,9 @@
 <link href="index.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
+	var uid="<%=uid%>";
 	$(function(){
 		$("#showcard").click(function(){
-				var uid="<%=uid%>";
 				if(uid==""){
 					alert('登录后才能进行发布信息操作！');
 					location.href='http://<%=host%>/dl0.htm';
@@ -52,15 +52,15 @@
 					alert("求职岗位不能为空！");
 					return;
 				}
-				if(rname==null || rname==""){
-					alert("真实姓名不能为空！");
-					return;
-				}
+//				if(rname==null || rname==""){
+//					alert("真实姓名不能为空！");
+//					return;
+//				}
 				if(contact==null || contact==""){
 					alert("联系人不能为空！");
 					return;
 				}
-				if(telephone==null || telephone==""){
+				if(mphone==null || mphone==""){
 					alert("联系电话不能为空！");
 					return;
 				}
@@ -136,11 +136,11 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label>*</label>真实姓名</th>
+                      <th><label></label>真实姓名</th>
                       <td><input type="text" class="px hasDatepicker" name="rname" value="" id="rname" ></td>
                     </tr>
           </tbody>
@@ -162,11 +162,11 @@
             <tr>
                       <th>工作经验</th>
                       <td><select name="exp" id="exp">
+				<option value="无">无</option>
                 <option value="一年">一年</option>
                 <option value="两年">两年</option>
                 <option value="三年">三年</option>
                 <option value="三年以上">三年以上</option>
-                <option value="不限">不限</option>
               </select></td>
                     </tr>
           </tbody>
@@ -176,7 +176,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th>性别要求</th>
+                      <th>性别</th>
                       <td><select name="gender" id="gender">
                 <option value="男">男</option>
                 <option value="女">女</option>
@@ -199,13 +199,13 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label>*</label>联系手机</th>
+                      <th><label>*</label>联系电话</th>
                       <td><input type="text" class="px hasDatepicker" name="mphone" value="" id="mphone" ></td>
                     </tr>
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -215,7 +215,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -251,7 +251,7 @@
                   <tbody>
             <tr>
                       <th>备注</th>
-                      <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入备注信息"></textarea></td>
+                      <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入详细要求"></textarea></td>
                     </tr>
           </tbody>
                 </table>

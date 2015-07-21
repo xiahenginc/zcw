@@ -45,8 +45,11 @@
 				var itype=$("#itype").val();
 				var money=$("#money").val();
 				var ibrand=$("#ibrand").val();
+				var bbxrlxfs=$("#bbxrlxfs").val();
+				
+				
 				if(iname==null || iname==""){
-					alert("被保险人名称为空！");
+					alert("被保险人为空！");
 					return;
 				}
 				if(iaddress==null || iaddress==""){
@@ -94,7 +97,7 @@
 					return;
 				}
 				
-				var json={uid:uid,iname:iname,iaddress:iaddress,invoicen:invoicen,waybilln:waybilln,gname:gname,weight:weight,packingn :packingn,bname:bname,bdate:bdate,splace:splace,eplace:eplace,stime:stime,itype:itype,money:money,ibrand:ibrand};
+				var json={uid:uid,iname:iname,iaddress:iaddress,invoicen:invoicen,waybilln:waybilln,gname:gname,weight:weight,packingn :packingn,bname:bname,bdate:bdate,splace:splace,eplace:eplace,stime:stime,itype:itype,money:money,ibrand:ibrand,bbxrlxfs:bbxrlxfs};
 				
 				var data=JSON.stringify(json);
 				
@@ -136,13 +139,13 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label>*</label>被保险人名称</th>
+                      <th><label>*</label>被保险人</th>
                       <td><input name="iname" class="px" id="iname" value="" type="text"></td>
                     </tr>
           </tbody>
                 </table>
       </li>
-              <li class="nob">
+<!--              <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -151,8 +154,18 @@
                     </tr>
           </tbody>
                 </table>
-      </li>
+      </li>-->
               <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>被保险人联系方式</th>
+                      <td><input name="bbxrlxfs" class="px" id="bbxrlxfs" value="" type="text"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+              <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -162,7 +175,7 @@
           </tbody>
                 </table>
       </li>
-              <li class="nob">
+              <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -186,7 +199,8 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label>*</label>重量</th>
+                      <th><label>*</label>
+                      承运货物重量</th>
                       <td><input type="text" class="px hasDatepicker" name="weight" value="" id="weight" ></td>
                     </tr>
           </tbody>
@@ -206,13 +220,14 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label>*</label>船名</th>
+                      <th><label>*</label>
+                      承运船舶名</th>
                       <td><input type="text" class="px hasDatepicker" name="bname" value="" id="bname" ></td>
                     </tr>
           </tbody>
                 </table>
       </li>
-       <li class="nob">
+       <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -242,11 +257,21 @@
           </tbody>
                 </table>
       </li>
-       <li class="nob">
+<!--       <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
                       <th><label>*</label>启运日期</th>
+                      <td><input type="text" class="Wdate px hasDatepicker" name="stime" value="" id="stime" onClick="WdatePicker({readOnly:true})"></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>-->
+             <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><label>*</label>保单生效日期</th>
                       <td><input type="text" class="Wdate px hasDatepicker" name="stime" value="" id="stime" onClick="WdatePicker({readOnly:true})"></td>
                     </tr>
           </tbody>

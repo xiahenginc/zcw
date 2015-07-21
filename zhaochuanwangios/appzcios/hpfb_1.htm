@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,17 +16,19 @@
 <meta http-equiv="Expires" content="0">
 <title>找船网</title>
 <script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="WdatePicker.js"></script>
+<link href="WdatePicker.css" rel="stylesheet" type="text/css">
+<link href="datepicker.css" rel="stylesheet" type="text/css">
 <link href="index.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
 	$(function(){
-		
 		//获取用户基本信息
 		$.ajax(  
 			{  
 				type:'post',  
-				url : 'http://www.zcwjson.com18.cn/boatinit', 
-				data:{"uid":""},
+				url : 'http://post/boatinit',
+				data:{"uid":"<%=uid%>"},
 				jsonp:"jsoncallback",  
 				success  : function(data) {  
 					data=$.trim(data);  
@@ -47,7 +49,12 @@
 		);  
 		
 		$("#showcard").click(function(){
-				var uid="";
+				var uid="<%=uid%>";
+				if(uid==""){
+					alert('登录后才能进行发布信息操作！');
+					location.href='http://<%=host%>/dl0.htm';
+					return;
+				}
 				var sport=$("#sport").val();
 				var eport=$("#eport").val();
 				var type=$("#type").val();
@@ -62,6 +69,39 @@
 				var email=$("#email").val();
 				var qq=$("#qq").val();
 				var note=$("#note").val();
+				if(sport==null || sport==""){
+					alert("发货港不能为空！");
+					return;
+				}
+				if(eport==null || eport==""){
+					alert("卸货港不能为空！");
+					return;
+				}
+				
+				if(type==null || type==""){
+					alert("货源名称不能为空！");
+					return;
+				}
+				if(ton==null || ton==""){
+					alert("货物吨位不能为空！");
+					return;
+				}
+				if(sdate==null || sdate==""){
+					alert("装载日期不能为空！");
+					return;
+				}
+				if(deadline==null || deadline==""){
+					alert("有效期限不能为空！");
+					return;
+				}
+				if(linkman==null || linkman==""){
+					alert("联系人不能为空！");
+					return;
+				}
+				if(phone==null || phone==""){
+					alert("联系电话不能为空！");
+					return;
+				}
 				
 				var json={uid:"",sport:sport,eport:eport,type:type,ton:ton,packing:packing,sdate:sdate,deadline:deadline,cname:cname,address:address,linkman:linkman,phone:phone,email:email,qq:qq,note:note};
 				

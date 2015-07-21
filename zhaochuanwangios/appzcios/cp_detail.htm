@@ -21,12 +21,14 @@
 <link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
+	var uid="<%=uid%>";
+	var id="<%=id%>";
 	$(function(){
 		$.ajax(  
 			{  
 				type:'post',  
 				url : 'http://post/shipdetail',
-				data:{"id":"<%=id%>"},
+				data:{"id":id},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
@@ -39,6 +41,8 @@
 						$("#ophone").html(json.ophone);
 						$("#qq").html(json.qq);
 						$("#note").html(json.note)
+						$("#hxlb").html(json.hxlb)
+						
 					}catch(e){
 					}
 				},  
@@ -52,7 +56,7 @@
 				{  
 					type:'post',  
 					url : 'http://post/shipdetail',
-					data:{"id":"<%=id%>","uid":"<%=uid%>"}, 
+					data:{"id":id,"uid":uid}, 
 					success  : function(data) {
 						alert('收藏成功！');
 					},  
@@ -96,6 +100,17 @@
           </tbody>
                 </table>
       </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>航向类别:</th>
+                      <td style="padding-left:8px"><span id="hxlb"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>   
+      
       <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>

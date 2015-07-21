@@ -19,9 +19,9 @@
 <link href="index.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
+	var uid="<%=uid%>";
 	$(function(){
 		$("#showcard").click(function(){
-				var uid="<%=uid%>";
 				if(uid==""){
 					alert('登录后才能进行发布信息操作！');
 					location.href='http://<%=host%>/dl0.htm';
@@ -44,6 +44,7 @@
 				var cname=$("#cname").val();
 				var enterprise=$("#enterprise").val();
 				var note=$("#note").val();
+				var address=$("#address").val();
 				
 				if(title==null || title==""){
 					alert("标题不能为空！");
@@ -53,10 +54,10 @@
 					alert("招聘职位不能为空！");
 					return;
 				}
-				if(salary==null || salary==""){
-					alert("薪资不能为空！");
-					return;
-				}
+//				if(salary==null || salary==""){
+//					alert("薪资不能为空！");
+//					return;
+//				}
 				if(pnum==null || pnum==""){
 					alert("招聘人数不能为空！");
 					return;
@@ -68,11 +69,11 @@
 					alert("联系方式不能为空！");
 					return;
 				}
-				if(deadline==null || deadline==""){
-					alert("招聘期限不能为空！");
-					return;
-				}
-				var json={uid:uid,title:title,position:position,salary:salary,pnum:pnum,age:age,"exp":exp1,cname:cname,gender:gender,mphone:mphone,cert:cert,deadline:deadline,telephone:telephone,email:email,qq:qq,note:note,contact:contact,enterprise:enterprise};
+//				if(deadline==null || deadline==""){
+//					alert("招聘期限不能为空！");
+//					return;
+//				}
+				var json={uid:uid,title:title,position:position,salary:salary,pnum:pnum,age:age,"exp":exp1,cname:cname,gender:gender,mphone:mphone,cert:cert,deadline:deadline,telephone:telephone,email:email,qq:qq,note:note,contact:contact,enterprise:enterprise,address:address};
 				
 				var data=JSON.stringify(json);
 				
@@ -106,9 +107,7 @@
           <ul class="round roundyellow" style="display:none;">
     <li class="userinfo"><a href="#"><span>请完善个人资料再填表单</span></a></li>
   </ul>
-          
           <!--粉丝填写过的信息的，直接就显示名字电话，粉丝没有填写过信息的话，这里就直接留空让粉丝填写-->
-          
           <ul class="round">
     <form action="javascript:;" method="post">
               <li class="title mb"><span class="none">请保持您的联系方式畅通，方便我们工作人员及时与您联系！</span></li>
@@ -139,7 +138,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label>*</label>薪资:</th>
+                      <th><label></label>薪资:</th>
                       <td><input type="text" class="px hasDatepicker" name="salary" value="" id="salary" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></td>
                     </tr>
           </tbody>
@@ -171,11 +170,11 @@
             <tr>
                       <th>工作经验</th>
                       <td><select name="exp" id="exp">
+                <option value="不限">不限</option>
                 <option value="一年">一年</option>
                 <option value="两年">两年</option>
                 <option value="三年">三年</option>
                 <option value="三年以上">三年以上</option>
-                <option value="不限">不限</option>
               </select></td>
                     </tr>
           </tbody>
@@ -185,8 +184,9 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th>性别要求</th>
+                      <th>性别</th>
                       <td><select name="gender" id="gender">
+                      <option value="不限">不限</option>
                 <option value="男">男</option>
                 <option value="女">女</option>
               </select></td>
@@ -208,13 +208,13 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label>*</label>联系手机</th>
+                      <th><label>*</label>联系电话</th>
                       <td><input type="text" class="px hasDatepicker" name="mphone" value="" id="mphone" ></td>
                     </tr>
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -224,7 +224,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -240,7 +240,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -286,7 +286,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label>*</label>招聘企业</th>
+                      <th><label></label>招聘单位</th>
                       <td><input type="text" class="px hasDatepicker" name="enterprise" value="" id="enterprise" ></td>
                     </tr>
           </tbody>
@@ -296,8 +296,18 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
+                      <th><label></label>单位地址</th>
+                      <td><input type="text" class="px hasDatepicker" name="address" value="" id="address" ></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
                       <th>备注</th>
-                      <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入备注信息"></textarea></td>
+                      <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入详细要求"></textarea></td>
                     </tr>
           </tbody>
                 </table>

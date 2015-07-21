@@ -21,12 +21,14 @@
 <link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
+	var id="<%=id%>";
+	var uid="<%=uid%>";
 	$(function(){
 		$.ajax(  
 			{  
 				type:'post',  
 				url : 'http://post/recjobdetail',
-				data:{"id":"<%=id%>"},
+				data:{"id":id},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
@@ -55,6 +57,7 @@
 						$("#note").html(json.note);
 						$("#zsxm").html(json.zsxm);
 						$("#hit").html(json.hit);
+						$("#address").html(json.address);
 					}catch(e){
 					}
 				},  
@@ -69,7 +72,7 @@
 				{  
 					type:'post',  
 					url : 'http://post/recjobadd',
-					data:{"id":"<%=id%>","uid":"<%=uid%>"},
+					data:{"id":id,"uid":uid},
 					jsonp:"jsoncallback",  
 					success  : function(data) {
 						alert('收藏成功！');
@@ -179,13 +182,13 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th>联系手机:</th>
+                      <th>联系电话:</th>
                       <td><span id="mphone"></span></td>
                     </tr>
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -195,7 +198,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -205,7 +208,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob">
+      <li class="nob" style="display:none;">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -240,12 +243,22 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th>公司名称:</th>
+                      <th>招聘单位:</th>
                       <td><span id="enterprise"></span></td>
                     </tr>
           </tbody>
                 </table>
       </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th>单位地址:</th>
+                      <td><span id="address"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>   
       
        <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">

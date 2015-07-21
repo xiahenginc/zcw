@@ -19,9 +19,9 @@
 <link href="index.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
+	var uid="<%=uid%>";
 	$(function(){
 		$("#showcard").click(function(){
-				var uid="<%=uid%>";
 				if(uid==""){
 					alert('登录后才能进行发布信息操作！');
 					location.href='http://<%=host%>/dl0.htm';
@@ -44,33 +44,42 @@
 				var note=$("#note").val();
 				
 				if(title==null || title==""){
-					alert("标题为空！");
+					alert("标题不能为空！");
 					return;
 				}
 				if(type==null || type==""){
-					alert("船型为空！");
+					alert("船型不能为空！");
 					return;
 				}
 				if(ton==null || ton==""){
-					alert("装载吨位为空！");
+					alert("装载吨位不能为空！");
 					return;
 				}
-				if(byear==null || byear==""){
-					alert("建造年份为空！");
-					return;
-				}
-				if(cjszd==null || cjszd==""){
-					alert("船籍所在地为空！");
+//				if(byear==null || byear==""){
+//					alert("建造年份为空！");
+//					return;
+//				}
+//				if(cjszd==null || cjszd==""){
+//					alert("船籍所在地为空！");
+//					return;
+//				}
+				if(contact==null || contact==""){
+					alert("联系人不能为空！");
 					return;
 				}			
 				if(mphone==null || mphone==""){
-					alert("联系电话为空！");
+					alert("联系电话不能为空！");
 					return;
 				}
-				if(price==null || price==""){
-					alert("预报价为空！");
+				if(note==null || note==""){
+					alert("备注不能为空！");
 					return;
 				}
+				
+//				if(price==null || price==""){
+//					alert("预报价为空！");
+//					return;
+//				}
 				
 				var json={uid:uid,title:title,type:type,ton:ton,byear:byear,long:long,width:width,height:height,draft:draft,price:price,contact:contact,mphone:mphone,address:address,bplace:bplace,note:note,cjszd:cjszd};
 				
@@ -155,7 +164,7 @@
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
-                  <th><label>*</label>
+                  <th><label></label>
                     建造年份</th>
                   <td><input type="text" class="px hasDatepicker" name="byear" value="" id="byear" style="width:40%; display:inline-block">
                     年</td>
@@ -164,6 +173,16 @@
             </table>
           </li>
           <li class="nob">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th><label></label>预报价</th>
+                  <td><input type="text" class="px hasDatepicker" name="price" value="" id="price" onkeyup="value=value.replace(/[^\d&^\.]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d&^\.]/g,''))"></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="nob" style="display:none;">
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
@@ -177,7 +196,7 @@
           
           
           
-          <li class="nob">
+          <li class="nob" style="display:none;">
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
@@ -187,7 +206,7 @@
               </tbody>
             </table>
           </li>
-          <li class="nob">
+          <li class="nob" style="display:none;">
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
@@ -198,7 +217,7 @@
               </tbody>
             </table>
           </li>
-          <li class="nob">
+          <li class="nob" style="display:none;">
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
@@ -209,7 +228,7 @@
               </tbody>
             </table>
           </li>
-          <li class="nob">
+          <li class="nob" style="display:none;">
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
@@ -224,17 +243,7 @@
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
-                  <th><label>*</label>预报价</th>
-                  <td><input type="text" class="px hasDatepicker" name="price" value="" id="price" onkeyup="value=value.replace(/[^\d&^\.]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d&^\.]/g,''))"></td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
-          <li class="nob">
-            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
-              <tbody>
-                <tr>
-                  <th>联系人</th>
+                  <th><label>*</label>联系人</th>
                   <td><input type="text" class="px hasDatepicker" name="contact" value="" id="contact"></td>
                 </tr>
               </tbody>
@@ -261,7 +270,7 @@
               </tbody>
             </table>
           </li>
-          <li class="nob">
+          <li class="nob" style="display:none;">
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
@@ -275,8 +284,8 @@
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>
-                  <th>备注</th>
-                  <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入备注信息"></textarea></td>
+                  <th><label>*</label>备注</th>
+                  <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入船舶详细情况"></textarea></td>
                 </tr>
               </tbody>
             </table>

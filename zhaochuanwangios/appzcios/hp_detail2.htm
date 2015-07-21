@@ -64,28 +64,6 @@
 			);
 		});
 	})
-	
-	function delNode(id,dom){
-		$.ajax(  
-			{  
-				type:'post',  
-				url : 'http://post/delPallData',
-				data:{"id":id,"uid":uid}, 
-				success  : function(data) {
-					if(data=="1"){
-						//$(dom).parent().remove();	
-						location.href='http://localperson/hp2.htm';
-					}else{
-						alert('删除失败，请稍后重试！');
-					}
-				},  
-				error : function() {
-					alert('删除失败，请稍后重试！');
-				}  
-			}  
-		);
-	}
-	
 </script>
 </head>
 <body>
@@ -163,11 +141,12 @@
             </form>
   </ul>
         </div>
+
 	</article>
   </section>
-<div class="row" style="margin:15px 0px"> <a href="javascript:;" id="loginbtn" onclick="javascript:if(!confirm('确定删除吗？')){return false;};delNode(<%=id%>,this);" style="background-color:#e60012">删除</a> </div>
 </div>
 <footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
   <p>Copyright © 2014 找船网</p>
 </footer>
 </body>
