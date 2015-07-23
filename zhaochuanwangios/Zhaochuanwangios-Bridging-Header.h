@@ -10,4 +10,6 @@
 #define zhaochuanwangios_Zhaochuanwangios_Bridging_Header_h
 #import "REMenu.h"
 #import "WebViewProxy.h"
+#import "BPush.h"
+#import "oswift.h"
 #endif

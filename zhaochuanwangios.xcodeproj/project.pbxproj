@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		167DAE501B607E1F009A8ADC /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DAE4F1B607E1F009A8ADC /* libBPush.a */; };
+		167DAE521B607ED1009A8ADC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DAE511B607ED1009A8ADC /* Foundation.framework */; };
+		167DAE541B607EDA009A8ADC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DAE531B607EDA009A8ADC /* CoreTelephony.framework */; };
+		167DAE561B607EE3009A8ADC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DAE551B607EE3009A8ADC /* libz.dylib */; };
+		167DAE581B607EEF009A8ADC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DAE571B607EEF009A8ADC /* SystemConfiguration.framework */; };
+		169CEE981B60C97900F55FDE /* oswift.m in Sources */ = {isa = PBXBuildFile; fileRef = 169CEE971B60C97900F55FDE /* oswift.m */; };
 		16BBC5AC1B4FBFC400420577 /* 001.png in Resources */ = {isa = PBXBuildFile; fileRef = 16BBC47D1B4FBFC300420577 /* 001.png */; };
 		16BBC5AD1B4FBFC400420577 /* 002.png in Resources */ = {isa = PBXBuildFile; fileRef = 16BBC47E1B4FBFC300420577 /* 002.png */; };
 		16BBC5AE1B4FBFC400420577 /* 003.png in Resources */ = {isa = PBXBuildFile; fileRef = 16BBC47F1B4FBFC300420577 /* 003.png */; };
@@ -353,6 +359,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		167DAE4E1B607E1F009A8ADC /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
+		167DAE4F1B607E1F009A8ADC /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
+		167DAE511B607ED1009A8ADC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		167DAE531B607EDA009A8ADC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		167DAE551B607EE3009A8ADC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		167DAE571B607EEF009A8ADC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		169CEE961B60C95E00F55FDE /* oswift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = oswift.h; path = zhaochuanwangios/oswift.h; sourceTree = "<group>"; };
+		169CEE971B60C97900F55FDE /* oswift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = oswift.m; path = zhaochuanwangios/oswift.m; sourceTree = "<group>"; };
 		16BBC47D1B4FBFC300420577 /* 001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 001.png; sourceTree = "<group>"; };
 		16BBC47E1B4FBFC300420577 /* 002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 002.png; sourceTree = "<group>"; };
 		16BBC47F1B4FBFC300420577 /* 003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 003.png; sourceTree = "<group>"; };
@@ -712,12 +726,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				167DAE581B607EEF009A8ADC /* SystemConfiguration.framework in Frameworks */,
+				167DAE561B607EE3009A8ADC /* libz.dylib in Frameworks */,
+				167DAE541B607EDA009A8ADC /* CoreTelephony.framework in Frameworks */,
+				167DAE521B607ED1009A8ADC /* Foundation.framework in Frameworks */,
+				167DAE501B607E1F009A8ADC /* libBPush.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		167DAE4D1B607E1F009A8ADC /* LibBPush */ = {
+			isa = PBXGroup;
+			children = (
+				167DAE4E1B607E1F009A8ADC /* BPush.h */,
+				167DAE4F1B607E1F009A8ADC /* libBPush.a */,
+			);
+			path = LibBPush;
+			sourceTree = "<group>";
+		};
 		16BBC47C1B4FBFC300420577 /* appzcios */ = {
 			isa = PBXGroup;
 			children = (
@@ -1032,6 +1060,13 @@
 		5F1211561ACA6F8800B3DE25 = {
 			isa = PBXGroup;
 			children = (
+				169CEE971B60C97900F55FDE /* oswift.m */,
+				169CEE961B60C95E00F55FDE /* oswift.h */,
+				167DAE571B607EEF009A8ADC /* SystemConfiguration.framework */,
+				167DAE551B607EE3009A8ADC /* libz.dylib */,
+				167DAE531B607EDA009A8ADC /* CoreTelephony.framework */,
+				167DAE511B607ED1009A8ADC /* Foundation.framework */,
+				167DAE4D1B607E1F009A8ADC /* LibBPush */,
 				5F1AA7781AE9EB4600B0236C /* GuideViewController.swift */,
 				5FBFEB141AD8F8860052F769 /* Globals.swift */,
 				5F21BA401ACE700C00CEDE1C /* Zhaochuanwangios-Bridging-Header.h */,
@@ -1212,6 +1247,11 @@
 					5F12115E1ACA6F8800B3DE25 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = 24N474AU9T;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1588,6 +1628,7 @@
 				5F8C71221ACFCAFF00552840 /* RootNavigationViewController.swift in Sources */,
 				5F1AA7791AE9EB4600B0236C /* GuideViewController.swift in Sources */,
 				5FBFEB201AD8FDCD0052F769 /* UIViewExtension.swift in Sources */,
+				169CEE981B60C97900F55FDE /* oswift.m in Sources */,
 				5FBFEB1C1AD8FDCD0052F769 /* DeviceInfo.swift in Sources */,
 				5F7396871AD8B53E00001998 /* SwiftyJSON.swift in Sources */,
 				5F6B2D811ACD021100AE8A21 /* REMenuItem.m in Sources */,
@@ -1706,6 +1747,10 @@
 				INFOPLIST_FILE = zhaochuanwangios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LibBPush",
+				);
 				PRODUCT_NAME = zhaochuanwangios;
 				PROVISIONING_PROFILE = "190fc346-8afa-4d06-8c3f-0bfa3f69f953";
 				SWIFT_OBJC_BRIDGING_HEADER = "zhaochuanwangios/Zhaochuanwangios-Bridging-Header.h";
@@ -1723,6 +1768,10 @@
 				INFOPLIST_FILE = zhaochuanwangios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LibBPush",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = zhaochuanwangios;
 				PROVISIONING_PROFILE = "190fc346-8afa-4d06-8c3f-0bfa3f69f953";

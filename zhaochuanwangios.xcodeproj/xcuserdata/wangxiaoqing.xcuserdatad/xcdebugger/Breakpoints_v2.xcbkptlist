@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zhaochuanwangios/AppDelegate.swift"
-            timestampString = "452437424.018127"
+            timestampString = "459328337.134881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "_setupProxy()"
             landmarkType = "5">
          </BreakpointContent>
@@ -159,8 +159,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
             endingLineNumber = "64"
-            landmarkName = "onClickMenu(_:)"
-            landmarkType = "5">
+            landmarkName = "RootIndexNavigationViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zhaochuanwangios/AppDelegate.swift"
-            timestampString = "452439306.516838"
+            timestampString = "459328337.134881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
             landmarkName = "_setupProxy()"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zhaochuanwangios/AppDelegate.swift"
-            timestampString = "452439306.516838"
+            timestampString = "459328337.134881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "_setupProxy()"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zhaochuanwangios/AppDelegate.swift"
-            timestampString = "452439306.516838"
+            timestampString = "459328337.134881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "_setupProxy()"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zhaochuanwangios/AppDelegate.swift"
-            timestampString = "452439306.516838"
+            timestampString = "459328337.134881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "_setupProxy()"
             landmarkType = "5">
          </BreakpointContent>
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zhaochuanwangios/AppDelegate.swift"
-            timestampString = "452439306.516838"
+            timestampString = "459328337.134881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "323"
-            endingLineNumber = "323"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "_setupProxy()"
             landmarkType = "5">
             <Locations>
@@ -506,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zhaochuanwangios/AppDelegate.swift"
-            timestampString = "452439306.516838"
+            timestampString = "459328337.134881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "_setupProxy()"
             landmarkType = "5">
          </BreakpointContent>
@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zhaochuanwangios/AppDelegate.swift"
-            timestampString = "458215347.393032"
+            timestampString = "459328337.134881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "_setupProxy()"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zhaochuanwangios/AppDelegate.swift"
-            timestampString = "458215472.264526"
+            timestampString = "459328337.134881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "_setupProxy()"
             landmarkType = "5">
             <Locations>
@@ -577,6 +577,70 @@
                   offsetFromSymbolStart = "2923">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "zhaochuanwangios/AppDelegate.swift"
+            timestampString = "459328337.134881"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "application(_:didRegisterUserNotificationSettings:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "zhaochuanwangios.AppDelegate.application (zhaochuanwangios.AppDelegate)(ObjectiveC.UIApplication, didRegisterUserNotificationSettings : ObjectiveC.UIUserNotificationSettings) -&gt; ()"
+                  moduleName = "zhaochuanwangios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangxiaoqing/Downloads/xiaheng/zcw/zhaochuanwangios/AppDelegate.swift"
+                  timestampString = "459328337.195002"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "@objc zhaochuanwangios.AppDelegate.application (zhaochuanwangios.AppDelegate)(ObjectiveC.UIApplication, didRegisterUserNotificationSettings : ObjectiveC.UIUserNotificationSettings) -&gt; ()"
+                  moduleName = "zhaochuanwangios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangxiaoqing/Downloads/xiaheng/zcw/zhaochuanwangios/AppDelegate.swift"
+                  timestampString = "459328337.195463"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "zhaochuanwangios/AppDelegate.swift"
+            timestampString = "459328345.892254"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "application(_:didRegisterUserNotificationSettings:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

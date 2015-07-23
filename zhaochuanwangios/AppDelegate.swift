@@ -17,8 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var adviceNav:RootNavigationViewController?
     var curDetailView:WebBaseViewController?
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        
+        //-------------------------start
+        let version : NSString = UIDevice.currentDevice().systemVersion
+        if version.floatValue >= 8.0 {
+            let myTypes = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound
+            let settings = UIUserNotificationSettings(forTypes: myTypes, categories: nil)
+            application.registerUserNotificationSettings(settings)
+        } else {
+            let myTypes = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
+            application.registerForRemoteNotificationTypes(myTypes)
+        }
+        BPush.registerChannel(launchOptions, apiKey: "7IaTaGIxP8N6di5mvgURuxkZ", pushMode: BPushMode.Production, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        //-------------------------end
+ 
         _setupProxy()
 
         if(getIsSkipguide()){
@@ -28,8 +40,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             setSkipguide(true)
         }
 
+        testNotify()
         return true
     }
+    
+    
+    func testNotify(){
+  
+        //oswift.sendLocalMessage("测试一个数据看看呢")
+    }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings){
+        application.registerForRemoteNotifications()
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData){
+        
+        BPush.registerDeviceToken(deviceToken);
+        BPush.bindChannelWithCompleteHandler(
+            {(result:AnyObject! , err:NSError!)->Void in
+                print("test")
+                return
+            //[self.viewController addLogString:[NSString stringWithFormat:@"Method: %@\n%@",BPushRequestMethodBind,result]];
+        })
+
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError){
+        
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]){
+        BPush.handleNotification(userInfo)
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification){
+        BPush.showLocalNotificationAtFront(notification,identifierKey: nil)
+    }
+
+
     
     func setAppviewAsRootView(){
         
