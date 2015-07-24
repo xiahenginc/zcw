@@ -12,4 +12,6 @@
 #import "WebViewProxy.h"
 #import "BPush.h"
 #import "oswift.h"
+#import "TSMessage.h"
+#import "TSMessageView.h"
 #endif

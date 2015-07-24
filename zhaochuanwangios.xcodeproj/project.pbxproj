@@ -318,6 +318,12 @@
 		16BBC6DA1B4FBFC400420577 /* zy.png in Resources */ = {isa = PBXBuildFile; fileRef = 16BBC5AB1B4FBFC400420577 /* zy.png */; };
 		16BBC6DC1B4FD21200420577 /* jbzl_bj.htm in Resources */ = {isa = PBXBuildFile; fileRef = 16BBC6DB1B4FD21200420577 /* jbzl_bj.htm */; };
 		16D0D76F1AF2414B0059CE7B /* WebBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D0D76E1AF2414B0059CE7B /* WebBaseViewController.swift */; };
+		16FAB84F1B625E5700C6E559 /* AlternativeDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = 16FAB8451B625E5700C6E559 /* AlternativeDesign.json */; };
+		16FAB8501B625E5700C6E559 /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FAB8471B625E5700C6E559 /* HexColor.m */; };
+		16FAB8511B625E5700C6E559 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FAB8491B625E5700C6E559 /* TSBlurView.m */; };
+		16FAB8521B625E5700C6E559 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FAB84B1B625E5700C6E559 /* TSMessage.m */; };
+		16FAB8531B625E5700C6E559 /* TSMessagesDefaultDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = 16FAB84C1B625E5700C6E559 /* TSMessagesDefaultDesign.json */; };
+		16FAB8541B625E5700C6E559 /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FAB84E1B625E5700C6E559 /* TSMessageView.m */; };
 		5F1211651ACA6F8800B3DE25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1211641ACA6F8800B3DE25 /* AppDelegate.swift */; };
 		5F12116A1ACA6F8800B3DE25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F1211681ACA6F8800B3DE25 /* Main.storyboard */; };
 		5F12116C1ACA6F8800B3DE25 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F12116B1ACA6F8800B3DE25 /* Images.xcassets */; };
@@ -672,6 +678,16 @@
 		16BBC5AB1B4FBFC400420577 /* zy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zy.png; sourceTree = "<group>"; };
 		16BBC6DB1B4FD21200420577 /* jbzl_bj.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = jbzl_bj.htm; sourceTree = "<group>"; };
 		16D0D76E1AF2414B0059CE7B /* WebBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebBaseViewController.swift; path = WebDetail/WebBaseViewController.swift; sourceTree = "<group>"; };
+		16FAB8451B625E5700C6E559 /* AlternativeDesign.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlternativeDesign.json; sourceTree = "<group>"; };
+		16FAB8461B625E5700C6E559 /* HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexColor.h; sourceTree = "<group>"; };
+		16FAB8471B625E5700C6E559 /* HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexColor.m; sourceTree = "<group>"; };
+		16FAB8481B625E5700C6E559 /* TSBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBlurView.h; sourceTree = "<group>"; };
+		16FAB8491B625E5700C6E559 /* TSBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBlurView.m; sourceTree = "<group>"; };
+		16FAB84A1B625E5700C6E559 /* TSMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMessage.h; sourceTree = "<group>"; };
+		16FAB84B1B625E5700C6E559 /* TSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessage.m; sourceTree = "<group>"; };
+		16FAB84C1B625E5700C6E559 /* TSMessagesDefaultDesign.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TSMessagesDefaultDesign.json; sourceTree = "<group>"; };
+		16FAB84D1B625E5700C6E559 /* TSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMessageView.h; sourceTree = "<group>"; };
+		16FAB84E1B625E5700C6E559 /* TSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessageView.m; sourceTree = "<group>"; };
 		5F12115F1ACA6F8800B3DE25 /* zhaochuanwangios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zhaochuanwangios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F1211631ACA6F8800B3DE25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F1211641ACA6F8800B3DE25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1057,9 +1073,27 @@
 			path = appzcios;
 			sourceTree = "<group>";
 		};
+		16FAB8441B625E5700C6E559 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				16FAB8451B625E5700C6E559 /* AlternativeDesign.json */,
+				16FAB8461B625E5700C6E559 /* HexColor.h */,
+				16FAB8471B625E5700C6E559 /* HexColor.m */,
+				16FAB8481B625E5700C6E559 /* TSBlurView.h */,
+				16FAB8491B625E5700C6E559 /* TSBlurView.m */,
+				16FAB84A1B625E5700C6E559 /* TSMessage.h */,
+				16FAB84B1B625E5700C6E559 /* TSMessage.m */,
+				16FAB84C1B625E5700C6E559 /* TSMessagesDefaultDesign.json */,
+				16FAB84D1B625E5700C6E559 /* TSMessageView.h */,
+				16FAB84E1B625E5700C6E559 /* TSMessageView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		5F1211561ACA6F8800B3DE25 = {
 			isa = PBXGroup;
 			children = (
+				16FAB8441B625E5700C6E559 /* Classes */,
 				169CEE971B60C97900F55FDE /* oswift.m */,
 				169CEE961B60C95E00F55FDE /* oswift.h */,
 				167DAE571B607EEF009A8ADC /* SystemConfiguration.framework */,
@@ -1413,6 +1447,7 @@
 				16BBC5CA1B4FBFC400420577 /* 2511380078870.jpg in Resources */,
 				16BBC60E1B4FBFC400420577 /* cp2.htm in Resources */,
 				16BBC6041B4FBFC400420577 /* cglist.htm in Resources */,
+				16FAB84F1B625E5700C6E559 /* AlternativeDesign.json in Resources */,
 				16BBC63E1B4FBFC400420577 /* hp.htm in Resources */,
 				16BBC62F1B4FBFC400420577 /* grzx.htm in Resources */,
 				16BBC6721B4FBFC400420577 /* lt2_1.htm in Resources */,
@@ -1474,6 +1509,7 @@
 				16BBC6B91B4FBFC400420577 /* Thumbs.db in Resources */,
 				16BBC5E31B4FBFC400420577 /* baner2.jpg in Resources */,
 				16BBC5CB1B4FBFC400420577 /* 3.png in Resources */,
+				16FAB8531B625E5700C6E559 /* TSMessagesDefaultDesign.json in Resources */,
 				16BBC5D91B4FBFC400420577 /* app.png in Resources */,
 				16BBC5EB1B4FBFC400420577 /* bodyBg3.jpg in Resources */,
 				16BBC5B81B4FBFC400420577 /* 013.png in Resources */,
@@ -1605,6 +1641,7 @@
 				5F818F1A1ADCCD9A002B4288 /* UIImage+Extension.swift in Sources */,
 				5F6B2D851ACD05B000AE8A21 /* UITestViewController.swift in Sources */,
 				5F7396731AD7B6FC00001998 /* RootIndexNavigationViewController.swift in Sources */,
+				16FAB8511B625E5700C6E559 /* TSBlurView.m in Sources */,
 				5F21BA3D1ACE633700CEDE1C /* jsonutil.swift in Sources */,
 				5F6B2D7E1ACD021100AE8A21 /* RECommonFunctions.m in Sources */,
 				5FAC14511AE8E7B500B372E2 /* WebDetailViewController.swift in Sources */,
@@ -1614,6 +1651,7 @@
 				5F7396611AD691B800001998 /* NavMenu.swift in Sources */,
 				5FF509501AD15F8E00913EAE /* ViewFooter.swift in Sources */,
 				16D0D76F1AF2414B0059CE7B /* WebBaseViewController.swift in Sources */,
+				16FAB8501B625E5700C6E559 /* HexColor.m in Sources */,
 				5F21BA3F1ACE6F4C00CEDE1C /* NavigationFunc.swift in Sources */,
 				5F1310251AEE84B30067EC03 /* WebDetailMyProfileViewController.swift in Sources */,
 				5F37EBE81AEBE11A0050D1E7 /* WebDetailNoFooterViewController.swift in Sources */,
@@ -1626,7 +1664,9 @@
 				5F56F8011AE62ED400252087 /* WebViewProxy.m in Sources */,
 				5F1211651ACA6F8800B3DE25 /* AppDelegate.swift in Sources */,
 				5F8C71221ACFCAFF00552840 /* RootNavigationViewController.swift in Sources */,
+				16FAB8541B625E5700C6E559 /* TSMessageView.m in Sources */,
 				5F1AA7791AE9EB4600B0236C /* GuideViewController.swift in Sources */,
+				16FAB8521B625E5700C6E559 /* TSMessage.m in Sources */,
 				5FBFEB201AD8FDCD0052F769 /* UIViewExtension.swift in Sources */,
 				169CEE981B60C97900F55FDE /* oswift.m in Sources */,
 				5FBFEB1C1AD8FDCD0052F769 /* DeviceInfo.swift in Sources */,

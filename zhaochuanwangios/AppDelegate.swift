@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let myTypes = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
             application.registerForRemoteNotificationTypes(myTypes)
         }
-        BPush.registerChannel(launchOptions, apiKey: "7IaTaGIxP8N6di5mvgURuxkZ", pushMode: BPushMode.Production, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
+        BPush.registerChannel(launchOptions, apiKey: "KsjTtnacdqL7GVPBHowdjnbE", pushMode: BPushMode.Production, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         //-------------------------end
  
@@ -72,6 +72,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]){
         BPush.handleNotification(userInfo)
+        
+        if let apsDictionary = userInfo["aps"] as? [NSObject:AnyObject] {
+            if let alertString = apsDictionary["alert"] as? String {
+                showSuccess("", alertString)
+            }
+        }
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification){
