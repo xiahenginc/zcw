@@ -45,6 +45,8 @@ class WebBaseViewController: UIViewController {
         println("loadWebView:\(detailname),\(uid)")
         paramdict["<%=uid%>"]=uid
         paramdict["<%=host%>"]="local"
+        paramdict["<%=defaultusername%>"]=defaultusername
+        paramdict["<%=defaultpassword%>"]=defaultpassword
         myWebView?.opaque = false
         myWebView?.backgroundColor = UIColor.clearColor()
         if let htmlFile = NSBundle.mainBundle().pathForResource(detailname, ofType: "htm") {

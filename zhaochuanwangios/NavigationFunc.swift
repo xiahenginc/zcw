@@ -2,6 +2,8 @@ var uid = ""
 var sessionId=""
 var curpageid = ""
 var curtab = 0
+var defaultusername = ""
+var defaultpassword = ""
 
 func navto_webinfo(uriid:String,title:String){
     var storyBoardTask = UIStoryboard(name:"infodetail",bundle:nil)

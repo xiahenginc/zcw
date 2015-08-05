@@ -30,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BPush.registerChannel(launchOptions, apiKey: "KsjTtnacdqL7GVPBHowdjnbE", pushMode: BPushMode.Production, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         //-------------------------end
+        defaultusername = getDefaultUserName()
+        defaultpassword = getDefaultPassword()
+        
  
         _setupProxy()
 
@@ -204,8 +207,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case "tc":
                     uid = ""
                     sessionId = ""
-                
-                
+                    defaultusername = ""
+                    defaultpassword = ""
+                    setCheckPassword(true,defaultusername,defaultpassword)
                     dispatch_async(dispatch_get_main_queue(), {
                         NSNotificationCenter.defaultCenter().postNotificationName("onLoginRefresh", object: nil)
                     })
@@ -320,6 +324,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 
                                 res.respondWithJSON(jsonData as [NSObject : AnyObject])
                                 uid = jsonData["login"]!.valueForKey("uid") as! String
+                                if let defaultusername = jsonData["login"]!.valueForKey("defaultusername") as? String{
+                                    
+                                }
+                                else{
+                                    
+                                }
+                                if let defaultpassword = jsonData["login"]!.valueForKey("defaultpassword") as? String{
+                                    
+                                }
+                                else{
+                                    
+                                }
+                                setCheckPassword(true,defaultusername,defaultpassword)
                                 if let httpResponse = response as? NSHTTPURLResponse {
                                     for (name, value) in httpResponse.allHeaderFields {
                                         println("kv:\(name),\(value)")

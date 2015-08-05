@@ -79,4 +79,39 @@ func showWarning(message: String, subtitle: String?) {
         atPosition: TSMessageNotificationPosition.NavBarOverlay,
         canBeDismissedByUser: true)
 }
+
+//set checkpassword
+func setCheckPassword(isChecked:Bool,Username:String,Password:String){
+    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    defaults.setObject(isChecked, forKey: "isChecked")
+    defaults.setObject(Username, forKey: "Username")
+    defaults.setObject(Password, forKey: "Password")
+}
+
+func getCheckPassword()->Bool{
+    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    var isChecked = defaults.objectForKey("isChecked") as? Bool
+    if let r = isChecked {
+        return r
+    }
+    return false
+}
+func getDefaultUserName()->String!{
+    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    var Username = defaults.objectForKey("Username") as? String
+    if (Username == nil) {
+        Username = ""
+    }
+    return Username
+}
+
+func getDefaultPassword()->String!{
+    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    var Password = defaults.objectForKey("Password") as? String
+    if (Password == nil) {
+        Password = ""
+    }
+    return Password
+}
+
     
