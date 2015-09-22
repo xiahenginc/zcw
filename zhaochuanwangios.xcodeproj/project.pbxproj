@@ -12,6 +12,7 @@
 		167DAE541B607EDA009A8ADC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DAE531B607EDA009A8ADC /* CoreTelephony.framework */; };
 		167DAE561B607EE3009A8ADC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DAE551B607EE3009A8ADC /* libz.dylib */; };
 		167DAE581B607EEF009A8ADC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DAE571B607EEF009A8ADC /* SystemConfiguration.framework */; };
+		167DBC641BB1984000D17A88 /* WebDetailUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167DBC631BB1984000D17A88 /* WebDetailUrlViewController.swift */; };
 		169CEE981B60C97900F55FDE /* oswift.m in Sources */ = {isa = PBXBuildFile; fileRef = 169CEE971B60C97900F55FDE /* oswift.m */; };
 		16BBC5AC1B4FBFC400420577 /* 001.png in Resources */ = {isa = PBXBuildFile; fileRef = 16BBC47D1B4FBFC300420577 /* 001.png */; };
 		16BBC5AD1B4FBFC400420577 /* 002.png in Resources */ = {isa = PBXBuildFile; fileRef = 16BBC47E1B4FBFC300420577 /* 002.png */; };
@@ -371,6 +372,7 @@
 		167DAE531B607EDA009A8ADC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		167DAE551B607EE3009A8ADC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		167DAE571B607EEF009A8ADC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		167DBC631BB1984000D17A88 /* WebDetailUrlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebDetailUrlViewController.swift; path = WebDetail/WebDetailUrlViewController.swift; sourceTree = "<group>"; };
 		169CEE961B60C95E00F55FDE /* oswift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = oswift.h; path = zhaochuanwangios/oswift.h; sourceTree = "<group>"; };
 		169CEE971B60C97900F55FDE /* oswift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = oswift.m; path = zhaochuanwangios/oswift.m; sourceTree = "<group>"; };
 		16BBC47D1B4FBFC300420577 /* 001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 001.png; sourceTree = "<group>"; };
@@ -1224,6 +1226,7 @@
 				5F1AA81A1AEA3D6300B0236C /* IndexWebDetailViewController.swift */,
 				5F37EBE71AEBE11A0050D1E7 /* WebDetailNoFooterViewController.swift */,
 				5F1310241AEE84B30067EC03 /* WebDetailMyProfileViewController.swift */,
+				167DBC631BB1984000D17A88 /* WebDetailUrlViewController.swift */,
 			);
 			name = webdetail;
 			sourceTree = "<group>";
@@ -1659,6 +1662,7 @@
 				5FBFEB1E1AD8FDCD0052F769 /* KeyboardTableView.swift in Sources */,
 				5F1211921ACA7C5800B3DE25 /* UIColor+Extension.swift in Sources */,
 				5F6B2D801ACD021100AE8A21 /* REMenuContainerView.m in Sources */,
+				167DBC641BB1984000D17A88 /* WebDetailUrlViewController.swift in Sources */,
 				5FBFEB1F1AD8FDCD0052F769 /* StringExtension.swift in Sources */,
 				5F7396851AD8B53E00001998 /* Alamofire-SwiftyJSON.swift in Sources */,
 				5F56F8011AE62ED400252087 /* WebViewProxy.m in Sources */,

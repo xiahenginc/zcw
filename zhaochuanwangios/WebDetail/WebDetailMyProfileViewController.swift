@@ -30,7 +30,7 @@ class WebDetailMyProfileViewController: WebBaseViewController {
 //                self.webView.loadData(nshtmdata, MIMEType: "text/html", textEncodingName: "UTF-8", baseURL: baseURL)
 //            }
 //            
-//        }
+//        }ac
         
     }
     

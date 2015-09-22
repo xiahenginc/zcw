@@ -27,7 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let myTypes = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
             application.registerForRemoteNotificationTypes(myTypes)
         }
-        BPush.registerChannel(launchOptions, apiKey: "KsjTtnacdqL7GVPBHowdjnbE", pushMode: BPushMode.Production, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
+        BPush.registerChannel(launchOptions, apiKey: "VCcGL2TbxAOkcSHPFU9mZbz6", pushMode: BPushMode.Production, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
+   //     BPush.registerChannel(launchOptions, apiKey: "VCcGL2TbxAOkcSHPFU9mZbz6", pushMode: BPushMode.Development, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         //-------------------------end
         defaultusername = getDefaultUserName()
@@ -76,11 +77,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]){
         BPush.handleNotification(userInfo)
         
+        let theJSONData = NSJSONSerialization.dataWithJSONObject(
+            userInfo ,
+            options: NSJSONWritingOptions(0),
+            error: nil)
+        let theJSONText = NSString(data: theJSONData!,
+            encoding: NSASCIIStringEncoding)
+        showSuccess("","JSON string = \(theJSONText!)");
+        
+        var strMsg = ""
+        var strId = ""
+        
         if let apsDictionary = userInfo["aps"] as? [NSObject:AnyObject] {
             if let alertString = apsDictionary["alert"] as? String {
-                showSuccess("", alertString)
+                strMsg = alertString
             }
+            
         }
+        
+        if let idString = userInfo["key1"] as? String{
+            strId = idString
+        }
+   
+        showMsgInfo("http://www.baidu.com")
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification){
@@ -142,7 +161,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         profileNav = RootNavigationViewController(rootViewController:dvcLogin)
 
     }
-
+    func showMsgInfo(msgUrl:String){
+        var storyBoardWeb = UIStoryboard(name:"infodetail",bundle:nil)
+        var dvcMsg = storyBoardWeb.instantiateViewControllerWithIdentifier("urlwebdetail") as! WebDetailUrlViewController
+        dvcMsg.url = msgUrl
+        dvcMsg.title = "消息"
+        self.curDetailView?.navigationController?.pushViewController(dvcMsg, animated: true)
+      //  var popMsg = UINavigationController(rootViewController:dvcMsg)
+        
+    }
     
     func test(){
 //        request(.GET, "http://httpbin.org/get", parameters: ["foo": "bar"])

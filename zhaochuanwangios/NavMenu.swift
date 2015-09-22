@@ -19,7 +19,9 @@ func createNavMenu()->REMenu{
  
     
     var item = REMenuItem(title: menuTxt, image: UIImage(named: menuImg), highlightedImage: nil) { (item) -> Void in
-        appDel.indexNav?.popToRootViewControllerAnimated(true)
+       appDel.indexNav?.popToRootViewControllerAnimated(true)
+        
+      //   appDel.showMsgInfo("http://www.baidu.com")
         return
     }
     items.append(item)
