@@ -39,20 +39,20 @@ class RootIndexNavigationViewController: UINavigationController ,UINavigationCon
                 }
                 
                 viewController.navigationItem.hidesBackButton = false
-                var btnMenu = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+                let btnMenu = UIButton(type: UIButtonType.Custom)
                 btnMenu.frame = CGRectMake(0, 0, 32, 32);
                 btnMenu.setBackgroundImage(UIImage(named: "menu_icon_normal"), forState: UIControlState.Normal)
                 btnMenu.addTarget(self, action: "onClickMenu:", forControlEvents: UIControlEvents.TouchUpInside)
-                var rightBarButtonItem = UIBarButtonItem(customView:btnMenu)
+                let rightBarButtonItem = UIBarButtonItem(customView:btnMenu)
                // rightBarButtonItem.initWithCustomView:btn
 //                let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu_icon_active"), style: .Plain, target: self, action: "onClickMenu:")
                 viewController.navigationItem.rightBarButtonItem = rightBarButtonItem
 //                
-                var btnBack = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+                let btnBack = UIButton(type: UIButtonType.Custom)
                 btnBack.frame = CGRectMake(0, 0, 32, 32);
                 btnBack.setBackgroundImage(UIImage(named: "back_arrow_normal"), forState: UIControlState.Normal)
                 btnBack.addTarget(self, action: "onClickBack:", forControlEvents: UIControlEvents.TouchUpInside)
-                var leftBarButtonItem = UIBarButtonItem(customView:btnBack)
+                let leftBarButtonItem = UIBarButtonItem(customView:btnBack)
               //  let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_arrow_active"), style: .Plain, target: self, action: "onClickBack:")
                 viewController.navigationItem.leftBarButtonItem = leftBarButtonItem
 

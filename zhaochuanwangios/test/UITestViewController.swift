@@ -16,9 +16,9 @@ class UITestViewController: UIViewController , UIAlertViewDelegate{
     }
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
         if buttonIndex == 1 {
-            var phone = "4000682662"
-            var str = NSString(format:"tel://%@", phone)
-            var url = NSURL(string: str as String)
+            let phone = "4000682662"
+            let str = NSString(format:"tel://%@", phone)
+            let url = NSURL(string: str as String)
             UIApplication.sharedApplication().openURL(url!)
             
         }
@@ -26,7 +26,7 @@ class UITestViewController: UIViewController , UIAlertViewDelegate{
     override func viewDidAppear(animated: Bool){
         var alert = UIAlertView()
         
-        var phone = "400-068-2662"
+        let phone = "400-068-2662"
         alert = UIAlertView(title: "", message: phone, delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "呼叫")
         alert.show()
 

@@ -21,9 +21,14 @@ extension UIColor {
             
             var error : NSError? = nil
             
-            let regexp = NSRegularExpression(pattern: "\\A#[0-9a-f]{6}\\z",
-                options: .CaseInsensitive,
-                error: &error)
+            let regexp: NSRegularExpression?
+            do {
+                regexp = try NSRegularExpression(pattern: "\\A#[0-9a-f]{6}\\z",
+                                options: .CaseInsensitive)
+            } catch let error1 as NSError {
+                error = error1
+                regexp = nil
+            }
             
 //            let count = regexp?.numberOfMatchesInString(hexString,
 //                options: .ReportProgress,

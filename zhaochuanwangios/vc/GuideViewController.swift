@@ -18,14 +18,14 @@ class GuideViewController: UIViewController, UIScrollViewDelegate {
         enterOnclick.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
 //        var scrollwidth = self.view.frame.width
 //        var scrollheight = self.view.frame.height
-        println("cur:\(self.view.bounds.size.width)")
+        print("cur:\(self.view.bounds.size.width)")
         scrollView.delegate = self
         scrollView.contentSize =  CGSizeMake(self.view.bounds.size.width * 3, self.view.bounds.size.height);
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.pagingEnabled = true
         for index in 0...2 {
-            var imageview = UIImageView(frame: CGRectMake(CGFloat(index) * self.view.bounds.size.width, 0, self.view.bounds.size.width, self.view.bounds.size.height))
-            var str = NSString(format: "welcome%d.png", index)
+            let imageview = UIImageView(frame: CGRectMake(CGFloat(index) * self.view.bounds.size.width, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+            let str = NSString(format: "welcome%d.png", index)
             imageview.image = UIImage(named: str as String)
             scrollView.addSubview(imageview)
         }
@@ -42,10 +42,10 @@ class GuideViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        var offset = scrollView.contentOffset
-        var bounds = scrollView.frame
+        let offset = scrollView.contentOffset
+        let bounds = scrollView.frame
         pageControll.currentPage = Int(offset.x / bounds.width)
-        println("cur:\(pageControll.currentPage),offset:\(offset),bounds:\(bounds)")
+        print("cur:\(pageControll.currentPage),offset:\(offset),bounds:\(bounds)")
         if(pageControll.currentPage == 2){
             enterOnclick.hidden = false
             self.view.bringSubviewToFront(enterOnclick)
@@ -62,19 +62,19 @@ class GuideViewController: UIViewController, UIScrollViewDelegate {
         //调整分页控件“点”的位置（默认为－3.5,原因未知。
         var centerx:CGFloat = contentWidth*0.5 - 19.5
         for var i = 0;i < self.pageControll.subviews.count ; i++ {
-            var v = self.pageControll.subviews[i] as! UIView
+            let v = self.pageControll.subviews[i] 
             v.frame.origin.x  = centerx
             v.frame.origin.y = self.pageControll.height*0.5 + 10
             centerx += 16
         }
         for v in self.pageControll.subviews{
-            println("v:\(v.frame),\(v.bounds)")
+            print("v:\(v.frame),\(v.bounds)")
             
         }
 
     }
     @IBAction func onClickStart(sender: AnyObject) {
-        var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDel.setAppviewAsRootView()
     }
     /*

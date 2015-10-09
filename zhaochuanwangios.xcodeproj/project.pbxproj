@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		163BA4E71BC7BBB10040AA23 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163BA4E61BC7BBB10040AA23 /* Alamofire.swift */; settings = {ASSET_TAGS = (); }; };
 		167DAE501B607E1F009A8ADC /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DAE4F1B607E1F009A8ADC /* libBPush.a */; };
 		167DAE521B607ED1009A8ADC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DAE511B607ED1009A8ADC /* Foundation.framework */; };
 		167DAE541B607EDA009A8ADC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DAE531B607EDA009A8ADC /* CoreTelephony.framework */; };
@@ -347,9 +348,6 @@
 		5F6B2D851ACD05B000AE8A21 /* UITestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B2D841ACD05B000AE8A21 /* UITestViewController.swift */; };
 		5F7396611AD691B800001998 /* NavMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7396601AD691B800001998 /* NavMenu.swift */; };
 		5F7396731AD7B6FC00001998 /* RootIndexNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7396721AD7B6FC00001998 /* RootIndexNavigationViewController.swift */; };
-		5F7396851AD8B53E00001998 /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7396821AD8B53E00001998 /* Alamofire-SwiftyJSON.swift */; };
-		5F7396861AD8B53E00001998 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7396831AD8B53E00001998 /* Alamofire.swift */; };
-		5F7396871AD8B53E00001998 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7396841AD8B53E00001998 /* SwiftyJSON.swift */; };
 		5F7DD7131AE23ADB00427D5E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7DD7121AE23ADB00427D5E /* Default-568h@2x.png */; };
 		5F818F1A1ADCCD9A002B4288 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F818F191ADCCD9A002B4288 /* UIImage+Extension.swift */; };
 		5F8C71221ACFCAFF00552840 /* RootNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C71211ACFCAFF00552840 /* RootNavigationViewController.swift */; };
@@ -366,6 +364,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		163BA4E61BC7BBB10040AA23 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = thirdparty/Alamofire.swift; sourceTree = "<group>"; };
 		167DAE4E1B607E1F009A8ADC /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
 		167DAE4F1B607E1F009A8ADC /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
 		167DAE511B607ED1009A8ADC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -721,9 +720,6 @@
 		5F6B2D841ACD05B000AE8A21 /* UITestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITestViewController.swift; path = test/UITestViewController.swift; sourceTree = "<group>"; };
 		5F7396601AD691B800001998 /* NavMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavMenu.swift; sourceTree = "<group>"; };
 		5F7396721AD7B6FC00001998 /* RootIndexNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootIndexNavigationViewController.swift; path = vc/RootIndexNavigationViewController.swift; sourceTree = "<group>"; };
-		5F7396821AD8B53E00001998 /* Alamofire-SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire-SwiftyJSON.swift"; path = "thirdparty/Alamofire-SwiftyJSON.swift"; sourceTree = "<group>"; };
-		5F7396831AD8B53E00001998 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = thirdparty/Alamofire.swift; sourceTree = "<group>"; };
-		5F7396841AD8B53E00001998 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = thirdparty/SwiftyJSON.swift; sourceTree = "<group>"; };
 		5F7DD7121AE23ADB00427D5E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5F818F191ADCCD9A002B4288 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		5F8C71211ACFCAFF00552840 /* RootNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootNavigationViewController.swift; path = vc/RootNavigationViewController.swift; sourceTree = "<group>"; };
@@ -1211,9 +1207,7 @@
 		5F7396811AD8B48E00001998 /* thirdparty */ = {
 			isa = PBXGroup;
 			children = (
-				5F7396821AD8B53E00001998 /* Alamofire-SwiftyJSON.swift */,
-				5F7396831AD8B53E00001998 /* Alamofire.swift */,
-				5F7396841AD8B53E00001998 /* SwiftyJSON.swift */,
+				163BA4E61BC7BBB10040AA23 /* Alamofire.swift */,
 			);
 			name = thirdparty;
 			sourceTree = "<group>";
@@ -1278,6 +1272,8 @@
 		5F1211571ACA6F8800B3DE25 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = zcwpc.com18.cn;
 				TargetAttributes = {
@@ -1644,12 +1640,12 @@
 				5F818F1A1ADCCD9A002B4288 /* UIImage+Extension.swift in Sources */,
 				5F6B2D851ACD05B000AE8A21 /* UITestViewController.swift in Sources */,
 				5F7396731AD7B6FC00001998 /* RootIndexNavigationViewController.swift in Sources */,
+				163BA4E71BC7BBB10040AA23 /* Alamofire.swift in Sources */,
 				16FAB8511B625E5700C6E559 /* TSBlurView.m in Sources */,
 				5F21BA3D1ACE633700CEDE1C /* jsonutil.swift in Sources */,
 				5F6B2D7E1ACD021100AE8A21 /* RECommonFunctions.m in Sources */,
 				5FAC14511AE8E7B500B372E2 /* WebDetailViewController.swift in Sources */,
 				5F6B2D7F1ACD021100AE8A21 /* REMenu.m in Sources */,
-				5F7396861AD8B53E00001998 /* Alamofire.swift in Sources */,
 				5FBFEB1D1AD8FDCD0052F769 /* KeyboardManager.swift in Sources */,
 				5F7396611AD691B800001998 /* NavMenu.swift in Sources */,
 				5FF509501AD15F8E00913EAE /* ViewFooter.swift in Sources */,
@@ -1664,7 +1660,6 @@
 				5F6B2D801ACD021100AE8A21 /* REMenuContainerView.m in Sources */,
 				167DBC641BB1984000D17A88 /* WebDetailUrlViewController.swift in Sources */,
 				5FBFEB1F1AD8FDCD0052F769 /* StringExtension.swift in Sources */,
-				5F7396851AD8B53E00001998 /* Alamofire-SwiftyJSON.swift in Sources */,
 				5F56F8011AE62ED400252087 /* WebViewProxy.m in Sources */,
 				5F1211651ACA6F8800B3DE25 /* AppDelegate.swift in Sources */,
 				5F8C71221ACFCAFF00552840 /* RootNavigationViewController.swift in Sources */,
@@ -1674,7 +1669,6 @@
 				5FBFEB201AD8FDCD0052F769 /* UIViewExtension.swift in Sources */,
 				169CEE981B60C97900F55FDE /* oswift.m in Sources */,
 				5FBFEB1C1AD8FDCD0052F769 /* DeviceInfo.swift in Sources */,
-				5F7396871AD8B53E00001998 /* SwiftyJSON.swift in Sources */,
 				5F6B2D811ACD021100AE8A21 /* REMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1788,6 +1782,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Xiaheng Network System Co., Ltd. (24N474AU9T)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing Xiaheng Network System Co., Ltd. (24N474AU9T)";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zhaochuanwangios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1809,6 +1804,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Xiaheng Network System Co., Ltd. (24N474AU9T)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing Xiaheng Network System Co., Ltd. (24N474AU9T)";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zhaochuanwangios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

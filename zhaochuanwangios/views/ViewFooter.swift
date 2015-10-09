@@ -17,7 +17,7 @@ class ViewFooter: UIView , UIAlertViewDelegate{
         // Drawing code
     }
     */
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
@@ -33,14 +33,14 @@ class ViewFooter: UIView , UIAlertViewDelegate{
         NSBundle.mainBundle().loadNibNamed("ViewFooter", owner: self, options: nil)[0] as! UIView
         
         self.addSubview(view)
-        self.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.view.translatesAutoresizingMaskIntoConstraints = false
         
         let viewsDictionary = ["view": view]
         
         let view1_constraint_H = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+            "H:|[view]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
         let view1_constraint_V = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+            "V:|[view]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
         
         self.addConstraints(view1_constraint_H)
         self.addConstraints(view1_constraint_V)

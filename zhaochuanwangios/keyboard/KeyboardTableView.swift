@@ -9,7 +9,7 @@
 import UIKit
 
 class KeyboardTableView: UITableView {
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.superview?.touchesBegan(touches, withEvent: event)
         super.touchesBegan(touches, withEvent: event)
     }

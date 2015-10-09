@@ -58,7 +58,7 @@ extension String
     //搜索字符最后出现的位置
     func lastRangeOfString(aString string:String) -> Range<String.Index>?
     {
-        var range:Range<String.Index>? = self.rangeOfString(string, options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: NSLocale.currentLocale())
+        let range:Range<String.Index>? = self.rangeOfString(string, options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: NSLocale.currentLocale())
 
         return range
     }
@@ -66,7 +66,7 @@ extension String
     //判断是否包含某一个字符串
     func containsOfString(aString string:String) -> Bool
     {
-        var range:Range<String.Index>? = self.rangeOfString(string)
+        let range:Range<String.Index>? = self.rangeOfString(string)
         return range != nil
     }
 

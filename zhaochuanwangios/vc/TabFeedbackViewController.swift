@@ -26,7 +26,7 @@ class TabFeedbackViewController: UIViewController {
         commitbtn.setTitleColor(UIColor.whiteColor(),forState:UIControlState.Normal)
         commitbtn.setBackgroundImage(UIImage.imageWithColor(UIColor.colorWithHex("#4ABE53")), forState: UIControlState.Normal)
         
-        var navigationBarViewRect:CGRect = CGRectMake(0.0,0.0,0.0,0.0)
+        let navigationBarViewRect:CGRect = CGRectMake(0.0,0.0,0.0,0.0)
         keyboard = KeyboardManager(controller: self,navRect:navigationBarViewRect)
     }
     var keyboard:KeyboardManager!
@@ -42,7 +42,7 @@ class TabFeedbackViewController: UIViewController {
         keyboard.disableKeyboardManager()
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         keyboard.endEditing()
     }
 

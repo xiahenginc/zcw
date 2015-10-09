@@ -102,7 +102,7 @@
         <!--URL＋无Footer-->
         <scene sceneID="2qh-1f-xYj">
             <objects>
-                <viewController storyboardIdentifier="urlwebdetail" title="URL＋无Footer" id="Yfp-MF-vON" customClass="WebDetailUrlViewController" customModule="zhaochuanwangios" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="urlwebdetail" title="URL＋无Footer" hidesBottomBarWhenPushed="YES" id="Yfp-MF-vON" customClass="WebDetailUrlViewController" customModule="zhaochuanwangios" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jc7-Eg-vnX"/>
                         <viewControllerLayoutGuide type="bottom" id="Gp0-HE-yfu"/>

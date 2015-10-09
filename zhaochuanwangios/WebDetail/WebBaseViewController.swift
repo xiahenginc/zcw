@@ -16,7 +16,7 @@ class WebBaseViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onLoginRefresh:", name: "onLoginRefresh", object: nil)
         self.navigationController?.navigationBarHidden = true
         
-        var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDel.curDetailView = self
     }
     
@@ -25,9 +25,9 @@ class WebBaseViewController: UIViewController {
     }
 
     func onLoginRefresh(notification: NSNotification){
-        var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDel.curDetailView = self
-        println("onLoginRefresh:\(detailname),\(uid)")
+        print("onLoginRefresh:\(detailname),\(uid)")
         loadWebView()
     }
     
@@ -36,13 +36,13 @@ class WebBaseViewController: UIViewController {
     var paramdict = Dictionary<String,String>()
     func loadWebView() {
         var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if(detailname == "dl" && count(uid) > 0 && self.navigationController == appDel.profileNav){
+        if(detailname == "dl" && uid.characters.count > 0 && self.navigationController == appDel.profileNav){
             detailname = "grzx"
         }
-        else if(detailname == "grzx" && count(uid) == 0 && self.navigationController == appDel.profileNav){
+        else if(detailname == "grzx" && uid.characters.count == 0 && self.navigationController == appDel.profileNav){
             detailname = "dl"
         }
-        println("loadWebView:\(detailname),\(uid)")
+        print("loadWebView:\(detailname),\(uid)")
         paramdict["<%=uid%>"]=uid
         paramdict["<%=host%>"]="local"
         paramdict["<%=defaultusername%>"]=defaultusername
@@ -55,11 +55,11 @@ class WebBaseViewController: UIViewController {
                 for pair in paramdict{
                     htmlString = htmlString.stringByReplacingOccurrencesOfString(pair.0, withString: pair.1)
                 }
-                println("detailname:\(detailname),WebBaseViewController:\(htmlString)")
+                print("detailname:\(detailname),WebBaseViewController:\(htmlString)")
                 let nshtmdata = htmlString.dataUsingEncoding(NSUTF8StringEncoding)
                 
                 let baseURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath)
-                myWebView?.loadData(nshtmdata, MIMEType: "text/html", textEncodingName: "UTF-8", baseURL: baseURL)
+                myWebView?.loadData(nshtmdata!, MIMEType: "text/html", textEncodingName: "UTF-8", baseURL: baseURL)
             }
             
         }

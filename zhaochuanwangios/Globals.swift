@@ -18,14 +18,14 @@ var globals_attributes = [
 var GlobalUrl = "http://www.zcwjson.com18.cn/"
 
 func setSkipguide(isSkipguide:Bool){
-    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     defaults.setObject(isSkipguide, forKey: "skipguide")
 }
 
 func getIsSkipguide()->Bool{
    return true
-    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    var isSkipguide = defaults.objectForKey("skipguide") as? Bool
+    let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let isSkipguide = defaults.objectForKey("skipguide") as? Bool
     if let b = isSkipguide{
         return b
     }
@@ -72,7 +72,7 @@ func showWarning(message: String, subtitle: String?) {
         subtitle: subtitle,
         image: nil,
         type: TSMessageNotificationType.Warning,
-        duration: 1,
+        duration: 10,
         callback: nil,
         buttonTitle: nil,
         buttonCallback: nil,
@@ -82,22 +82,22 @@ func showWarning(message: String, subtitle: String?) {
 
 //set checkpassword
 func setCheckPassword(isChecked:Bool,Username:String,Password:String){
-    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     defaults.setObject(isChecked, forKey: "isChecked")
     defaults.setObject(Username, forKey: "Username")
     defaults.setObject(Password, forKey: "Password")
 }
 
 func getCheckPassword()->Bool{
-    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    var isChecked = defaults.objectForKey("isChecked") as? Bool
+    let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let isChecked = defaults.objectForKey("isChecked") as? Bool
     if let r = isChecked {
         return r
     }
     return false
 }
 func getDefaultUserName()->String!{
-    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var Username = defaults.objectForKey("Username") as? String
     if (Username == nil) {
         Username = ""
@@ -106,7 +106,7 @@ func getDefaultUserName()->String!{
 }
 
 func getDefaultPassword()->String!{
-    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var Password = defaults.objectForKey("Password") as? String
     if (Password == nil) {
         Password = ""

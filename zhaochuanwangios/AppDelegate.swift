@@ -17,14 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var adviceNav:RootNavigationViewController?
     var curDetailView:WebBaseViewController?
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+//        var urlString = "http:\\/\\/www.baidu.com/aa.jsp?id=1234"
+//        var strUrl = urlString.stringByReplacingOccurrencesOfString("\\/", withString: "/", options: NSStringCompareOptions.LiteralSearch, range: nil)
+//        println("url:\(urlString),url2:\(strUrl)");
         //-------------------------start
         let version : NSString = UIDevice.currentDevice().systemVersion
         if version.floatValue >= 8.0 {
-            let myTypes = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound
-            let settings = UIUserNotificationSettings(forTypes: myTypes, categories: nil)
-            application.registerUserNotificationSettings(settings)
+            if #available(iOS 8.0, *) {
+                let myTypes: UIUserNotificationType = [UIUserNotificationType.Badge, UIUserNotificationType.Alert, UIUserNotificationType.Sound]
+            } else {
+                // Fallback on earlier versions
+            }
         } else {
-            let myTypes = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
+            let myTypes: UIRemoteNotificationType = [UIRemoteNotificationType.Badge, UIRemoteNotificationType.Alert, UIRemoteNotificationType.Sound]
             application.registerForRemoteNotificationTypes(myTypes)
         }
         BPush.registerChannel(launchOptions, apiKey: "VCcGL2TbxAOkcSHPFU9mZbz6", pushMode: BPushMode.Production, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
@@ -54,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //oswift.sendLocalMessage("测试一个数据看看呢")
     }
     
+    @available(iOS 8.0, *)
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings){
         application.registerForRemoteNotifications()
     }
@@ -63,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BPush.registerDeviceToken(deviceToken);
         BPush.bindChannelWithCompleteHandler(
             {(result:AnyObject! , err:NSError!)->Void in
-                print("test")
+                print("test", terminator: "")
                 return
             //[self.viewController addLogString:[NSString stringWithFormat:@"Method: %@\n%@",BPushRequestMethodBind,result]];
         })
@@ -77,16 +83,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]){
         BPush.handleNotification(userInfo)
         
-        let theJSONData = NSJSONSerialization.dataWithJSONObject(
+        let theJSONData = try? NSJSONSerialization.dataWithJSONObject(
             userInfo ,
-            options: NSJSONWritingOptions(0),
-            error: nil)
+            options: NSJSONWritingOptions(rawValue: 0))
         let theJSONText = NSString(data: theJSONData!,
             encoding: NSASCIIStringEncoding)
-        showSuccess("","JSON string = \(theJSONText!)");
+        
         
         var strMsg = ""
         var strId = ""
+        var strUrl = ""
         
         if let apsDictionary = userInfo["aps"] as? [NSObject:AnyObject] {
             if let alertString = apsDictionary["alert"] as? String {
@@ -98,8 +104,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let idString = userInfo["key1"] as? String{
             strId = idString
         }
-   
-        showMsgInfo("http://www.baidu.com")
+        
+        if let urlString = userInfo["key2"] as? String{
+            strUrl = urlString.stringByReplacingOccurrencesOfString("\\/", withString: "/", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        }
+        
+      //  showWarning("","JSON string = \(theJSONText!),strUrl=\(strUrl)");
+        showMsgInfo(strUrl)
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification){
@@ -111,13 +122,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setAppviewAsRootView(){
         
         // Override point for customization after application launch.
-        var storyBoardMain = UIStoryboard(name:"Main",bundle:nil)
-        var AppNav = storyBoardMain.instantiateViewControllerWithIdentifier("rootTab") as! UITabBarController
+        let storyBoardMain = UIStoryboard(name:"Main",bundle:nil)
+        let AppNav = storyBoardMain.instantiateViewControllerWithIdentifier("rootTab") as! UITabBarController
         
       //  indexNav = storyBoardMain.instantiateViewControllerWithIdentifier("tab1") as? RootIndexNavigationViewController
       
-        var storyBoardWeb = UIStoryboard(name:"infodetail",bundle:nil)
-        var dvcindex = storyBoardWeb.instantiateViewControllerWithIdentifier("indexwebdetail") as!IndexWebDetailViewController
+        let storyBoardWeb = UIStoryboard(name:"infodetail",bundle:nil)
+        let dvcindex = storyBoardWeb.instantiateViewControllerWithIdentifier("indexwebdetail") as!IndexWebDetailViewController
         dvcindex.detailname = "index"
         dvcindex.title = "首页"
         dvcindex.tabBarItem = UITabBarItem(title:dvcindex.title,image:UIImage(named:"ic_nav_home_normal"),tag:1)
@@ -125,7 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         indexNav = RootIndexNavigationViewController(rootViewController:dvcindex)
         //indexNav!.rootViewController = dvcindex
         
-        var vc2 = storyBoardMain.instantiateViewControllerWithIdentifier("tab2") as! RootNavigationViewController
+        let vc2 = storyBoardMain.instantiateViewControllerWithIdentifier("tab2") as! RootNavigationViewController
        // var vc3 = storyBoardMain.instantiateViewControllerWithIdentifier("tab3") as RootNavigationViewController
       
         setLogin()
@@ -138,8 +149,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = AppNav
     }
     func setAdvice(){
-        var storyBoardWeb = UIStoryboard(name:"infodetail",bundle:nil)
-        var dvcAdvice = storyBoardWeb.instantiateViewControllerWithIdentifier("webdetailmyprofile") as! WebDetailMyProfileViewController
+        let storyBoardWeb = UIStoryboard(name:"infodetail",bundle:nil)
+        let dvcAdvice = storyBoardWeb.instantiateViewControllerWithIdentifier("webdetailmyprofile") as! WebDetailMyProfileViewController
         dvcAdvice.detailname = "yjjy"
         dvcAdvice.title = "意见建议"
         dvcAdvice.tabBarItem = UITabBarItem(title:dvcAdvice.title,image:UIImage(named:"ic_nav_opinion_normal"),tag:2)
@@ -150,8 +161,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setLogin(){
-        var storyBoardWeb = UIStoryboard(name:"infodetail",bundle:nil)
-        var dvcLogin = storyBoardWeb.instantiateViewControllerWithIdentifier("indexwebdetail") as! IndexWebDetailViewController
+        let storyBoardWeb = UIStoryboard(name:"infodetail",bundle:nil)
+        let dvcLogin = storyBoardWeb.instantiateViewControllerWithIdentifier("indexwebdetail") as! IndexWebDetailViewController
         dvcLogin.detailname = "dl"
         dvcLogin.title = "个人"
         dvcLogin.refreshwhenappear  = true
@@ -162,8 +173,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
     func showMsgInfo(msgUrl:String){
-        var storyBoardWeb = UIStoryboard(name:"infodetail",bundle:nil)
-        var dvcMsg = storyBoardWeb.instantiateViewControllerWithIdentifier("urlwebdetail") as! WebDetailUrlViewController
+        let storyBoardWeb = UIStoryboard(name:"infodetail",bundle:nil)
+        let dvcMsg = storyBoardWeb.instantiateViewControllerWithIdentifier("urlwebdetail") as! WebDetailUrlViewController
         dvcMsg.url = msgUrl
         dvcMsg.title = "消息"
         self.curDetailView?.navigationController?.pushViewController(dvcMsg, animated: true)
@@ -206,7 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (req:NSURLRequest!,res:WVPResponse! )-> Void in
             //            //http://local/cbjy.htm#__webviewproxyreq__
             var uriid = self.getSubString(req.URLString,starts: "/",ends: ".htm")
-            println(uriid)
+            print(uriid)
             dispatch_sync(dispatch_get_main_queue(), {
                 var title = ""
                 switch(uriid){
@@ -229,14 +240,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     title = "帮助"
                 case "zc":
                     title = "注册"
-                    navto_webinfo_personal(uriid,title)
+                    navto_webinfo_personal(uriid,title: title)
                     return
                 case "tc":
                     uid = ""
                     sessionId = ""
                     defaultusername = ""
                     defaultpassword = ""
-                    setCheckPassword(true,defaultusername,defaultpassword)
+                    setCheckPassword(true,Username: defaultusername,Password: defaultpassword)
                     dispatch_async(dispatch_get_main_queue(), {
                         NSNotificationCenter.defaultCenter().postNotificationName("onLoginRefresh", object: nil)
                     })
@@ -245,7 +256,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 default:
                     title = "个人信息"
                 }
-                navto_webinfo_nofooter_personal(uriid,title)
+                navto_webinfo_nofooter_personal(uriid,title: title)
             })
         })
 
@@ -254,7 +265,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (req:NSURLRequest!,res:WVPResponse! )-> Void in
 //            //http://local/cbjy.htm#__webviewproxyreq__
             var uriid = self.getSubString(req.URLString,starts: "/",ends: ".htm")
-                    println(uriid)
+                    print(uriid)
                     dispatch_sync(dispatch_get_main_queue(), {
                         var title = ""
                         switch(uriid){
@@ -278,11 +289,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                  title = "时事新闻"
                             case "cylt":
                                 title = "船友之家"
-                                navto_webinfo_nofooter(uriid,title)
+                                navto_webinfo_nofooter(uriid,title: title)
                                 return
                             case "gxcb":
                                 title = "更新我的船舶"
-                                navto_webinfo_nofooter(uriid,title)
+                                navto_webinfo_nofooter(uriid,title: title)
                                 return
                             case "yjjy":
                                title = "意见建议"
@@ -318,15 +329,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         default:
                             title = "信息"
                         }
-                        navto_webinfo(uriid,title)
+                        navto_webinfo(uriid,title: title)
                     })
         })
         
         //发送数据页面
         WebViewProxy.handleRequestsWithHost("post", handler: {
             (req:NSURLRequest!,res:WVPResponse! )-> Void in
-            println(req.URLString)
-            println(req.HTTPBody)
+            print(req.URLString)
+            print(req.HTTPBody)
             var uriid = self.getSubString(req.URLString,starts: "/",ends: "#")
             if(uriid == "login" ){//登录比较特殊
                 var redirecturl = GlobalUrl + "login"
@@ -340,14 +351,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    
 
                     if let err = error{
-                       println("\(err)")
+                       print("\(err)")
                     }
                     else{
-                     var htmlString = NSString(data:data,encoding:NSUTF8StringEncoding)!
-                        if(response.MIMEType == "application/json"
-                            || response.MIMEType == "text/json"){
-                                let jsonData = NSJSONSerialization.JSONObjectWithData(data,options:NSJSONReadingOptions.MutableContainers,
-                                    error:nil) as! NSDictionary
+                     var htmlString = NSString(data:data!,encoding:NSUTF8StringEncoding)!
+                        if(response!.MIMEType == "application/json"
+                            || response!.MIMEType == "text/json"){
+                                let jsonData = (try! NSJSONSerialization.JSONObjectWithData(data!,options:NSJSONReadingOptions.MutableContainers)) as! NSDictionary
                                 
                                 res.respondWithJSON(jsonData as [NSObject : AnyObject])
                                 uid = jsonData["login"]!.valueForKey("uid") as! String
@@ -363,10 +373,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 else{
                                     
                                 }
-                                setCheckPassword(true,defaultusername,defaultpassword)
+                                setCheckPassword(true,Username: defaultusername,Password: defaultpassword)
                                 if let httpResponse = response as? NSHTTPURLResponse {
                                     for (name, value) in httpResponse.allHeaderFields {
-                                        println("kv:\(name),\(value)")
+                                        print("kv:\(name),\(value)")
                                         if name == "Set-Cookie" {
                                             let sessionStr = value as! String
                                             sessionId = self.getSubString(sessionStr,starts: "=",ends: ";")
@@ -389,13 +399,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             else{
                 var redirecturl = GlobalUrl + uriid
-                println("remote url:redirecturl:\(redirecturl)")
+                print("remote url:redirecturl:\(redirecturl)")
                 var url:NSURL = NSURL(string:redirecturl)!
                 let request:NSMutableURLRequest = NSMutableURLRequest(URL:url)
                 request.HTTPMethod  = "POST"
                 request.HTTPBody = req.HTTPBody
                 var postString = NSString(data:req.HTTPBody!,encoding:NSUTF8StringEncoding)!
-                println("send post data:--->\(postString)")
+                print("send post data:--->\(postString)")
                 if(sessionId != "")
                 {
                     request.addValue(sessionId,forHTTPHeaderField:"Cookie")
@@ -407,13 +417,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                     }
                     else {
-                        var htmlString = NSString(data:data,encoding:NSUTF8StringEncoding)!
-                        println("get from server:--->\(htmlString)")
+                        var htmlString = NSString(data:data!,encoding:NSUTF8StringEncoding)!
+                        print("get from server:--->\(htmlString)")
 
-                        if(response.MIMEType == "application/json"
-                        || response.MIMEType == "text/json"){
-                            let jsonData = NSJSONSerialization.JSONObjectWithData(data,options:NSJSONReadingOptions.MutableContainers,
-                                error:nil) as! NSDictionary
+                        if(response!.MIMEType == "application/json"
+                        || response!.MIMEType == "text/json"){
+                            let jsonData = (try! NSJSONSerialization.JSONObjectWithData(data!,options:NSJSONReadingOptions.MutableContainers)) as! NSDictionary
                             
                             res.respondWithJSON(jsonData as [NSObject : AnyObject])
                         }
@@ -425,7 +434,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 uriid = names[names.count - 1]
                             }
                             let detailname = self.curDetailView?.detailname
-                            println("\(request.URLString),\(uriid),\(htmlString),\(detailname)")
+                            print("\(request.URLString),\(uriid),\(htmlString),\(detailname)")
                             if(htmlString == "1" ){
                                 if(self.isSuccessToRefresh(uriid,detailname: detailname!)){
                                     dispatch_async(dispatch_get_main_queue(), {
@@ -456,7 +465,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (req:NSURLRequest!,res:WVPResponse! )-> Void in
             
             var uriid = self.getSubString(req.URLString,starts: "/",ends: ".htm")
-            println(uriid)
+            print(uriid)
             dispatch_sync(dispatch_get_main_queue(), {
                 var title = ""
                 if(uriid == "grzx"){
@@ -477,15 +486,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     appDel.indexNav?.popViewControllerAnimated(false)
 
-                    navto_webinfo_nofooter(uriid,"船舶交易")
+                    navto_webinfo_nofooter(uriid,title: "船舶交易")
                     return
                 }
                 else if(uriid == "hp"){
-                    navto_webinfo_nofooter(uriid,title)
+                    navto_webinfo_nofooter(uriid,title: title)
                     return
                 }
                 else if(uriid == "cywz"){
-                    navto_webinfo_nofooter(uriid,title)
+                    navto_webinfo_nofooter(uriid,title: title)
                     return
                 }
                 else if(uriid == "index"){
@@ -511,7 +520,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     return
                 }
                 
-                navto_webinfo_nofooter_personal(uriid,title)
+                navto_webinfo_nofooter_personal(uriid,title: title)
             })
 
         })
@@ -523,7 +532,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var uriid = self.getSubString(req.URLString,starts: "/",ends: ".htm")
             var uri = self.getSubString(req.URLString,starts: "/",ends: "#")
             var paramids = self.getParams(uri)
-            println(uriid)
+            print(uriid)
             dispatch_sync(dispatch_get_main_queue(), {
                 var title = ""
                 switch uriid{
@@ -560,7 +569,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 default:
                     title = ""
                 }
-                navto_detail(uriid,title,paramids)
+                navto_detail(uriid,title: title,paramdict: paramids)
             })
             
         })
@@ -571,7 +580,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var uriid = self.getSubString(req.URLString,starts: "/",ends: ".htm")
             var uri = self.getSubString(req.URLString,starts: "/",ends: "#")
             var paramids = self.getParams(uri)
-            println(uriid)
+            print(uriid)
             dispatch_sync(dispatch_get_main_queue(), {
                 var title = ""
                 switch uriid{
@@ -584,8 +593,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 default:
                     title = ""
                 }
-                println(uriid)
-                navtocbqg_detail_personal(uriid,title,paramids)
+                print(uriid)
+                navtocbqg_detail_personal(uriid,title: title,paramdict: paramids)
             })
 
         })
@@ -595,7 +604,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //JSESSIONID=A7AC1D17A8A268D796E402A684B564F3; Path=/
     //getSubString("JSESSIONID=A7AC1D17A8A268D796E402A684B564F3; Path=/","=",";")->A7AC1D17A8A268D796E402A684B564F3
     func getSubString(s:String,starts:String,ends:String)->String{
-        println("getSubString:\(s)")
+        print("getSubString:\(s)")
         var rets = ""
         let names = s.componentsSeparatedByString(ends)
         if(names.count > 1){
@@ -615,9 +624,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for var i = 0 ;i < paramstrings.count; i++ {
                 let paramsz = paramstrings[i].componentsSeparatedByString("=")
                 if paramsz.count == 2{
-                    var key = "<%=" + paramsz[0] + "%>"
+                    let key = "<%=" + paramsz[0] + "%>"
                     dict[key] = paramsz[1]
-                    println("dict:\(dict)")
+                    print("dict:\(dict)")
                   //  dict.updateValue(paramsz[1], forKey: key)
                 }
             }

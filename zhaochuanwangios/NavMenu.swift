@@ -13,7 +13,7 @@ func createNavMenu()->REMenu{
     
     var menuTxt = "首页"
     var menuImg = "plugmenu6"
-    var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var storyBoardMain = UIStoryboard(name:"Main",bundle:nil)
  
@@ -30,68 +30,68 @@ func createNavMenu()->REMenu{
     menuTxt = "更新我的船舶"
     menuImg = "nav_update"
     item = REMenuItem(title: menuTxt, image: UIImage(named: menuImg), highlightedImage: nil) { (item) -> Void in
-        var uriid = "gxcb"
-        navto_webinfo_nofooter(uriid,item.title)
+        let uriid = "gxcb"
+        navto_webinfo_nofooter(uriid,title: item.title)
     }
     items.append(item)
     
     menuTxt = "信息发布"
     menuImg = "nav_release"
     item = REMenuItem(title: menuTxt, image: UIImage(named: menuImg), highlightedImage: nil) { (item) -> Void in
-        var uriid = "fbxx"
-        navto_webinfo(uriid,item.title)
+        let uriid = "fbxx"
+        navto_webinfo(uriid,title: item.title)
     }
     items.append(item)
   
     menuTxt = "货盘信息"
     menuImg = "nav_goods"
     item = REMenuItem(title: menuTxt, image: UIImage(named: menuImg), highlightedImage: nil) { (item) -> Void in
-        var uriid = "hp"
-        navto_webinfo(uriid,item.title)
+        let uriid = "hp"
+        navto_webinfo(uriid,title: item.title)
     }
     items.append(item)
 
     menuTxt = "船盘信息"
     menuImg = "nav_boat"
     item = REMenuItem(title: menuTxt, image: UIImage(named: menuImg), highlightedImage: nil) { (item) -> Void in
-        var uriid = "cp"
-        navto_webinfo(uriid,item.title)
+        let uriid = "cp"
+        navto_webinfo(uriid,title: item.title)
     }
     items.append(item)
 
     menuTxt = "在线投保"
     menuImg = "nav_insurnace"
     item = REMenuItem(title: menuTxt, image: UIImage(named: menuImg), highlightedImage: nil) { (item) -> Void in
-        var uriid = "zxtb"
-        navto_webinfo(uriid,item.title)
+        let uriid = "zxtb"
+        navto_webinfo(uriid,title: item.title)
     }
     items.append(item)
 
     menuTxt = "物资市场"
     menuImg = "nav_material"
     item = REMenuItem(title: menuTxt, image: UIImage(named: menuImg), highlightedImage: nil) { (item) -> Void in
-        var uriid = "cywz"
-        navto_webinfo(uriid,item.title)
+        let uriid = "cywz"
+        navto_webinfo(uriid,title: item.title)
     }
     items.append(item)
 
     menuTxt = "船舶交易"
     menuImg = "nav_deal"
     item = REMenuItem(title: menuTxt, image: UIImage(named: menuImg), highlightedImage: nil) { (item) -> Void in
-        var uriid = "cbjy"
-        navto_webinfo(uriid,item.title)
+        let uriid = "cbjy"
+        navto_webinfo(uriid,title: item.title)
     }
     items.append(item)
    
     menuTxt = "人才中心"
     menuImg = "nav_talent"
     item = REMenuItem(title: menuTxt, image: UIImage(named: menuImg), highlightedImage: nil) { (item) -> Void in
-        var uriid = "hr"
-        navto_webinfo(uriid,item.title)
+        let uriid = "hr"
+        navto_webinfo(uriid,title: item.title)
     }
     items.append(item)
   
-    var menu = REMenu(items: items)
+    let menu = REMenu(items: items)
     menu.backgroundColor = UIColor.whiteColor()//    menu.liveBlur = true
 //    menu.liveBlurBackgroundStyle = .Light
     menu.separatorColor = UIColor.colorWithHex("#cccccc")
