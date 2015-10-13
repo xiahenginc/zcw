@@ -76,7 +76,7 @@
 				var json={uid:uid,title:title,models:models,quantity:quantity,pdate:pdate,deadline:deadline,cname:cname,address:address,linkman:linkman,phone:phone,email:email,qq:qq,note:note};
 				
 				var data=JSON.stringify(json);
-				
+				//alert(data); 
 				$.ajax(  
 					{  
 						type:'post',  
@@ -87,6 +87,8 @@
 							if(data=="1"){
 								alert('发布成功！');
 								location.href='http://skip/cywz.htm';
+							}else if(data=="-1"){
+								alert('对不起！您今日的发布次数已经用完！');
 							}else{
 								alert('发布失败！请稍后重试！');
 							}
@@ -121,6 +123,16 @@
                   <th><label>*</label>
                     标题</th>
                   <td><input name="title" class="px" id="title" value="" type="text"></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+		  <li class="nob" style="display:none">
+            <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <th>缩略图</th>
+                  <td><input type="file" name="samllfile" style="background-color:#cccccc; border-radius:5px; border:1px solid #eee; display:inline-block; color:#fff; padding:2px 5px"></td>
                 </tr>
               </tbody>
             </table>

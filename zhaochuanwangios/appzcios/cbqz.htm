@@ -79,6 +79,8 @@
 							if(data=="1"){
 								alert('发布成功！');
 								location.href='http://skip/cbjy.htm';
+							}else if(data=="-1"){
+								alert('对不起！您今日的发布次数已经用完！');
 							}else{
 								alert('发布失败！请稍后重试！');
 							}
@@ -233,7 +235,7 @@
           </tbody>
                 </table>
       </li>
-      <li class="nob" style="display:none;">
+      <li class="nob" >
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>

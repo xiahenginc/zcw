@@ -126,7 +126,42 @@
 				var qq=$("#qq").val();
 				var note=$("#note").val();
 				
-				var json={uid:uid,sport:sport,eport:eport,type:type,ton:ton,packing:packing,sdate:sdate,deadline:deadline,cname:cname,address:address,linkman:linkman,phone:phone,email:email,qq:qq,note:note};
+				if(sport==null || sport==""){
+					alert("发货港不能为空！");
+					return;
+				}
+				if(eport==null || eport==""){
+					alert("卸货港不能为空！");
+					return;
+				}
+				
+				if(type==null || type==""){
+					alert("货源名称不能为空！");
+					return;
+				}
+				if(ton==null || ton==""){
+					alert("货物吨位不能为空！");
+					return;
+				}
+				if(sdate==null || sdate==""){
+					alert("装载日期不能为空！");
+					return;
+				}
+				if(deadline==null || deadline==""){
+					alert("有效期限不能为空！");
+					return;
+				}
+				if(linkman==null || linkman==""){
+					alert("联系人不能为空！");
+					return;
+				}
+				if(phone==null || phone==""){
+					alert("联系电话不能为空！");
+					return;
+				}
+				
+				
+				var json={uid:uid,sport:sport,eport:eport,type:type,ton:ton,packing:packing,sdate:sdate,deadline:deadline,gsname:cname,gsaddr:address,hzname:linkman,hzphone:phone,email:email,QQ:qq,note:note};
 				
 				var data=JSON.stringify(json);
 				
@@ -140,6 +175,8 @@
 							if(data=="1"){
 								alert('发布成功！');
 								location.href='http://skip/hp.htm';
+							}else if(data=="-1"){
+								alert('对不起！您今日的发布次数已经用完！');
 							}else{
 								alert('发布失败！请稍后重试！');
 							}
@@ -236,18 +273,13 @@
         </li>
         </ul></div>
   
-  <div id="LoginBox">
+  <div id="LoginBox" style="display:block">
         <div class="row1">
             货盘发布<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
         </div>
         
         <table width="100%" class="table_form">
               <tbody>
-                <tr id="dr_row_snum">
-                  <th><label style="color:#f00">*</label> 托运量： </th>
-                  <td><input class="input-text" type="text" name="ton" id="ton" value="">
-                    吨 </td>
-                </tr>
                 <tr id="dr_row_kport2">
                   <th><label style="color:#f00">*</label> 发货港： </th>
                   <td><input class="input-text" type="text" name="sport" id="sport" value=""></td>
@@ -259,6 +291,11 @@
                 <tr id="dr_row_kport2">
                   <th><label style="color:#f00">*</label> 货源名称： </th>
                   <td><input class="input-text" type="text" name="type" id="type" value=""></td>
+                </tr>
+                <tr id="dr_row_snum">
+                  <th><label style="color:#f00">*</label> 货物吨位： </th>
+                  <td><input class="input-text" type="text" name="ton" id="ton" value="">
+                    吨 </td>
                 </tr>
                 <tr id="dr_row_kport2">
                   <th><label style="color:#f00">*</label> 包装形式： </th>
@@ -279,23 +316,31 @@
                 </tr>
                 <tr id="dr_row_kfdate">
                   <th><label style="color:#f00">*</label> 有效日期：</th>
-                  <td><input class="input-text" type="text" name="deadline" id="deadline" value=""></td>
+                  <td>
+                      <select name="deadline" id="deadline" >
+                        <option value="3">3</option>
+                        <option value="7">7</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="长期">长期</option>
+                    </select>
+                  </td>
                 </tr>
                 <tr id="dr_row_hfdate2">
+                    <th><label style="color:#f00">*</label>联系人：</th>
+                    <td><input class="input-text" type="text" name="linkman" id="linkman" value=""></td>
+                  </tr>
+                  <tr id="dr_row_hfdate2">
+                    <th><label style="color:#f00">*</label>联系电话：</th>
+                    <td><input class="input-text" type="text" name="phone" id="phone" value=""></td>
+                  </tr>
+                  <tr id="dr_row_hfdate2">
                     <th> 公司名称：</th>
                     <td><input class="input-text" type="text" name="cname" id="cname" value=""></td>
                   </tr>
                   <tr id="dr_row_hfdate2">
                     <th> 公司地址：</th>
                     <td><input class="input-text" type="text" name="address" id="address" value=""></td>
-                  </tr>
-                  <tr id="dr_row_hfdate2">
-                    <th> 联系人：</th>
-                    <td><input class="input-text" type="text" name="linkman" id="linkman" value=""></td>
-                  </tr>
-                  <tr id="dr_row_hfdate2">
-                    <th> 联系电话：</th>
-                    <td><input class="input-text" type="text" name="phone" id="phone" value=""></td>
                   </tr>
                   <tr id="dr_row_hfdate2">
                     <th> 电子邮件：</th>
@@ -449,8 +494,8 @@
       <table class="m-table m-table-row m-show m-table-sinfo" style="width:100%">
         <thead>
           <tr>
-            <th class="colc">装载港</th>
-            <th class="cold">吨位</th>
+            <th class="colc">发货港</th>
+            <th class="cold">货物吨位</th>
             <th class="cola">有效期</th>
             <th class="colb">详情</th>
           </tr>

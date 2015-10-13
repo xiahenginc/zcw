@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript">
+	function checkform(){
+				var uid="<%=uid%>";
+				var id="<%=id%>";
+				if(uid==""){
+					alert('登录后才能进行发布信息操作！');
+					location.href='http://<%=host%>/dl0.htm';
+					return;
+				}
+				var sname=$("#dr_sname").val();
+				var sphone=$("#dr_sphone").val();
+				var baojia=$("#dr_baojia").val();
+				var huowu=$("#dr_huowu").val();
+				var sinfo=$("#dr_sinfo").val();
+				var id=$("#dr_id").val();
+				
+				if(sname==null || sname==""){
+					alert("联系人不能为空！");
+					return;
+				}
+				if(sphone==null || sphone==""){
+					alert("联系电话不能为空！");
+					return;
+				}
+				if(baojia==null || baojia==""){
+					alert("报价不能为空！");
+					return;
+				}
+				if(huowu==null || huowu==""){
+					alert("货物不能为空！");
+					return;
+				}
+				if(sinfo==null || sinfo==""){
+					alert("详细内容不能为空！");
+					return;
+				}
+				
+				
+				var json={uid:uid,id:id,baojialxr:sname,baojialxdh:sphone,baojia:baojia,bz:sinfo,huowu:huowu};
+				
+				var data=JSON.stringify(json);
+				
+				$.ajax(  
+					{  
+						type:'post',  
+						url : 'http://post/baojia1',
+						data:{"grelease":data},
+						jsonp:"jsoncallback",  
+						success  : function(data) {  
+							if(data=="1"){
+								alert('报价成功！');
+								location.href='http://skip/cp_detail.htm?id=<%=id%>';
+								}else{
+								alert('报价失败！请稍后重试！');
+							}
+						},  
+						error : function() { 
+							alert('报价失败！请稍后重试！');
+						}  
+					}  
+				);  
+		};
+</script>
+</head>
+<body>
+<div class="warp">
+  
+  <section class="content" style="margin:0px">
+    <article class="mbox" style="background-color:#eee">
+    	<h1 style="font-size:15px; line-height:32px; padding:8px 0px; text-align:center; border-bottom:1px  dashed #CCC; margin-bottom:10px"><span id="titlesp"></span>
+        <!--<span style="font-size:12px; font-weight:normal; display:block"><span style="color:#f00; padding-right:5px">2015-02-27 10:30:10</span>点击数(<span id="hit"></span>) <a href="javascript:;"  id="addsc">加入收藏</a></span>-->
+        </h1>
+        <div class="cardexplain">
+          <ul class="round" style="border:none">
+    <form  method="post" id="hpbj">
+              
+              <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><font color="red">*</font>&nbsp; </th>
+<td>&nbsp;联系人：
+&nbsp;&nbsp;&nbsp;<input class="input-text" type="text" name="data[sname]" id="dr_sname" value="" style="width:200px;" required="required">
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+              <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><font color="red">*</font>&nbsp; </th>
+<td>联系电话：
+<input class="input-text" type="text" name="data[sphone]" id="dr_sphone" value="" style="width:200px;" required="required">
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><font color="red">*</font>&nbsp; </th>
+<td>&nbsp;&nbsp;报价：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="input-text" type="text" name="data[baojia]" id="dr_baojia" value="" style="width:200px;" required="required">
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><font color="red">*</font>&nbsp; </th>
+<td>货物名称：
+<input class="input-text" type="text" name="data[huowu]" id="dr_huowu" value="" style="width:200px;" required="required">
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob" style="display:none;">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><font color="red">*</font>&nbsp;ID： </th>
+<td>
+<input class="input-text" type="text" name="data[id]" id="dr_id" value="6681" style="width:200px;" required="required" readonly="">
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	   <li class="nob" style="display:none;">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><font color="red">*</font>&nbsp;报价人ID： </th>
+<td>
+<input class="input-text" type="text" name="data[biaojiaID]" id="dr_biaojiaID" value="" style="width:200px;" required="required" readonly="">
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	   <li class="nob" style="display:none;">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><font color="red">*</font>&nbsp;记录ID： </th>
+<td>
+<input class="input-text" type="text" name="data[jiluID]" id="dr_jiluID" value="" style="width:200px;" required="required" readonly="">
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	   <li class="nob" style="display:none;">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><font color="red">*</font>&nbsp;类型： </th>
+<td>
+<input class="input-text" type="text" name="data[type]" id="dr_type" value="货盘" style="width:200px;" required="required" readonly="">
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob" style="display:none;">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><font color="red">*</font>&nbsp;发布人ID： </th>
+<td>
+<input class="input-text" type="text" name="data[faburenID]" id="dr_faburenID" value="" style="width:200px;" required="required" readonly="">
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob" style="display:none;">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><font color="red">*</font>&nbsp;报价时间： </th>
+<td>
+<input class="input-text" type="text" name="data[baojiatime]" id="dr_baojiatime" value="" style="width:200px;" required="required" readonly="">
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob" style="display:none;">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                     <th><font color="red">*</font>&nbsp;报价编号： </th>
+<td>
+<input class="input-text" type="text" name="data[bjbh]" id="dr_bjbh" value="" style="width:200px;" required="required" readonly="">
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th><font color="red">*</font>&nbsp; </th>
+<td>详细内容：
+<textarea style="height:100px; width:220px;" name="data[sinfo]" id="dr_sinfo"></textarea>
+</td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+            </form>
+  </ul>
+  <div class="footReturn">
+    <input id="showcard" class="submit" value="确定" type="button" onClick="checkform();">
+  </div>
+        </div>
+	</article>
+  </section>
+</div>
+<footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
+  <p>Copyright © 2014 找船网</p>
+</footer>
+</body>
+</html>

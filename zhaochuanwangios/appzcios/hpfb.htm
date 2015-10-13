@@ -119,6 +119,8 @@
 							if(data=="1"){
 								alert('发布成功！');
 								location.href='http://skip/hp.htm';
+							}else if(data=="-1"){
+								alert('对不起！您今日的发布次数已经用完！');
 							}else{
 								alert('发布失败！请稍后重试！');
 							}
@@ -207,7 +209,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label>*</label>装载日期</th>
+                      <th><label>*</label>受载日期</th>
                       <td>
                       	<input type="text" class="Wdate px" name="sdate" value="" id="sdate" onClick="WdatePicker({readOnly:true})">
                       	<div id="datePlugin"></div>

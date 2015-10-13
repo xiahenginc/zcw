@@ -21,6 +21,7 @@
 <link href="WdatePicker.css" rel="stylesheet" type="text/css">
 <link href="datepicker.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript" src="jquery-form.js"></script>
 <script type="text/javascript">
 	var uid="<%=uid%>";
 	$(function(){
@@ -90,6 +91,8 @@
 							if(data=="1"){
 								alert('发布成功！');
 								location.href='http://skip/cywz.htm';
+							}else if(data=="-1"){
+								alert('对不起！您今日的发布次数已经用完！');
 							}else{
 								alert('发布失败！请稍后重试！');
 							}
@@ -101,6 +104,77 @@
 				);  
 		});
 	})
+</script>
+<script type="text/javascript">
+	$(function(){
+		createHtml($("#pdiv"));
+		
+		
+		$("#subBtn").click(function(){
+			
+		});
+	})
+	
+function createHtml(obj) {
+    var htmstr = [];
+    htmstr.push(  "<form id='_fileForm' enctype='multipart/form-data'>");
+    htmstr.push(  "<table  style=\" margin-top:30px;\">");
+    htmstr.push(  "<tr>");
+    htmstr.push(  "<td class=\"tdt tdl\" >请选择文件：</td>");
+    htmstr.push(  "<td class=\"tdt tdl\"><input id=\"loadcontrol\" type=\"file\" name=\"filepath\" id=\"filepath\" /></td>");
+    htmstr.push(  "<td class=\"tdt tdl tdr\"><input type=\"button\" onclick=\"fileloadon()\" value=\"上传\"/></td>");
+    htmstr.push(  "</tr>");
+    htmstr.push(  "<tr> <td class=\"tdt tdl tdr\" colspan='3'style='text-align:center;'><div id=\"msg\">&nbsp;</div></td> </tr>");
+	htmstr.push(  "<tr> <td class=\"tdt tdl tdr\" style=\" vertical-align:middle;\">图片预览：</td> <td class=\"tdt tdl tdr\" colspan=\"2\"><div style=\"text-align:center;\"><img src=\"project/Images/NoPhoto.jpg\"/></div></td> </tr>");
+    htmstr.push(  "</table>")
+    htmstr.push(  "</form>");
+    obj.html(htmstr.join(""));
+}
+
+function fileloadon() {
+    $("#msg").html("");    
+		console.log(0);
+    $("img").attr({ "src": "icon06.gif" });
+	console.log(1);
+    $("#_fileForm").submit(function () {   
+	console.log(2);
+        $("#_fileForm").ajaxSubmit({
+            type: "post",
+            url: "http://localhost/boat/upload",
+			acync:false,
+            success: function (data1) {
+            var remsg = data1.split("|");
+            var name = remsg[1].split("\/");
+            if (remsg[0] == "1") {
+            var type = name[name.length - 1].substring(name[name.length - 1].indexOf("."), name[name.length - 1].length);
+			//alert(type);
+            $("#msg").html("文件名：" + name[name.length - 1] + "   ---  " + remsg[2]);
+            switch (type) {
+                case ".jpg":
+                case ".jpeg":
+                case ".gif":
+                case ".bmp":
+                case ".png":
+                $("img").attr({ "src": remsg[1] });
+                break;
+            default:
+                $("img").attr({ "src": "project/Images/msg_ok.png" });
+                break;
+            }
+            } else {
+                $("#msg").html("文件上传失败：" + remsg[2]);
+                $("img").attr({ "src": "project/Images/msg_error.png" });
+            }
+            },
+            error: function (msg) {
+                alert("文件上传失败");    
+            }
+        });
+        return false;
+    });
+    $("#_fileForm").submit();
+}
+	
 </script>
 </head>
 <body>
@@ -127,12 +201,14 @@
           </tbody>
                 </table>
       </li>
-              <li class="nob" style="display:none;">
+              <li class="nob" style="display:none" >
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
                       <th>缩略图</th>
-                      <td><div style="background-color:#cccccc; border-radius:5px; border:1px solid #eee; display:inline-block; color:#fff; padding:2px 5px">上传图片</div><div style="background-color:#cccccc; border-radius:5px; border:1px solid #eee; display:inline-block; color:#fff; padding:2px 5px; margin-left:10px">删除图片</div></td>
+                      <td><div class="cardexplain" id="pdiv">
+
+        </div></td>
                     </tr>
           </tbody>
                 </table>

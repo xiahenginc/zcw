@@ -20,17 +20,27 @@
 <link rel="stylesheet" type="text/css" href="ny.css" media="all">
 <script type="text/javascript">
 	$(function(){
+	var uid="<%=uid%>";
+	if(uid==""){
+					alert('对不起，请先登录！');
+					location.href='http://<%=host%>/dl0.htm';
+					return;
+				}
 		$("#submit").click(function(){
 				var msg=$("#message").val();
 				if(msg==null || $.trim(msg)==""){
 					alert('请填写内容！');
 					return;
 				}
+				var json={uid:uid,content:msg};
+				
+				var data=JSON.stringify(json);
+				alert(data);
 				$.ajax(  
 					{  
 						type:'post',  
 						url : 'http://post/opinion',
-						data:{"content":msg,"uid":"<%=uid%>"},
+						data:{"grelease":data},
 						jsonp:"jsoncallback",  
 						success  : function(data) {  
 							if(data=="1"){

@@ -129,9 +129,45 @@
 				var email=$("#email").val();
 				var qq=$("#qq").val();
 				var note=$("#note").val();
+				var hxlb=$("#hxlb").val();
 				
 				
-				var json={uid:uid,type:type,ton:ton,emptyport:emptyport,eport:eport,edate:edate,deadline:deadline,cname:cname,address:address,linkman:linkman,phone:phone,email:email,qq:qq,note:note};
+				if(type==null || type==""){
+					alert("船型不能为空！");
+					return;
+				}
+				if(ton==null || ton==""){
+					alert("载货吨位不能为空！");
+					return;
+				}
+				
+				if(emptyport==null || emptyport==""){
+					alert("空船港不能为空！");
+					return;
+				}
+				if(eport==null || eport==""){
+					alert("到达港不能为空！");
+					return;
+				}
+				if(edate==null || edate==""){
+					alert("空船日期不能为空！");
+					return;
+				}
+				if(deadline==null || deadline==""){
+					alert("有效期限不能为空！");
+					return;
+				}
+				if(linkman==null || linkman==""){
+					alert("联系人不能为空！");
+					return;
+				}
+				if(phone==null || phone==""){
+					alert("联系电话不能为空！");
+					return;
+				}
+				
+				
+				var json={uid:uid,type:type,ton:ton,emptyport:emptyport,eport:eport,edate:edate,deadline:deadline,gsname:cname,gsaddr:address,czname:linkman,czphone:phone,email:email,QQqq:qq,note:note,hxlb:hxlb};
 				
 				var data=JSON.stringify(json);
 				
@@ -144,6 +180,8 @@
 							if(data=="1"){
 								alert('发布成功！');
 								location.href='http://skip/cp.htm';
+							}else if(data=="-1"){
+								alert('对不起！您今日的发布次数已经用完！');
 							}else{
 								alert('发布失败！请稍后重试！');
 							}
@@ -241,13 +279,20 @@
           </dl>
         </li>
         </ul></div>
-    <div id="LoginBox">
+    <div id="LoginBox" style="display:block;">
       <div class="row1"> 船盘发布<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a> </div>
       <table width="100%" class="table_form">
         <tbody>
-          <tr id="dr_row_kport2">
-            <th><label style="color:#f00">*</label> 空船港： </th>
-            <td><input class="input-text" type="text" name="emptyport" id="emptyport" value=""></td>
+          <tr id="dr_row_gclass">
+            <th><label style="color:#f00">*</label> 船型： </th>
+            <td><select name="type" id="type">
+                  <option value="散货船">散货船</option>
+                  <option value="海轮">海轮</option>
+                  <option value="集装箱船">集装箱船</option>
+                  <option value="油船">油船</option>
+                  <option value="液化船">液化船</option>
+                  <option value="其它船舶">其它船型</option>
+              </select></td>
           </tr>
           <tr id="dr_row_zaihuo">
             <th><label style="color:#f00">*</label> 载货吨： </th>
@@ -255,17 +300,20 @@
               吨 </td>
           </tr>
           <tr id="dr_row_kport2">
-            <th><label style="color:#f00">*</label> 到达港： </th>
+            <th><label style="color:#f00">*</label> 空船港： </th>
+            <td><input class="input-text" type="text" name="emptyport" id="emptyport" value=""></td>
+          </tr>
+          <tr id="dr_row_kport2">
+            <th><label style="color:#f00">*</label> 航向： </th>
             <td><input class="input-text" type="text" name="eport" id="eport" value=""></td>
           </tr>
-          <tr id="dr_row_gclass">
-            <th><label style="color:#f00">*</label> 船型： </th>
-            <td><select name="type" id="type">
-                <option value="散货船">散货船</option>
-                <option value="集装箱船">集装箱船</option>
-                <option value="油船">油船</option>
-                <option value="液化船">液化船</option>
-                <option value="其它船舶">其它船型</option>
+          <tr id="dr_row_kport2">
+            <th><label style="color:#f00">*</label> 航线类别： </th>
+            <td><select name="hxlb" id="hxlb" >
+                    <option value="长江-内河" selected="">长江-内河</option>
+                    <option value="内河">内河</option>
+                    <option value="江海联运">江海联运</option>
+                    <option value="海运">海运</option>
               </select></td>
           </tr>
           <tr id="dr_row_kfdate">
@@ -281,25 +329,15 @@
                 	<option value="3">3</option>
                     <option value="7">7</option>
                     <option value="15">15</option>
-                    <option value="30">30</option>
-                    <option value="长期">长期</option>
                 </select>
             </td>
           </tr>
           <tr id="dr_row_hfdate2">
-            <th> 公司名称：</th>
-            <td><input class="input-text" type="text" name="cname" id="cname" value=""></td>
-          </tr>
-          <tr id="dr_row_hfdate2">
-            <th> 公司地址：</th>
-            <td><input class="input-text" type="text" name="address" id="address" value=""></td>
-          </tr>
-          <tr id="dr_row_hfdate2">
-            <th> 联系人：</th>
+            <th><label style="color:#f00">*</label> 联系人：</th>
             <td><input class="input-text" type="text" name="linkman" id="linkman" value=""></td>
           </tr>
           <tr id="dr_row_hfdate2">
-            <th> 联系电话：</th>
+            <th><label style="color:#f00">*</label> 联系电话：</th>
             <td><input class="input-text" type="text" name="phone" id="phone" value=""></td>
           </tr>
           <tr id="dr_row_hfdate2">
@@ -309,6 +347,14 @@
           <tr id="dr_row_hfdate2">
             <th> QQ：</th>
             <td><input class="input-text" type="text" name="qq" id="qq" value=""></td>
+          </tr>
+          <tr id="dr_row_hfdate2">
+            <th> 公司名称：</th>
+            <td><input class="input-text" type="text" name="cname" id="cname" value=""></td>
+          </tr>
+          <tr id="dr_row_hfdate2">
+            <th> 公司地址：</th>
+            <td><input class="input-text" type="text" name="address" id="address" value=""></td>
           </tr>
           <tr id="dr_row_hfdate2">
             <th> 备注：</th>

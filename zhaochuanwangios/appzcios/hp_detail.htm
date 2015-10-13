@@ -21,25 +21,47 @@
 <link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
 <script type="text/javascript">
+	var uid="<%=uid%>";
+	var id="<%=id%>";
 	$(function(){
 		$.ajax(  
 			{  
 				type:'post',  
 				url : 'http://post/palletdetail',
-				data:{"id":"<%=id%>"},
+				data:{"id":id},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
+					//alert(data);
 					try{
+						//console.log(data)
 						var json=$.parseJSON(data);
+						//console.log(1)
 						$("#bid").html(json.gid);
+						//console.log(1)
 						$("#titlesp").html(json.gid);
+						//console.log(1)
 						$("#content").html(json.content);
+						//console.log(1)
 						$("#oname").html(json.oname);
+						//console.log(1)
 						$("#ophone").html(json.ophone);
+						//console.log(1)
 						$("#qq").html(json.qq);
+						//console.log(1)
 						$("#note").html(json.note)
+						//console.log(1)
+						$("#gclass").html(json.gclass)
+						$("#bport2").html(json.bport2)
+						$("#eport2").html(json.eport2)
+						$("#bdate").html(json.bdate)
+						$("#hdate").html(json.hdate)
+						$("#gsname").html(json.gsname)
+						$("#email").html(json.email)
+						$("#gsaddr").html(json.gsaddr)
+						$("#packing").html(json.packing)
 					}catch(e){
+					alert(e.message);
 					}
 				},  
 				error : function() {
@@ -76,8 +98,17 @@
         </h1>
         <div class="cardexplain">
           <ul class="round" style="border:none">
-    <form action="javascript:;" method="post">
-              
+    <form  method="post" id="hpbj">
+              <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>货物名称:</th>
+                      <td style="padding-left:8px"><span id="gclass"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
               <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
@@ -92,8 +123,8 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th style="border-right:1px solid #dadada;"><label></label>详细内容:</th>
-                      <td style="padding-left:8px"><span id="content"></span></td>
+                      <th style="border-right:1px solid #dadada;"><label></label>空船港:</th>
+                      <td style="padding-left:8px"><span id="bport2"></span></td>
                     </tr>
           </tbody>
                 </table>
@@ -102,7 +133,68 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th style="border-right:1px solid #dadada;"><label></label>货主姓名:</th>
+                      <th style="border-right:1px solid #dadada;"><label></label>卸货港:</th>
+                      <td style="padding-left:8px"><span id="eport2"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>包装形式:</th>
+                      <td style="padding-left:8px"><span id="packing"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>装载日期:</th>
+                      <td style="padding-left:8px"><span id="bdate"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>有效日期:</th>
+                      <td style="padding-left:8px"><span id="hdate"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>公司名称:</th>
+                      <td style="padding-left:8px"><span id="gsname"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>公司地址:</th>
+                      <td style="padding-left:8px"><span id="gsaddr"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+              
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>联系人:</th>
                       <td style="padding-left:8px"><span id="oname"></span></td>
                     </tr>
           </tbody>
@@ -112,8 +204,18 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th style="border-right:1px solid #dadada;"><label></label>货主电话:</th>
+                      <th style="border-right:1px solid #dadada;"><label></label>联系电话:</th>
                       <td style="padding-left:8px"><span id="ophone"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>邮箱:</th>
+                      <td style="padding-left:8px"><span id="email"></span></td>
                     </tr>
           </tbody>
                 </table>
@@ -140,8 +242,40 @@
       </li>
             </form>
   </ul>
+  <div class="footReturn">
+    <input id="showcard" class="submit" value="报价" type="button" onClick="checkform();">
+    <div class="window" id="windowcenter">
+              <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+              <div class="content">
+        <div id="txt"></div>
         </div>
+            </div>
+  </div>
+        </div>
+<script type="text/javascript">
+	function checkform(){
+	$.ajax(  
+			{  
+				type:'post',  
+				url : 'http://post/guoqi',
+				data:{"id":id},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+						if(data=="1"){
+								//alert('报价成功！');
+								location.href='baojia.htm?id=<%=id%>';
+								}else if(data=="0"){
+							alert('此消息已过期！');
+							}
+					},  
+					error : function() {
+						alert('数据错误，请稍后重试！');
+					}    
+			}  
+		);
 
+}
+</script> 
 	</article>
   </section>
 </div>
