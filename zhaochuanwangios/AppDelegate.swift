@@ -21,17 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        var strUrl = urlString.stringByReplacingOccurrencesOfString("\\/", withString: "/", options: NSStringCompareOptions.LiteralSearch, range: nil)
 //        println("url:\(urlString),url2:\(strUrl)");
         //-------------------------start
-        let version : NSString = UIDevice.currentDevice().systemVersion
-        if version.floatValue >= 8.0 {
-            if #available(iOS 8.0, *) {
-                let myTypes: UIUserNotificationType = [UIUserNotificationType.Badge, UIUserNotificationType.Alert, UIUserNotificationType.Sound]
-            } else {
-                // Fallback on earlier versions
-            }
-        } else {
+        if #available(iOS 8.0, *) {
+            let myTypes: UIUserNotificationType = [UIUserNotificationType.Badge, UIUserNotificationType.Alert, UIUserNotificationType.Sound]
+            let settings = UIUserNotificationSettings(forTypes: myTypes, categories: nil)
+           
+            application.registerUserNotificationSettings(settings)
+        }
+        else{
             let myTypes: UIRemoteNotificationType = [UIRemoteNotificationType.Badge, UIRemoteNotificationType.Alert, UIRemoteNotificationType.Sound]
             application.registerForRemoteNotificationTypes(myTypes)
+            
         }
+        // Fallback on earlier versions
+   
         BPush.registerChannel(launchOptions, apiKey: "VCcGL2TbxAOkcSHPFU9mZbz6", pushMode: BPushMode.Production, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
    //     BPush.registerChannel(launchOptions, apiKey: "VCcGL2TbxAOkcSHPFU9mZbz6", pushMode: BPushMode.Development, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
@@ -89,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let theJSONText = NSString(data: theJSONData!,
             encoding: NSASCIIStringEncoding)
         
-        
+//
         var strMsg = ""
         var strId = ""
         var strUrl = ""
@@ -109,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             strUrl = urlString.stringByReplacingOccurrencesOfString("\\/", withString: "/", options: NSStringCompareOptions.LiteralSearch, range: nil)
         }
         
-      //  showWarning("","JSON string = \(theJSONText!),strUrl=\(strUrl)");
+      //  showWarning("",subtitle: "JSON string = \(theJSONText!),strUrl=\(strUrl)");
         showMsgInfo(strUrl)
     }
     
