@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -44,18 +44,29 @@
 			});
 		});
 	</script>
+	<script type="text/javascript">
+	var uid="<%=uid%>";
+	function checkform(){
+	if(uid==""){
+					alert('对不起，请先登录！');
+					location.href='http://skip/dl.htm';
+					return false;
+				}
+	}
+</script> 
+
     
     </div>
     <div class="app03 floor-area">
       <ul class="app03-pic01 wbox">
-        <li><a href="http://local/fbxx.htm"><img alt="" src="index1.jpg"></a></li>
+        <li onClick="checkform();"><a href="http://local/fbxx.htm"><img alt="" src="index1.jpg"></a></li>
         <li><a href="http://local/hp.htm"><img alt="" src="index2.jpg"></a></li>
         <li><a href="http://local/cp.htm"><img alt="" src="index3.jpg"></a></li>
       </ul>
     </div>
     <div class="app04 floor-area">
       <ul class="app04-pic01 wbox">
-        <li><a href="http://local/zxtb.htm"><img alt="" src="index4.png"></a></li>
+        <li onClick="checkform();"><a href="http://local/zxtb.htm"><img alt="" src="index4.png"></a></li>
         <li><a href="http://local/cywz.htm"><img alt="" src="index5.png"></a></li>
         <li><a href="http://local/cbjy.htm"><img alt="" src="index6.png"></a></li>
       </ul>

@@ -44,7 +44,7 @@
 						var pdate=currjson.pdate;
 						var vdate=currjson.vdate;
 						
-						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/cbcs_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/cbcs_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 
 						
 						$("#listbody").append(tmp);
@@ -61,7 +61,7 @@
 						var pdate=currjson.pdate;
 						var vdate=currjson.vdate;
 						
-						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/cbqg_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/cbqg_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 						
 						$("#listbody2").append(tmp);
 					}
@@ -96,7 +96,7 @@
 						var pdate=currjson.pdate;
 						var vdate=currjson.vdate;
 						
-						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/cbcs_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/cbcs_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 						
 						$("#listbody").append(tmp);
 					}
@@ -136,7 +136,7 @@
 							var pdate=currjson.pdate;
 							var vdate=currjson.vdate;
 								
-								var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/cbqg_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+								var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/cbqg_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 								
 								$("#listbody2").append(tmp);
 							}	
@@ -155,6 +155,16 @@
 		
 	});
 </script>
+<script type="text/javascript">
+	var uid="<%=uid%>";
+	function checkform(){
+	if(uid==""){
+					alert('对不起，请先登录！');
+					location.href='http://skip/dl.htm';
+					return false;
+				}
+	}
+</script> 
 </head>
 <body>
 <div class="warp">

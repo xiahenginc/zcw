@@ -52,7 +52,7 @@
 						var ton=currjson.ton;
 						var vdate=currjson.vdate;
 						
-							var tmp="<tr><td class=\"th1bg\" onclick=\"artdialog_form(&#39;c3&#39;,&#39;2030&#39;);\">"+ eport +"</td><td onclick=\"artdialog_form(&#39;c3&#39;,&#39;2030&#39;);\">"+ ton +"</td><td onclick=\"artdialog_form&#39;c3&#39;,&#39;2030&#39;);\">"+ vdate +"</td><td onclick=\"artdialog_form(&#39;c3&#39;,&#39;2030&#39;);\"><a href=\"http://detail/cp_detail.htm?id="+ id +"\">查看</a></td></tr>";
+							var tmp="<tr><td class=\"th1bg\" onclick=\"artdialog_form(&#39;c3&#39;,&#39;2030&#39;);\">"+ eport +"</td><td onclick=\"artdialog_form(&#39;c3&#39;,&#39;2030&#39;);\">"+ ton +"</td><td onclick=\"artdialog_form&#39;c3&#39;,&#39;2030&#39;);\">"+ vdate +"</td><td onClick=\"checkform();\"><a href=\"http://detail/cp_detail.htm?id="+ id +"\">查看</a></td></tr>";
 						
 						$("#listbody").append(tmp);
 					}
@@ -254,6 +254,16 @@
 		
 	});
 </script>
+<script type="text/javascript">
+	var uid="<%=uid%>";
+	function checkform(){
+	if(uid==""){
+					alert('对不起，请先登录！');
+					location.href='http://skip/dl.htm';
+					return false;
+				}
+	}
+</script> 
 </head>
 <body>
 <div class="warp">

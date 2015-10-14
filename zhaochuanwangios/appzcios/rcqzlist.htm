@@ -48,7 +48,7 @@
 						var pdate=currjson.pdate;
 						
 						//var tmp="<li><img src=\"icon21.png\"><span class=\"group\">"+ pdate +"</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detailperson/rcqz_detail2.htm?id="+ id +"\">"+ title +"</a></li>";
-						var tmp="<li><img src=\"icon21.png\"><span href=\"javascript:;\" onclick=\"if(!confirm('确定删除吗？')){return false;};delNode("+ id +",this);\" style=\""+ abtn +"\">删除</span><a style=\"cursor:auto\">"+ title +"</a></li>";
+						var tmp="<li><img src=\"icon21.png\"><span href=\"javascript:;\" onclick=\"if(!confirm('确定删除吗？')){return false;};delNode("+ id +",this);\" style=\""+ abtn +"\">删除</span><a style=\"cursor:auto\" onClick=\"checkform();\">"+ title +"</a></li>";
 						
 						$("#listbody2").append(tmp);
 					}
@@ -83,7 +83,7 @@
 								var pdate=currjson.pdate;
 								
 								//var tmp="<li><img src=\"icon21.png\"><span class=\"group\">"+ pdate +"</span><a style=\"cursor:auto\">"+ title +"<span href=\"javascript:;\" onclick=\"if(!confirm('确定删除吗？')){return false;};delNode("+ id +",this);\" style=\""+ abtn +"\">删除</span></a></li>";
-								var tmp="<li><img src=\"icon21.png\"><span href=\"javascript:;\" onclick=\"if(!confirm('确定删除吗？')){return false;};delNode("+ id +",this);\" style=\""+ abtn +"\">删除</span><a style=\"cursor:auto\">"+ title +"</a></li>";
+								var tmp="<li><img src=\"icon21.png\"><span href=\"javascript:;\" onclick=\"if(!confirm('确定删除吗？')){return false;};delNode("+ id +",this);\" style=\""+ abtn +"\">删除</span><a style=\"cursor:auto\" onClick=\"checkform();\">"+ title +"</a></li>";
 								
 								$("#listbody2").append(tmp);
 							}
@@ -117,6 +117,16 @@
 				}  
 			}  
 		);
+	}
+</script>
+<script type="text/javascript">
+	var uid="<%=uid%>";
+	function checkform(){
+	if(uid==""){
+					alert('对不起，请先登录！');
+					location.href='http://skip/dl.htm';
+					return false;
+				}
 	}
 </script>
 </head>

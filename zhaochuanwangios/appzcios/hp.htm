@@ -53,7 +53,7 @@
 							var vdate=currjson.vdate;
 							var ton=currjson.ton;
 							
-							var tmp="<tr><td class=\"th1bg\">"+ sport +"</td><td>"+ ton +"</td><td>"+ vdate +"</td><td><a href=\"http://detail/hp_detail.htm?id="+ id +"\">查看</a></td> </tr>";
+							var tmp="<tr><td class=\"th1bg\">"+ sport +"</td><td>"+ ton +"</td><td>"+ vdate +"</td><td onClick=\"checkform();\"><a href=\"http://detail/hp_detail.htm?id="+ id +"\">查看</a></td> </tr>";
 							
 							$("#listbody").append(tmp);
 						}	
@@ -247,6 +247,17 @@
 		
 	});
 </script>
+<script type="text/javascript">
+	var uid="<%=uid%>";
+	function checkform(){
+	if(uid==""){
+					alert('对不起，请先登录！');
+					location.href='http://skip/dl.htm';
+					return false;
+				}
+	}
+</script> 
+
 </head>
 <body>
 <div class="warp">
