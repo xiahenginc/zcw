@@ -49,7 +49,7 @@
 						
 						//var tmp="<li><a href=\"http://detailperson/gyxx_detail2.htm?id="+ id +"\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
 						
-						var tmp="<li><a style=\"cursor:auto\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1 onClick=\"checkform();\">"+ title +"</h1><h2>"+ pdate +"</h2><span href=\"javascript:;\" onclick=\"if(!confirm('确定删除吗？')){return false;};delNode("+ id +",this);\" style=\""+ abtn +"\">删除</span></div></a></li>";
+						var tmp="<li><a style=\"cursor:auto\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2><span href=\"javascript:;\" onclick=\"if(!confirm('确定删除吗？')){return false;};delNode("+ id +",this);\" style=\""+ abtn +"\">删除</span></div></a></li>";
 						
 						$("#listbody").append(tmp);
 					}
@@ -86,7 +86,7 @@
 								var pdate=currjson.pdate;
 								
 								//var tmp="<li><a href=\"http://detailperson/gyxx_detail2.htm?id="+ id +"\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
-								var tmp="<li><a style=\"cursor:auto\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1 onClick=\"checkform();\">"+ title +"</h1><h2>"+ pdate +"</h2><span href=\"javascript:;\" onclick=\"if(!confirm('确定删除吗？')){return false;};delNode("+ id +",this);\" style=\""+ abtn +"\">删除</span></div></a></li>";
+								var tmp="<li><a style=\"cursor:auto\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2><span href=\"javascript:;\" onclick=\"if(!confirm('确定删除吗？')){return false;};delNode("+ id +",this);\" style=\""+ abtn +"\">删除</span></div></a></li>";
 								
 								$("#listbody").append(tmp);
 							}
@@ -122,16 +122,6 @@
 	}
 	
 </script>
-<script type="text/javascript">
-	var uid="<%=uid%>";
-	function checkform(){
-	if(uid==""){
-					alert('对不起，请先登录！');
-					location.href='http://skip/dl.htm';
-					return false;
-				}
-	}
-</script> 
 </head>
 <body>
 <div class="warp">

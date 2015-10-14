@@ -24,6 +24,11 @@
 	var uid="<%=uid%>";
 	var id="<%=id%>";
 	$(function(){
+	if(uid==""){
+					alert('对不起，请先登录！');
+					location.href='http://skip/dl.htm';
+					return;
+				}
 		$.ajax(  
 			{  
 				type:'post',  
@@ -261,7 +266,7 @@
 				success  : function(data) {
 						if(data=="1"){
 								//alert('报价成功！');
-								location.href='baojia1.htm?id=<%=id%>';
+								location.href='http://detail/baojia1.htm?id=<%=id%>';
 								}else if(data=="0"){
 							alert('此消息已过期！');
 							}

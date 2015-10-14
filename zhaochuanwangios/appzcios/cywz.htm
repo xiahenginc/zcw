@@ -49,7 +49,7 @@
 						var imageurl=currjson.imageurl;
 						var pdate=currjson.pdate;
 						
-						var tmp="<li><a href=\"http://detail/gyxx_detail.htm?id="+ id +"\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
+						var tmp="<li><a href=\"http://detail/gyxx_detail.htm?id="+ id +"\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1 onClick=\"checkform();\">"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
 						
 						$("#listbody").append(tmp);
 					}
@@ -64,7 +64,7 @@
 						var imageurl=currjson.imageurl;
 						var pdate=currjson.pdate;
 						
-						var tmp="<li><a href=\"http://detail/cgxx_detail.htm?id="+ id +"\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
+						var tmp="<li><a href=\"http://detail/cgxx_detail.htm?id="+ id +"\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1 onClick=\"checkform();\">"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
 						
 						$("#listbody2").append(tmp);
 					}
@@ -101,7 +101,7 @@
 								var imageurl=currjson.imageurl;
 								var pdate=currjson.pdate;;
 								
-								var tmp="<li><a href=\"http://detail/cgxx_detail.htm?id="+ id +"\"><div class=\"list-img\"><b><img src='icon23.png' /></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
+								var tmp="<li><a href=\"http://detail/cgxx_detail.htm?id="+ id +"\"><div class=\"list-img\"><b><img src='icon23.png' /></b></div><div class=\"list-text\"><h1 onClick=\"checkform();\">"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
 								
 								$("#listbody").append(tmp);
 							}
@@ -139,7 +139,7 @@
 								var imageurl=currjson.imageurl;
 								var pdate=currjson.pdate;
 								
-								var tmp="<li><a href=\"http://detail/gyxx_detail.htm?id="+ id +"\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1>"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
+								var tmp="<li><a href=\"http://detail/gyxx_detail.htm?id="+ id +"\"><div class=\"list-img\"><b><img src=\""+ imageurl +"\"></b></div><div class=\"list-text\"><h1 onClick=\"checkform();\">"+ title +"</h1><h2>"+ pdate +"</h2></div></a></li>";
 								
 								$("#listbody2").append(tmp);
 							}
@@ -154,6 +154,16 @@
 		
 	});
 </script>
+<script type="text/javascript">
+	var uid="<%=uid%>";
+	function checkform(){
+	if(uid==""){
+					alert('对不起，请先登录！');
+					location.href='http://localperson/dl.htm';
+					return false;
+				}
+	}
+</script> 
 </head>
 <body>
 <div class="warp">

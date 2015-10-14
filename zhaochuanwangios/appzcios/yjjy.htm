@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -35,7 +35,6 @@
 				var json={uid:uid,content:msg};
 				
 				var data=JSON.stringify(json);
-				alert(data);
 				$.ajax(  
 					{  
 						type:'post',  
@@ -45,7 +44,7 @@
 						success  : function(data) {  
 							if(data=="1"){
 								alert('发布成功！');
-								location.href='http://skip/index.htm';
+								location.href='http://local/index.htm';
 							}else{
 								alert('发布失败！请稍后重试！');
 							}

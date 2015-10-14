@@ -72,7 +72,7 @@ ul.round {
 ul.round li {
 	border: dashed #C6C6C6;
 	border-width:0 0 1px 0;
-	padding:5px 10px 5px 10px;
+	/*padding:5px 10px 5px 10px;*/
 }
 ul.round li:only-of-type {
 	border-width:0;
@@ -84,7 +84,7 @@ ul.round li:only-of-type {
 	display:block;
 	-webkit-background-size:8.5px 13px;
 	background-size:8.5px 13px;
-	padding:10px 20px 9px 0;
+	padding:8px 20px 9px 0;
 	position:relative;
 	font-size:16px;
 	min-height: 22px; color:#373B3E

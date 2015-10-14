@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -24,6 +24,11 @@
 	var uid="<%=uid%>";
 	var id="<%=id%>";
 	$(function(){
+	if(uid==""){
+					alert('对不起，请先登录！');
+					location.href='http://skip/dl.htm';
+					return;
+				}
 		$.ajax(  
 			{  
 				type:'post',  
@@ -31,7 +36,7 @@
 				data:{"id":id},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
-					data=$.trim(data);  
+					data=$.trim(data);
 					//alert(data);
 					try{
 						//console.log(data)
@@ -119,7 +124,7 @@
           </tbody>
                 </table>
       </li>
-              <li class="nob">
+	  <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -129,7 +134,7 @@
           </tbody>
                 </table>
       </li>
-       <li class="nob">
+	  <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -210,7 +215,7 @@
           </tbody>
                 </table>
       </li>
-       <li class="nob">
+	  <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -248,7 +253,7 @@
               <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
               <div class="content">
         <div id="txt"></div>
-        </div>
+      </div>
             </div>
   </div>
         </div>
@@ -263,7 +268,7 @@
 				success  : function(data) {
 						if(data=="1"){
 								//alert('报价成功！');
-								location.href='baojia.htm?id=<%=id%>';
+								location.href='http://detail/baojia.htm?id=<%=id%>';
 								}else if(data=="0"){
 							alert('此消息已过期！');
 							}

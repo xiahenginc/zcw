@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -43,7 +43,7 @@
 						var title=currjson.title; 
 						var pdate=currjson.pdate;
 						
-						var tmp="<li><img src=\"icon21.png\"><span class=\"group\">"+ pdate +"</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/rczp_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+						var tmp="<li><img src=\"icon21.png\"><span class=\"group\">"+ pdate +"</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/rczp_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 						
 						$("#listbody").append(tmp);
 					}
@@ -57,7 +57,7 @@
 						var title=currjson.title; 
 						var pdate=currjson.pdate;
 						
-						var tmp="<li><img src=\"icon21.png\"><span class=\"group\">"+ pdate +"</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/rcqz_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+						var tmp="<li><img src=\"icon21.png\"><span class=\"group\">"+ pdate +"</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/rcqz_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 						
 						$("#listbody2").append(tmp);
 					}
@@ -91,7 +91,7 @@
 								var title=currjson.title; 
 								var pdate=currjson.pdate;
 								
-								var tmp="<li><img src=\"icon21.png\"><span class=\"group\">"+ pdate +"</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/rczp_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+								var tmp="<li><img src=\"icon21.png\"><span class=\"group\">"+ pdate +"</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/rczp_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 								
 								$("#listbody").append(tmp);
 							}
@@ -127,7 +127,7 @@
 								var title=currjson.title; 
 								var pdate=currjson.pdate;
 								
-								var tmp="<li><img src=\"icon21.png\"><span class=\"group\">"+ pdate +"</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/rcqz_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+								var tmp="<li><img src=\"icon21.png\"><span class=\"group\">"+ pdate +"</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/rcqz_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 								
 								$("#listbody2").append(tmp);
 							}
@@ -142,6 +142,16 @@
 		
 	});
 </script>
+<script type="text/javascript">
+	var uid="<%=uid%>";
+	function checkform(){
+	if(uid==""){
+					alert('对不起，请先登录！');
+					location.href='http://localperson/dl.htm';
+					return false;
+				}
+	}
+</script> 
 </head>
 <body>
 <div class="warp">
