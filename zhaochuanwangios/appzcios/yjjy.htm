@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,7 +23,7 @@
 	var uid="<%=uid%>";
 	if(uid==""){
 					alert('对不起，请先登录！');
-					location.href='http://<%=host%>/dl0.htm';
+					location.href='http://localperson/tc.htm';
 					return;
 				}
 		$("#submit").click(function(){
@@ -44,7 +44,7 @@
 						success  : function(data) {  
 							if(data=="1"){
 								alert('发布成功！');
-								location.href='http://local/index.htm';
+								location.href='http://skip/index.htm';
 							}else{
 								alert('发布失败！请稍后重试！');
 							}
