@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,14 +11,18 @@
 <script type="text/javascript" src="tab.js"></script>
 <script type="text/javascript">
 
+
+var post="lx2:9013/zcwjson";
+var uid="354";
+
 function bindmyfriend(){
 		var len=$("#mycyul > li").length;
 		if(len==0){
 			//我的船友
 			$.ajax({
 				type:'post',
-				url:"http://post/myfriend",
-				data:{"uid":"<%=uid%>"},
+				url:"http://"+ post +"/myfriend",
+				data:{"uid":uid},
 				success : function(json) {
 					try{
 						var data=$.parseJSON(json);
@@ -28,8 +32,9 @@ function bindmyfriend(){
 								var currjson=ary[i];
 								var uname=currjson.uname;
 								var imgurl=currjson.imgurl;
+								var buid=currjson.buid;
 								
-								var tmp="<li><img src=\""+ imgurl +"\"> <a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"javascript:;\">"+ uname +"</a> </li>";
+								var tmp="<li><img src=\""+ imgurl +"\"> <a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"javascript:;\">"+ uname +"</a> <input class=\"submit\" type=\"button\" onclick=\"location.href='http://detail/cyltxxhf.htm?id="+ buid +"'\" name=\"submit\" value=\" 发送消息\"  style=\"float:right; padding:2px 2px; border-radius:3px; background:#00AF43; color:#fff; font-size:12px;\"  ></li>";
 								
 								$("#mycyul").append(tmp);
 							}
@@ -48,13 +53,12 @@ function bindmyfriend(){
 	var allpagenum=1;
 	var jhpagenum=1;
 	$(function(){
-		var uid="<%=uid%>";
 		if(uid==""){
 			$("#dlspan").html("<a class=\"\" href=\"http://local/dl2.htm\">登录</a>&nbsp;&nbsp;<a href=\"http://local/zc.htm\">免费注册</a>");
 		}else{
 			$.ajax({
 				type:'post',
-				url:"http://post/basicdata",
+				url:"http://"+ post +"/basicdata",
 				data:{"uid":uid},
 				success : function(json) {
 					try{
@@ -73,7 +77,7 @@ function bindmyfriend(){
 				//加载全部	
 				$.ajax({
 					type:'post',
-					url:"http://post/bbsall",
+					url:"http://"+ post +"/bbsall",
 					data:{"uid":uid,"pagenum":"1"},
 					success : function(json) {
 						try{
@@ -105,7 +109,7 @@ function bindmyfriend(){
 				//精华列表
 				$.ajax({
 					type:'post',
-					url:"http://post/bbsess",
+					url:"http://"+ post +"/bbsess",
 					data:{"uid":uid,"pagenum":"1"},
 					success : function(json) {
 						try{
@@ -143,7 +147,7 @@ function bindmyfriend(){
 			allpagenum++;
 			$.ajax({
 				type:'post',
-				url:"http://post/bbsall",
+				url:"http://"+ post +"/bbsall",
 				data:{"uid":uid,"pagenum":allpagenum},
 				success : function(json) {
 					if(json=="over"||json=="0"){
@@ -181,7 +185,7 @@ function bindmyfriend(){
 			jhpagenum++;
 			$.ajax({
 				type:'post',
-				url:"http://post/bbsess",
+				url:"http://"+ post +"/bbsess",
 				data:{"uid":uid,"pagenum":jhpagenum},
 				success : function(json) {
 					if(json=="over"||json=="0"){
@@ -220,8 +224,8 @@ function bindmyfriend(){
 	function dianzan(id){
 		$.ajax({
 			type:'post',
-			url:"http://post/favs",
-			data:{"uid":"<%=uid%>",bid:id},
+			url:"http://"+ post +"/favs",
+			data:{"uid":uid,bid:id},
 			success : function(json) {
 				try{
 					if(json=="1"){

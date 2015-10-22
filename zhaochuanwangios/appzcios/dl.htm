@@ -9,6 +9,9 @@
 	$(function(){
 		$("#showcard").click(function(){
 				var uid="";
+				var post="post";
+				
+				
 				var uname=$("#uname").val();
 				var upswd=$("#upswd").val();
 				
@@ -28,7 +31,7 @@
 				$.ajax(  
 					{  
 						type:'post',  
-						url : 'http://post/login', 
+						url : 'http://'+ post +'/login', 
 						data:{"login":encodeURIComponent(data)},
 						success  : function(json) {
 							if(json!="0"){

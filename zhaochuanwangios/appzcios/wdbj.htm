@@ -28,32 +28,34 @@
 	$(function(){
 		$.ajax({
 			type:'post',  
-			url : 'http://'+ post +'/newMessageTips', 
+			url : 'http://'+ post +'/wdbj',  //http://www.zcwjson.com18.cn
 			data:{"pagenum":"1","uid":uid},
 			jsonp:"jsoncallback",  
 			success  : function(data) {
 				data=$.trim(data);  
 				try{
 					var json=$.parseJSON(data);
-					var son=json.list;
+					var son=json.newsremind;
 					for(var i=0;i<son.length;i++){
 						var currjson=son[i];
 						
 						var id=currjson.id;
 						var type=currjson.type; 
 						var imageurl=currjson.imageurl;
-						var jiluID=currjson.chpid;
-						var inputtime=currjson.inputtime;
-						var content=currjson.content;
-
+						var baojiatime=currjson.baojiatime;
+						var jiluID=currjson.jiluID;
+						var name_bjr_tmp=currjson.name;
+						
 						var sql_url="";
-						if(type=="1"){
+						var name_tmp_lx="";
+						if(type=="船盘"){
 							sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+							name_tmp_lx="您对"+ name_bjr_tmp+"会员发布的船盘报价了，请等待联系"
 						}else{
 							sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+							name_tmp_lx="您对"+ name_bjr_tmp+"会员发布的货盘报价了，请等待联系"
 						}
-						
-						var tmp="<li><a "+ sql_url +"><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ content +"</h1><h2>"+inputtime+"</h2></div></a> </li>";
+						var tmp="<li><a "+ sql_url +" ><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ name_tmp_lx +"</h1><h2>"+baojiatime+"</h2></div></a> </li>";
 						
 						$("#listbody").append(tmp);
 					}
@@ -69,14 +71,14 @@
 			currPageNum++;
 			$.ajax({
 				type:'post',  
-				url : 'http://'+ post +'/newMessageTips', 
+				url : 'http://'+ post +'/wdbj', 
 				data:{"pagenum":currPageNum,"uid":uid},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
 					try{
 						var json=$.parseJSON(data);
-						var son=json.list;
+						var son=json.newsremind;
 						if(son.length!=0){
 							for(var i=0;i<son.length;i++){
 								var currjson=son[i];
@@ -84,23 +86,26 @@
 								var id=currjson.id;
 								var type=currjson.type; 
 								var imageurl=currjson.imageurl;
+								var baojiatime=currjson.baojiatime;
 								var jiluID=currjson.jiluID;
-								var inputtime=currjson.inputtime;
-								var content=currjson.content;
-								var sql_url="";
-								if(type=="船盘"){
-									sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
-								}else{
-									sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
-								}
+								var name_bjr_tmp=currjson.name;
 								
-								var tmp="<li><a "+ sql_url +"><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ content +"</h1><h2>"+inputtime+"</h2></div></a> </li>";
+								var sql_url="";
+								var name_tmp_lx="";
+								if(type=="船盘"){
+									sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"\"";
+									name_tmp_lx="您对"+ name_bjr_tmp+"会员发布的船盘报价了，请等待联系"
+								}else{
+									sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"\"";
+									name_tmp_lx="您对"+ name_bjr_tmp+"会员发布的货盘报价了，请等待联系"
+								}
+								var tmp="<li><a "+ sql_url +" ><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ name_tmp_lx +"</h1><h2>"+baojiatime+"</h2></div></a> </li>";
 								
 								$("#listbody").append(tmp);
 							}
 						}else{
 							$("#more").html('没有更多啦');
-							$("#more").unbind("click");
+							$("#more").unbind("click");							
 						}
 					}catch(e){
 						$("#more").html('没有更多啦');
@@ -125,7 +130,7 @@
        
       </ul>
     </div>
-	 <div class="more" style="margin-top:10px; margin-bottom:20px"> 
+		 <div class="more" style="margin-top:10px; margin-bottom:20px"> 
 		<a class="mt10 "  id="more" href="javascript:;" style="display:; text-align:center">加载更多<i class="phone-icon mico"></i></a> 
 	</div>
   <style>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="ny.css" media="all">
+<script type="text/javascript">
+	var id="<%=id%>";
+	var post="post";
+	var uid="<%=uid%>";
+	$(function(){
+		if(uid==""){
+			alert('对不起，请先登录！');
+			location.href='http://skip/index.htm';
+			return;
+		}
+		
+		$.post("http://"+ post +"/basicdata",{uid:id},function(data){
+			data=$.trim(data);
+			var json=$.parseJSON(data);
+			$("#bname").html("@"+json.name);
+		});
+		
+		$("#submit").click(function(){
+			//这里的id为被发送人ID,uid为发送人ID
+			var content=$("#message").val();
+			$.post("http://"+ post +"/sendNewMessage",{uid:uid,buid:id,content:content},function(data){
+				data=$.trim(data);
+				var json=$.parseJSON(data);
+				if(json.code=='OK'){
+					alert("发送成功！");
+					location.href="http://skip/lyxx.htm";
+				}else{
+					alert("发送失败！请检查网络后重试！");
+				}
+			});
+		});
+		
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+    <section class="sWritePostsBox">
+	  <font id="bname"></font>
+      <textarea class="textarea" name="message" id="message" cols="" rows="" placeholder="有什么想说的尽管来吐槽吧" style="font-family:microsoft yahei"></textarea>
+<div class="swrap">
+        <section class="sUpPhotoBox">
+            <ul class="clearfix" style="display:none;">
+                <li id="imgLastLi">
+                    <a class="add uploadImgBtn" href="javascript:;"><span>上传</span></a>
+                </li>
+            </ul>
+        </section>
+	        <a class="sBtn01" href="javascript:;" id="submit">提交</a>
+    </div>
+</section>
+</div>
+</body>
+</html>

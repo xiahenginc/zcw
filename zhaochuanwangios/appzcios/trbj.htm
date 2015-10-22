@@ -20,7 +20,6 @@
 <link href="2-default.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript">
-
 	var post="post";
 	var uid="<%=uid%>";
 
@@ -28,37 +27,38 @@
 	$(function(){
 		$.ajax({
 			type:'post',  
-			url : 'http://'+ post +'/newMessageTips', 
+			url : 'http://'+ post +'/trbj',  //http://www.zcwjson.com18.cn
 			data:{"pagenum":"1","uid":uid},
 			jsonp:"jsoncallback",  
 			success  : function(data) {
 				data=$.trim(data);  
 				try{
 					var json=$.parseJSON(data);
-					var son=json.list;
+					var son=json.newsremind;
 					for(var i=0;i<son.length;i++){
 						var currjson=son[i];
 						
 						var id=currjson.id;
 						var type=currjson.type; 
 						var imageurl=currjson.imageurl;
-						var jiluID=currjson.chpid;
-						var inputtime=currjson.inputtime;
-						var content=currjson.content;
-
+						var baojiatime=currjson.baojiatime;
+						var jiluID=currjson.jiluID;
+						var name_bjr_tmp=currjson.name;
 						var sql_url="";
-						if(type=="1"){
-							sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+						var name_tmp_lx="";
+						if(type=="船盘"){
+							sql_url=" href=\"http://detailperson/cp_detail_2.htm?id="+jiluID+"&sid="+id+"\"";
+							name_tmp_lx=name_bjr_tmp+"会员对您发布的船盘报价了，请及时联系"
 						}else{
-							sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+							sql_url=" href=\"http://detailperson/hp_detail_2.htm?id="+jiluID+"&sid="+id+"\"";
+							name_tmp_lx=name_bjr_tmp+"会员对您发布的货盘报价了，请及时联系"
 						}
 						
-						var tmp="<li><a "+ sql_url +"><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ content +"</h1><h2>"+inputtime+"</h2></div></a> </li>";
+						var tmp="<li><a "+ sql_url +"><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ name_tmp_lx +"</h1><h2>"+baojiatime+"</h2></div></a> </li>";
 						
 						$("#listbody").append(tmp);
 					}
 				}catch(e){
-					alert(e.message);
 				}
 			},  
 			error : function() {
@@ -69,14 +69,15 @@
 			currPageNum++;
 			$.ajax({
 				type:'post',  
-				url : 'http://'+ post +'/newMessageTips', 
+				url : 'http://'+ post +'/trbj', 
 				data:{"pagenum":currPageNum,"uid":uid},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
+					data=$.trim(data);  
 					try{
 						var json=$.parseJSON(data);
-						var son=json.list;
+						var son=json.newsremind;
 						if(son.length!=0){
 							for(var i=0;i<son.length;i++){
 								var currjson=son[i];
@@ -84,23 +85,26 @@
 								var id=currjson.id;
 								var type=currjson.type; 
 								var imageurl=currjson.imageurl;
+								var baojiatime=currjson.baojiatime;
 								var jiluID=currjson.jiluID;
-								var inputtime=currjson.inputtime;
-								var content=currjson.content;
+								var name_bjr_tmp=currjson.jiluID;
 								var sql_url="";
+								var name_tmp_lx="";
 								if(type=="船盘"){
-									sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+									sql_url=" href=\"http://detailperson/cp_detail_2.htm?id="+jiluID+"&sid="+id+"\"";
+									name_tmp_lx=name_bjr_tmp+"会员对您发布的船盘报价了，请及时联系"
 								}else{
-									sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+									sql_url=" href=\"http://detailperson/hp_detail_2.htm?id="+jiluID+"&sid="+id+"\"";
+									name_tmp_lx=name_bjr_tmp+"会员对您发布的货盘报价了，请及时联系"
 								}
 								
-								var tmp="<li><a "+ sql_url +"><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ content +"</h1><h2>"+inputtime+"</h2></div></a> </li>";
+								var tmp="<li><a "+ sql_url +"><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ name_tmp_lx +"</h1><h2>"+baojiatime+"</h2></div></a> </li>";
 								
 								$("#listbody").append(tmp);
 							}
 						}else{
 							$("#more").html('没有更多啦');
-							$("#more").unbind("click");
+							$("#more").unbind("click");						
 						}
 					}catch(e){
 						$("#more").html('没有更多啦');
@@ -111,6 +115,7 @@
 				}  
 			});	
 		});
+		
 		
 	});
 </script>

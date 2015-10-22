@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,10 +20,12 @@
 <link href="2-default.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 	$(function(){
+		var post="post";
 		var uid="<%=uid%>";
+		
 		$.ajax({
 			type:'post',
-			url:"http://post/basicdata",
+			url:"http://"+ post +"/basicdata",
 			data:{"uid":uid},
 			success : function(json) {
 				try{
@@ -35,13 +37,27 @@
 					$("#spname").html(nick);
 					$("#TX").attr("src",img);
 				}catch(e){
-					alert(e.message);
+					//alert(e.message);
 				}
 			},  
 			error : function(XHR, textStatus, errorThrown) { 
 				
 			}  
 		});
+		
+		//查询新的消息提醒和报价提醒
+		$.post("http://"+ post +"/newMessageNumber",{uid:uid},function(data){
+			try{
+				var data=$.parseJSON(data);
+				var xxNum=data.xxNum;//消息数量
+				var bjNum=data.bjNum;//报价数量
+				$("#xxtx_sp").html(xxNum);
+				$("#bjtx_sp").html(bjNum);
+			}catch(e){
+				//alert(e.message);
+			}
+		});
+		
 	})
 </script>
 </head>
@@ -63,13 +79,17 @@
 		<a class="of" href="http://localperson/jbzl.htm">基本资料<span style="font-size:12px; color:#999;display:none;">(完善资料，可提高关注度)</span></a>
 	</li>
 	<li class="sn-block sn-list-div pr  ac-ygq">
-     <img src="xx.png">
-		<a class="of" href="http://localperson/xxtx.htm">消息提醒</a>
+     <img src="myadd.png">
+		<a class="of" href="http://localperson/lyxx.htm">消息提醒(<span id="xxtx_sp">0</span>)</a>
+	</li>
+	<li class="sn-block sn-list-div pr  ac-ygq">
+     <img src="myadd.png">
+		<a class="of" href="http://localperson/xxtx.htm">报价提醒(<span id="bjtx_sp">0</span>)</a>
 	</li>
 </ul>
 <ul class="list-mine" style="margin-bottom:60px">
 	<li class="sn-block sn-list-div pr  ac-yz">
-    <img src="ft.png">
+    <img src="xgmm.png">
 		<a class="of" href="http://localperson/wdft.htm">我的发贴</a>
 	</li>
     <li class="sn-block sn-list-div pr  ac-yz">
@@ -83,6 +103,14 @@
 	<li class="sn-block sn-list-div pr  ac-meb">
      <img src="hy.png">
 		<a class="of" href="http://localperson/mygz.htm">我的关注</a>
+	</li>
+	<li class="sn-block sn-list-div pr  ac-ygq">
+     <img src="gz.png">
+		<a class="of" href="http://localperson/wdbj.htm">我的报价</a>
+	</li>
+	<li class="sn-block sn-list-div pr  ac-meb">
+     <img src="hy.png">
+		<a class="of" href="http://localperson/trbj.htm">他人报价</a>
 	</li>
 	<li class="sn-block sn-list-div pr  ac-meb">
      <img src="xgmm.png">

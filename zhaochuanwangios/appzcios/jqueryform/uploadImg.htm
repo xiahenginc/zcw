@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="../jquery-1.8.2.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript" src="jquery-form.js"></script>
+<script type="text/javascript">
+	$(function(){
+		createHtml($("#pdiv"));
+		
+		
+		$("#subBtn").click(function(){
+			
+		});
+	})
+	
+function createHtml(obj) {
+    var htmstr = [];
+    htmstr.push(  "<form id='_fileForm' enctype='multipart/form-data'>");
+    htmstr.push(  "<table cellspacing=\"0\" cellpadding=\"3\" style=\"margin:0 auto; margin-top:20px;\">");
+    htmstr.push(  "<tr>");
+    htmstr.push(  "<td class=\"tdt tdl\">请选择文件：</td>");
+    htmstr.push(  "<td class=\"tdt tdl\"><input id=\"loadcontrol\" type=\"file\" name=\"filepath\" id=\"filepath\" /></td>");
+    htmstr.push(  "<td class=\"tdt tdl tdr\"><input type=\"button\" onclick=\"fileloadon()\" value=\"上传\"/></td>");
+    htmstr.push(  "</tr>");
+    htmstr.push(  "<tr> <td class=\"tdt tdl tdr\" colspan='3'style='text-align:center;'><div id=\"msg\">&nbsp;</div></td> </tr>");
+    htmstr.push(  "<tr> <td class=\"tdt tdl tdr\" style=\" vertical-align:middle;\">图片预览：</td> <td class=\"tdt tdl tdr\" colspan=\"2\"><div style=\"text-align:center;\"><img src=\"project/Images/NoPhoto.jpg\"/></div></td> </tr>");
+    htmstr.push(  "</table>")
+    htmstr.push(  "</form>");
+    obj.html(htmstr.join(""));
+}
+
+function fileloadon() {
+    $("#msg").html("");    
+    $("img").attr({ "src": "project/Images/processing.gif" });
+    $("#_fileForm").submit(function () {   
+        $("#_fileForm").ajaxSubmit({
+            type: "post",
+            url: "http://lx2:9013/Boat/upload",
+			acync:false,
+            success: function (data1) {
+            var remsg = data1.split("|");
+            var name = remsg[1].split("\/");
+            if (remsg[0] == "1") {
+            var type = name[name.length - 1].substring(name[name.length - 1].indexOf("."), name[name.length - 1].length);
+			//alert(type);
+            $("#msg").html("文件名：" + name[name.length - 1] + "   ---  " + remsg[2]);
+            switch (type) {
+                case ".jpg":
+                case ".jpeg":
+                case ".gif":
+                case ".bmp":
+                case ".png":
+                $("img").attr({ "src": remsg[1] });
+                break;
+            default:
+                $("img").attr({ "src": "project/Images/msg_ok.png" });
+                break;
+            }
+            } else {
+                $("#msg").html("文件上传失败：" + remsg[2]);
+                $("img").attr({ "src": "project/Images/msg_error.png" });
+            }
+            },
+            error: function (msg) {
+                alert("文件上传失败");    
+            }
+        });
+        return false;
+    });
+    $("#_fileForm").submit();
+}
+	
+</script>
+</head>
+<body>
+<div class="warp">
+  
+  <section class="content" style="margin:0px">
+    <article class="mbox" style="background-color:#eee">
+    	<h1 style="font-size:15px; line-height:32px; padding:8px 0px; text-align:center; border-bottom:1px  dashed #CCC; margin-bottom:10px"><span id="titlesp"></span>
+        <span style="font-size:12px; font-weight:normal; display:block"><span style="color:#f00; padding-right:5px" id="pdate"></span>点击数(<span id="hit"></span>) <a href="javascript:;" id="addsc">加入收藏</a></span>
+        </h1>
+        <div class="cardexplain" id="pdiv">
+
+        </div>
+
+	</article>
+  </section>
+</div>
+<footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
+  <p>Copyright © 2014 找船网</p>
+</footer>
+</body>
+</html>

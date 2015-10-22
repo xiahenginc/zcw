@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -103,21 +103,28 @@
 					return;
 				}
 				
-				var json={uid:"",sport:sport,eport:eport,type:type,ton:ton,packing:packing,sdate:sdate,deadline:deadline,cname:cname,address:address,linkman:linkman,phone:phone,email:email,qq:qq,note:note};
+				
+				
+				var json={uid:uid,sport:sport,eport:eport,type:type,ton:ton,packing:packing,sdate:sdate,deadline:deadline,gsname:cname,gsaddr:address,hzname:linkman,hzphone:phone,email:email,QQ:qq,note:note};
 				
 				var data=JSON.stringify(json);
 				
 				$.ajax(  
 					{  
 						type:'post',  
-						url : 'http://www.zcwjson.com18.cn/grelease', 
+						url : 'http://post/grelease',
 						data:{"grelease":data},
 						jsonp:"jsoncallback",  
 						success  : function(data) {  
-							
+							if(data=="1"){
+								alert('发布成功！');
+								location.href='http://skip/hp.htm';
+							}else{
+								alert('发布失败！请稍后重试！');
+							}
 						},  
 						error : function() { 
-							
+							alert('发布失败！请稍后重试！');
 						}  
 					}  
 				);  
@@ -143,7 +150,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label></label>发货港</th>
+                      <th><label>*</label>发货港</th>
                       <td><input name="sport" class="px" id="sport" value="" placeholder="" type="text"></td>
                     </tr>
           </tbody>
@@ -153,7 +160,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label></label>卸货港</th>
+                      <th><label>*</label>卸货港</th>
                       <td><input type="text" class="px" name="eport" value="" id="eport" ></td>
                     </tr>
           </tbody>
@@ -163,7 +170,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label></label>货种</th>
+                      <th><label>*</label>货源名称</th>
                       <td><input type="text" class="px" name="type" value="" id="type" ></td>
                     </tr>
           </tbody>
@@ -173,7 +180,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label></label>货物吨位</th>
+                      <th><label>*</label>货物吨位</th>
                       <td><input type="text" class="px" name="ton" value="" id="ton" ></td>
                     </tr>
           </tbody>
@@ -183,7 +190,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label></label>包装形式</th>
+                      <th><label>*</label>包装形式</th>
                       <td><select id="packing" name="packing">
                         	<option value="散装">散装</option>
                             <option value="整箱">整箱</option>
@@ -200,8 +207,11 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label></label>装载日期</th>
-                      <td><input type="text" class="px" name="sdate" value="" id="sdate" ></td>
+                      <th><label>*</label>装载日期</th>
+                      <td>
+                      	<input type="text" class="Wdate px" name="sdate" value="" id="sdate" onClick="WdatePicker({readOnly:true})">
+                      	<div id="datePlugin"></div>
+                      </td>
                     </tr>
           </tbody>
                 </table>
@@ -210,7 +220,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label></label>有效期限</th>
+                      <th><label>*</label>有效期限</th>
                       <td><select name="deadline" id="deadline" >
                 	<option value="3">3</option>
                     <option value="7">7</option>
@@ -245,7 +255,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label></label>联系人</th>
+                      <th><label>*</label>联系人</th>
                       <td><input type="text" class="px hasDatepicker" name="linkman" value="" id="linkman" ></td>
                     </tr>
           </tbody>
@@ -255,7 +265,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><label></label>联系电话</th>
+                      <th><label>*</label>联系电话</th>
                       <td><input type="text" class="px hasDatepicker" name="phone" value="" id="phone" ></td>
                     </tr>
           </tbody>
@@ -286,7 +296,7 @@
                   <tbody>
             <tr>
                       <th>备注</th>
-                      <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入备注信息"></textarea></td>
+                      <td><textarea name="note" class="pxtextarea" style=" height:120px;overflow-y:visible" id="note" placeholder="请输入详细要求"></textarea></td>
                     </tr>
           </tbody>
                 </table>

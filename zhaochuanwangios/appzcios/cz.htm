@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -66,7 +66,7 @@
 					alert("备注不能为空！");
 					return;
 				}
-				
+
 				
 				var json={uid:uid,title:title,type:type,ton:ton,byear:byear,long:long,width:width,height:height,draft:draft,price:price,contact:contact,mphone:mphone,address:address,deadline:deadline,note:note};
 				
@@ -82,6 +82,8 @@
 							if(data=="1"){
 								alert('发布成功！');
 								location.href='http://skip/cbjy.htm';
+							}else if(data=="-1"){
+								alert('对不起！您今日的发布次数已经用完！');
 							}else{
 								alert('发布失败！请稍后重试！');
 							}
@@ -246,7 +248,7 @@
               </tbody>
             </table>
           </li>
-          <li class="nob"  style="display:none;">
+          <li class="nob" >
             <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <tr>

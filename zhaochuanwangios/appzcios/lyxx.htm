@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="jquery.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="swipe.js"></script>
+<script type="text/javascript" src="WdatePicker.js"></script>
+<link href="WdatePicker.css" rel="stylesheet" type="text/css">
+<link href="datepicker.css" rel="stylesheet" type="text/css">
+<link rel="Stylesheet" type="text/css" href="logindialog.css" />
+<script type="text/javascript">
+	var currPageNum=1;
+	var post="post";
+	var uid="<%=uid%>";
+	$(function(){
+		$.ajax({
+			type:'post',  
+			url : 'http://'+ post +'/lyxx',  
+			data:{"pagenum":"1","uid":uid},
+			jsonp:"jsoncallback",  
+			success  : function(data) {
+				data=$.trim(data);  
+				try{
+					var json=$.parseJSON(data);
+//					var code=json.code;
+//					if(code=="ok"){
+//						var searchdata=json.search;
+						var son=json.goodsinfo;
+						if(son.length!=0){
+							for(var i=0;i<son.length;i++){
+								var currjson=son[i];
+								
+								var id=currjson.id;
+								var name=currjson.name; 							
+								var intime=currjson.intime;
+								
+								
+								//var tmp="<tr><td class=\"th1bg\">"+ sport +"</td><td>"+ ton +"</td><td>"+ vdate +"</td><td><a href=\"http://detailperson/hp_detail2.htm?id="+ id +"\">查看</a></td> </tr>";
+								var tmp="<tr><td class=\"th1bg\">"+ name +"</td><td>"+ intime +"</td><td><a href=\"http://detailperson/lyxx_detail.htm?id="+id+"\" >查看</a></td> </tr>";
+								$("#listbody").append(tmp);
+							}
+						}else{
+							$("#more").html('没有更多啦');
+							$("#more").unbind("click");
+						}
+//					}
+				}catch(e){
+					$("#more").html('没有更多啦');
+					$("#more").unbind("click");
+				}
+			},  
+			error : function() {
+			}  
+		});
+		
+		$("#more").click(function(){
+			currPageNum++;
+			$.ajax({
+				type:'post',  
+				url : 'http://'+ post +'/lyxx', 
+				data:{"pagenum":currPageNum,"uid":uid},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+					data=$.trim(data);  
+					try{
+					var json=$.parseJSON(data);
+//					var code=json.code;
+//					if(code=="ok"){
+//						var searchdata=json.search;
+						var son=json.goodsinfo;
+						if(son.length!=0){
+							for(var i=0;i<son.length;i++){
+								var currjson=son[i];
+								
+								var id=currjson.id;
+								var name=currjson.name; 							
+								var intime=currjson.intime;
+								
+								//var tmp="<tr><td class=\"th1bg\">"+ sport +"</td><td>"+ ton +"</td><td>"+ vdate +"</td><td><a href=\"http://detailperson/hp_detail2.htm?id="+ id +"\">查看</a></td> </tr>";
+								var tmp="<tr><td class=\"th1bg\">"+ name +"</td><td>"+ intime +"</td><td><a href=\"http://detailperson/lyxx_detail.htm?id="+id+"\" >查看</a></td> </tr>";
+								$("#listbody").append(tmp);
+							}
+						}else{
+							$("#more").html('没有更多啦');
+							$("#more").unbind("click");				
+						}
+//					}
+				}catch(e){
+					$("#more").html('没有更多啦');
+					$("#more").unbind("click");
+				}
+				},  
+				error : function() {
+				}  
+			});	
+		});
+	});
+	
+
+	
+</script>
+</head>
+<body>
+<div class="warp">
+  <section class="content mt10">
+    <article class="mbox">
+      <table class="m-table m-table-row m-show m-table-sinfo" style="width:100%">
+        <thead>
+          <tr>
+             <th class="colc">会员名称</th>
+            <th class="cold">留言时间</th>
+            <th class="cola">查看消息</th>
+          </tr>
+        </thead>
+        <tbody id="listbody">
+          
+        </tbody>
+      </table>
+      <div class="more"><a class="mt10" id="more">查看更多<i class="phone-icon mico"></i></a></div>
+    </article>
+  </section>
+</div>
+<footer class="foot mt10">
+  <p>Copyright © 2014 找船网</p>
+</footer>
+<script>
+    $(function($) {
+        $('ul.categoryList').not($('ul.categoryList')[0]).hide();
+        $('div.categoryBtn').click(function(event) {
+            $('div.over').removeClass('over');
+            $('ul.categoryList:visible').hide();
+            $(this).addClass('over').next('ul').show();
+        });
+        $('div.header a.menu').click(function(event) {
+            $('div.popup_overlay').height($(document).height()).show();
+            $('div.popup_container').show();
+            return false;
+        });
+        $('div.popup_overlay').click(function(event) {
+            $(this).next('div.popup_container').andSelf().hide();
+        });
+        $('div.letter > a').click(function(event) {
+            var top = $('dl.letterRow > dd').eq($(this).index()).offset().top - 80;
+            $('html,body').animate({
+                scrollTop: top
+            }, 'fast');
+            return false;
+            top
+        });
+        $('p.more > a').click(function(event) {
+            if ($(this).text() == '更多 >') {
+                $(this).text('< 收起');
+            } else {
+                $(this).text('更多 >');
+            }
+            ;
+            $(this).parent().prev().toggleClass("control");
+        });
+    });
+</script>
+<script type="text/javascript">
+	var form_url="";	
+					
+	$(document).ready(function(){
+		$(".g-tool li").click(function(){
+		$(".g-tool li").eq($(this).index()).addClass("first").siblings().removeClass('first');
+		$(".m-tool").hide().eq($(this).index()).show();
+		});
+		
+		$('#Form1').bind('submit', function(){			
+			form_url="/sinfo/index.php?c=search&catid=1";
+			var zaihuo = $("#zaihuo1")[0].value+","+$("#zaihuo2")[0].value;
+			if(zaihuo!="" && zaihuo!=","){form_url=form_url+"&zaihuo="+zaihuo;}	
+			if($("#kport2")[0].value!=""){form_url=form_url+"&kport2="+$("#kport2")[0].value;}			
+			if($("#kfdate")[0].value!=""){form_url=form_url+"&kfdate="+$("#kfdate")[0].value;}
+			alert($("#kfdate")[0].value);
+			if($("#cnangrong")[0].value!=""){form_url=form_url+"&cnangrong="+$("#cnangrong")[0].value;}		
+			if($("#khdate")[0].value!=""){form_url=form_url+"&khdate=0,"+$("#khdate")[0].value;}
+			//$("#Form1").attr("action", form_url);
+			location.href =form_url;
+			return false;
+		});
+	});						
+</script>
+<script src="saved_resource.js"></script>
+<script src="header.js"></script>
+<script src="bcktotop.js"></script>
+<script>TMall.BackTop.init();</script>
+</body>
+</html>

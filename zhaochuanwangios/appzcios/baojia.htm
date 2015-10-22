@@ -33,7 +33,6 @@
 				var sphone=$("#dr_sphone").val();
 				var baojia=$("#dr_baojia").val();
 				var sinfo=$("#dr_sinfo").val();
-				var id=$("#dr_id").val();
 
 				if(sname==null || sname==""){
 					alert("联系人不能为空！");
@@ -83,23 +82,23 @@
 </head>
 <body>
 <div class="warp">
-  
-  <section class="content" style="margin:0px">
-    <article class="mbox" style="background-color:#eee">
-    	<h1 style="font-size:15px; line-height:32px; padding:8px 0px; text-align:center; border-bottom:1px  dashed #CCC; margin-bottom:10px"><span id="titlesp"></span>
-        <!--<span style="font-size:12px; font-weight:normal; display:block"><span style="color:#f00; padding-right:5px">2015-02-27 10:30:10</span>点击数(<span id="hit"></span>) <a href="javascript:;"  id="addsc">加入收藏</a></span>-->
-        </h1>
-        <div class="cardexplain">
-          <ul class="round" style="border:none">
-    <form  method="post" id="hpbj">
-              
-              <li class="nob">
+  <section class="content">
+    <div class="cardexplain">
+      <ul class="round roundyellow" style="display:none;">
+        <li class="userinfo"><a href="javascript:;"><span>请完善个人资料再填表单</span></a></li>
+      </ul>
+      
+      <!--粉丝填写过的信息的，直接就显示名字电话，粉丝没有填写过信息的话，这里就直接留空让粉丝填写-->
+      
+      <ul class="round">
+        <form action="javascript:;" method="post">
+          <li class="title mb"><span class="none">请保持您的联系方式畅通，方便我们工作人员及时与您联系！</span></li>
+          <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
-            <tr>
-                      <th><font color="red">*</font>&nbsp; </th>
-<td>&nbsp;联系人：
-&nbsp;&nbsp;&nbsp;<input class="input-text" type="text" name="data[sname]" id="dr_sname" value="" style="width:200px;" required="required">
+            <tr> 
+		<th><label>*</label> 联系人</th>
+<td><input class="px" type="text" name="data[sname]" id="dr_sname" value=""  required="required">
 </td>
                     </tr>
           </tbody>
@@ -109,9 +108,9 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><font color="red">*</font>&nbsp; </th>
-<td>联系电话：
-<input class="input-text" type="text" name="data[sphone]" id="dr_sphone" value="" style="width:200px;" required="required">
+                     <th><label>*</label> 联系电话</th>
+<td>
+<input class="px" type="text" name="data[sphone]" id="dr_sphone" value="" style="width:200px;" required="required">
 </td>
                     </tr>
           </tbody>
@@ -121,9 +120,8 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><font color="red">*</font>&nbsp; </th>
-<td>报&nbsp;&nbsp;&nbsp;&nbsp;价：
-&nbsp;&nbsp;&nbsp;<input class="input-text" type="text" name="data[baojia]" id="dr_baojia" value="" style="width:200px;" required="required">
+                      <th><label>*</label> 报&nbsp;&nbsp;&nbsp;&nbsp;价</th>
+<td><input class="px" type="text" name="data[baojia]" id="dr_baojia" value="" style="width:200px;" required="required">
 </td>
                     </tr>
           </tbody>
@@ -135,7 +133,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;ID：
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="input-text" type="text" name="data[id]" id="dr_id" value="12376" style="width:200px;" required="required" readonly="">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="px" type="text" name="data[id]" id="dr_id" value="12376" style="width:200px;" required="required" readonly="">
 </td>
                     </tr>
           </tbody>
@@ -147,7 +145,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>报价人ID：
-<input class="input-text" type="text" name="data[baojiaID]" id="dr_baojiaID" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[baojiaID]" id="dr_baojiaID" value="" style="width:200px;" required="required" readonly="">
 </td>
                     </tr>
           </tbody>
@@ -159,7 +157,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>&nbsp;记录ID：
-&nbsp;&nbsp;<input class="input-text" type="text" name="data[jiluID]" id="dr_jiluID" value="" style="width:200px;" required="required" readonly="">
+&nbsp;&nbsp;<input class="px" type="text" name="data[jiluID]" id="dr_jiluID" value="" style="width:200px;" required="required" readonly="">
 </td>
                     </tr>
           </tbody>
@@ -171,7 +169,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>类&nbsp;&nbsp;&nbsp;&nbsp;型：
-&nbsp;&nbsp;&nbsp;<input class="input-text" type="text" name="data[type]" id="dr_type" value="货盘" style="width:200px;" required="required" readonly="">
+&nbsp;&nbsp;&nbsp;<input class="px" type="text" name="data[type]" id="dr_type" value="货盘" style="width:200px;" required="required" readonly="">
 </td>
                     </tr>
           </tbody>
@@ -183,7 +181,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>发布人ID：
-<input class="input-text" type="text" name="data[faburenID]" id="dr_faburenID" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[faburenID]" id="dr_faburenID" value="" style="width:200px;" required="required" readonly="">
 </td>
                     </tr>
           </tbody>
@@ -195,7 +193,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>报价时间：
-<input class="input-text" type="text" name="data[baojiatime]" id="dr_baojiatime" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[baojiatime]" id="dr_baojiatime" value="" style="width:200px;" required="required" readonly="">
 </td>
                     </tr>
           </tbody>
@@ -207,7 +205,7 @@
             <tr>
                      <th><font color="red">*</font>&nbsp; </th>
 <td>报价编号：
-<input class="input-text" type="text" name="data[bjbh]" id="dr_bjbh" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[bjbh]" id="dr_bjbh" value="" style="width:200px;" required="required" readonly="">
 </td>
                     </tr>
           </tbody>
@@ -217,9 +215,9 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th><font color="red">*</font>&nbsp; </th>
-<td>详细内容：
-<textarea style="height:100px; width:220px;" name="data[sinfo]" id="dr_sinfo"></textarea>
+                      <th><label>*</label> 联系电话</th>
+<td>
+<textarea style="height:100px; width:220px;" name="data[sinfo]" id="dr_sinfo" class="px"></textarea>
 </td>
                     </tr>
           </tbody>
@@ -231,7 +229,6 @@
     <input id="showcard" class="submit" value="确定" type="button" onClick="checkform();">
   </div>
         </div>
-	</article>
   </section>
 </div>
 <footer class="foot">

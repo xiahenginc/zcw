@@ -57,19 +57,20 @@
 				$.ajax(  
 					{  
 						type:'post',  
-						url : 'http://post/register', 
+						url : 'http://lx2:9013/Boat/register', 
 						data:{"register":encodeURIComponent(data)},
 						contentType: "application/jsonp; charset=utf-8",
-						success  : function(json) {  
+						success  : function(json) {
+							alert(1);
 							try{
 								var data=$.parseJSON(json);
-								location.href='http://skip/dl.htm';
+								location.href='http://skip/index.htm';
 							}catch(e){
 								if(json=="0"){
-								alert('注册失败，请稍后重试！');
-							}else{
+									alert('注册失败，请稍后重试！');
+								}else{
 									alert(json);
-							}
+								}	
 							}
 							
 						},  
@@ -129,7 +130,7 @@ $(function(){
           </li>
           <form action="javascript:;" method="post">
           <div id="boatship" style="display:none;">
-            <li class="nob">
+           <li class="nob">
               <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tbody>
                   <tr>

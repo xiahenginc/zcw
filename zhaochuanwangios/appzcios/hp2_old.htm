@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="jquery.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="swipe.js"></script>
+<script type="text/javascript" src="WdatePicker.js"></script>
+<link href="WdatePicker.css" rel="stylesheet" type="text/css">
+<link href="datepicker.css" rel="stylesheet" type="text/css">
+<link rel="Stylesheet" type="text/css" href="logindialog.css" />
+</head>
+<body>
+<div class="warp">
+  <section class="content mt10">
+  <div>
+      <ul class="list_ul">
+  <li class="box">
+          <dl>
+            <a href="#" id="example">
+            <dd>
+              <div><img src="white1.png"></div>
+            </dd>
+            <dt>货盘发布</dt>
+            </a>
+          </dl>
+          <dl>
+            <a href="#" id="example_1">
+            <dd>
+              <div><img src="white2.png"></div>
+            </dd>
+            <dt>货盘搜索</dt>
+            </a>
+          </dl>
+        </li>
+        </ul></div>
+  <div id="LoginBox_1">
+        <div class="row1">
+            货盘搜索<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+        </div>
+        <table width="100%" class="table_form">
+              <tbody>
+                <tr id="dr_row_tuoyun">
+                  <th> 托运量： </th>
+            <td><input class="input-text" name="sweight" id="sweight" value="" style="width:60px;">至
+                    <input class="input-text" type="text" name="eweight" id="eweight" value="" style="width:60px;">
+                    吨 </td>
+                </tr>
+                <tr id="dr_row_bport">
+                  <th> 货盘港： </th>
+            <td><input class="input-text" type="text" name="sport_" id="sport_" value="">
+            </td>
+                </tr>
+                <tr id="dr_row_eport">
+                  <th> 卸货港： </th>
+                  <td><input class="input-text" name="eport_" id="eport_" value=""></td>
+                </tr>
+                <tr id="dr_row_gclass">
+                  <th> 货源名称： </th>
+            <td><input class="input-text" name="type_" id="type_" value=""></td>
+                </tr>
+                <tr id="dr_row_bfdate">
+                  <th> 受载日期： </th>
+                  <td><input type="hidden" value="" name="sdate_" id="sdate_">
+                    <input type="text" readonly class="Wdate date input-text" value="" id="calendar_bdate" onClick="WdatePicker({readOnly:true})"></td>
+                </tr>
+                <tr id="dr_row_hdate">
+            <th> 有效日期: </th>
+                  <td><input class="input-text" type="text" name="vdate_" id="vdate_" value=""></td>
+                </tr>
+              </tbody>
+            </table>
+        
+        <div class="row">
+            <a href="javascript:;" id="search" class="loginbtn">提交</a>
+        </div>
+    </div>
+
+	<script type="text/javascript">
+	$(function ($) {
+		//弹出登录
+		$("#example_1").hover(function () {
+			$(this).stop().animate({
+				opacity: '1'
+			}, 600);
+		}).on('click', function () {
+			$("body").append("<div id='mask_1'></div>");
+			$("#mask_1").addClass("mask_1").fadeIn("slow");
+			$("#LoginBox_1").fadeIn("slow");
+		});
+		//
+		//按钮的透明度
+		$("#loginbtn").hover(function () {
+			$(this).stop().animate({
+				opacity: '1'
+			}, 600);
+		}, function () {
+			$(this).stop().animate({
+				opacity: '0.8'
+			}, 1000);
+		});
+		//关闭
+		$(".close_btn").hover(function () { $(this).css({ color: 'black' }) }, function () { $(this).css({ color: '#999' }) }).on('click', function () {
+			$("#LoginBox_1").fadeOut("fast");
+			$("#mask_1").css({ display: 'none' });
+		});
+	});
+	</script>	
+  </section>
+</div>
+
+
+<script type="text/javascript">
+	var form_url="";	
+					
+	$(document).ready(function(){
+		$(".g-tool li").click(function(){
+		$(".g-tool li").eq($(this).index()).addClass("first").siblings().removeClass('first');
+		$(".m-tool").hide().eq($(this).index()).show();
+		});
+		
+		$('#Form1').bind('submit', function(){			
+			form_url="/sinfo/index.php?c=search&catid=1";
+			var zaihuo = $("#zaihuo1")[0].value+","+$("#zaihuo2")[0].value;
+			if(zaihuo!="" && zaihuo!=","){form_url=form_url+"&zaihuo="+zaihuo;}	
+			if($("#kport2")[0].value!=""){form_url=form_url+"&kport2="+$("#kport2")[0].value;}			
+			if($("#kfdate")[0].value!=""){form_url=form_url+"&kfdate="+$("#kfdate")[0].value;}
+			alert($("#kfdate")[0].value);
+			if($("#cnangrong")[0].value!=""){form_url=form_url+"&cnangrong="+$("#cnangrong")[0].value;}		
+			if($("#khdate")[0].value!=""){form_url=form_url+"&khdate=0,"+$("#khdate")[0].value;}
+			//$("#Form1").attr("action", form_url);
+			location.href =form_url;
+			return false;
+		});
+	});						
+</script>
+<script src="saved_resource.js"></script>
+<script src="header.js"></script>
+<script src="bcktotop.js"></script>
+<script>TMall.BackTop.init();</script>
+</body>
+</html>

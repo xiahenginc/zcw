@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript">
+	var uid="<%=uid%>";
+	var id="<%=id%>";
+	var sid="<%=sid%>";
+	var post="post";
+	
+	$(function(){
+		$.ajax(  
+			{  
+				type:'post',  
+				url : 'http://'+ post +'/shipdetail',
+				data:{"id":id},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+					data=$.trim(data);  
+					try{
+						var json=$.parseJSON(data);
+						$("#bid").html(json.bid);
+						$("#titlesp").html(json.bid);
+						$("#content").html(json.content);
+						$("#oname").html(json.oname);
+						$("#ophone").html(json.ophone);
+						$("#qq").html(json.qq);
+						$("#note").html(json.note)
+						$("#hxlb").html(json.hxlb)
+						$("#chuanxing").html(json.chuanxing)
+						$("#zaihuo").html(json.zaihuo)
+						$("#kport2").html(json.kport2)
+						$("#cnangrong").html(json.cnangrong)
+						$("#khdate").html(json.khdate)
+						$("#gsaddr").html(json.gsaddr)
+						$("#gsname").html(json.gsname)
+						$("#email").html(json.email)
+						$("#kfdate").html(json.kfdate)
+					}catch(e){
+					}
+				},  
+				error : function() {
+				}  
+			}  
+		);
+		
+		setTimeout(function(){
+			$.ajax(  
+				{  
+					type:'post',  
+					url : 'http://'+ post +'/bjrxx',
+					data:{"sid":sid},
+					jsonp:"jsoncallback",  
+					success  : function(data) {
+						data=$.trim(data);  
+						try{
+							var json=$.parseJSON(data);
+							$("#baojialxr").html(json.baojialxr);
+							$("#baojialxdh").html(json.baojialxdh);
+							$("#baojia").html(json.baojia);
+							$("#huowu").html(json.huowu);
+							$("#bz").html(json.bz);
+							
+						}catch(e){
+						}
+					},  
+					error : function() {
+						
+					}  
+				}  
+			);
+		},200);
+		
+	})
+</script>
+</head>
+<body>
+<div class="warp">
+  
+  <section class="content" style="margin:0px">
+    <article class="mbox" style="background-color:#eee">
+    	<h1 style="font-size:15px; line-height:32px; padding:8px 0px; text-align:center; border-bottom:1px  dashed #CCC; margin-bottom:10px"><span id="titlesp"></span>
+       <!-- <span style="font-size:12px; font-weight:normal; display:block"><span style="color:#f00; padding-right:5px">2015-02-27 10:30:10</span>点击数(<span id="hit"></span>) <a href="javascript:;"  id="addsc">加入收藏</a></span>-->
+        </h1>
+        <div class="cardexplain">
+          <ul class="round" style="border:none">
+    <form action="javascript:;" method="post" id="cpbj">
+			  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>船型:</th>
+                      <td style="padding-left:8px"><span id="chuanxing"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+			  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>船盘编号:</th>
+                      <td style="padding-left:8px"><span id="bid"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>空船港:</th>
+                      <td style="padding-left:8px"><span id="kport2"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>到达港:</th>
+                      <td style="padding-left:8px"><span id="cnangrong"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>载货吨:</th>
+                      <td style="padding-left:8px"><span id="zaihuo"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>航线类别:</th>
+                      <td style="padding-left:8px"><span id="hxlb"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>空船日:</th>
+                      <td style="padding-left:8px"><span id="kfdate"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>有效期限:</th>
+                      <td style="padding-left:8px"><span id="khdate"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>公司名称:</th>
+                      <td style="padding-left:8px"><span id="gsname"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>公司地址:</th>
+                      <td style="padding-left:8px"><span id="gsaddr"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>     
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>联系人:</th>
+                      <td style="padding-left:8px"><span id="oname"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>联系电话:</th>
+                      <td style="padding-left:8px"><span id="ophone"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	  <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>邮箱:</th>
+                      <td style="padding-left:8px"><span id="email"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>在线QQ:</th>
+                      <td style="padding-left:8px"><span id="qq"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;">备注:</th>
+                      <td style="padding-left:8px"><span id="note"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+       <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;">报价人姓名:</th>
+                      <td style="padding-left:8px"><span id="baojialxr"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	   <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;">报价人电话:</th>
+                      <td style="padding-left:8px"><span id="baojialxdh"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	   <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;">货物:</th>
+                      <td style="padding-left:8px"><span id="huowu"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	   <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;">报价:</th>
+                      <td style="padding-left:8px"><span id="baojia"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+	   <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;">报价人备注:</th>
+                      <td style="padding-left:8px"><span id="bz"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+            </form>
+  </ul>
+    <div class="footReturn">
+    <div class="window" id="windowcenter">
+              <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+              <div class="content">
+        <div id="txt"></div>
+      </div>
+            </div>
+  </div>
+        </div>
+
+	</article>
+  </section>
+</div>
+<footer class="foot">
+  <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
+  <p>Copyright © 2014 找船网</p>
+</footer>
+</body>
+</html>
