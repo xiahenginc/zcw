@@ -15,7 +15,7 @@ var globals_attributes = [
 ]
 
 
-var GlobalUrl = "http://www.zcwjson.com18.cn/"
+var GlobalUrl = "http://www.zcwjsontest.com18.cn/"
 
 func setSkipguide(isSkipguide:Bool){
     let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
