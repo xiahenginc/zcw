@@ -31,7 +31,7 @@
 			{  
 				type:'post',  
 				url : 'http://'+ post +'/shipdetail',
-				data:{"id":id},
+				data:{"id":id,"sid":sid},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
@@ -67,7 +67,7 @@
 				{  
 					type:'post',  
 					url : 'http://'+ post +'/bjrxx',
-					data:{"sid":sid},
+					data:{"id":id,"sid":sid},
 					jsonp:"jsoncallback",  
 					success  : function(data) {
 						data=$.trim(data);  

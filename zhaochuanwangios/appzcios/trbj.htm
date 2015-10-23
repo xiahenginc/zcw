@@ -44,13 +44,15 @@
 						var baojiatime=currjson.baojiatime;
 						var jiluID=currjson.jiluID;
 						var name_bjr_tmp=currjson.name;
+						var baojiaID=currjson.baojiaID;
+						
 						var sql_url="";
 						var name_tmp_lx="";
 						if(type=="船盘"){
-							sql_url=" href=\"http://detailperson/cp_detail_2.htm?id="+jiluID+"&sid="+id+"\"";
+							sql_url=" href=\"http://detailperson/cp_detail_2.htm?id="+jiluID+"&sid="+id+"&bid=0\"";
 							name_tmp_lx=name_bjr_tmp+"会员对您发布的船盘报价了，请及时联系"
 						}else{
-							sql_url=" href=\"http://detailperson/hp_detail_2.htm?id="+jiluID+"&sid="+id+"\"";
+							sql_url=" href=\"http://detailperson/hp_detail_2.htm?id="+jiluID+"&sid="+id+"&bid=0\"";
 							name_tmp_lx=name_bjr_tmp+"会员对您发布的货盘报价了，请及时联系"
 						}
 						
@@ -88,13 +90,15 @@
 								var baojiatime=currjson.baojiatime;
 								var jiluID=currjson.jiluID;
 								var name_bjr_tmp=currjson.jiluID;
+								var baojiaID=currjson.baojiaID;
+								
 								var sql_url="";
 								var name_tmp_lx="";
 								if(type=="船盘"){
-									sql_url=" href=\"http://detailperson/cp_detail_2.htm?id="+jiluID+"&sid="+id+"\"";
+									sql_url=" href=\"http://detailperson/cp_detail_2.htm?id="+jiluID+"&sid="+id+"&bid=0\"";
 									name_tmp_lx=name_bjr_tmp+"会员对您发布的船盘报价了，请及时联系"
 								}else{
-									sql_url=" href=\"http://detailperson/hp_detail_2.htm?id="+jiluID+"&sid="+id+"\"";
+									sql_url=" href=\"http://detailperson/hp_detail_2.htm?id="+jiluID+"&sid="+id+"&bid=0\"";
 									name_tmp_lx=name_bjr_tmp+"会员对您发布的货盘报价了，请及时联系"
 								}
 								

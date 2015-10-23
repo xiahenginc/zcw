@@ -45,14 +45,15 @@
 						var baojiatime=currjson.baojiatime;
 						var jiluID=currjson.jiluID;
 						var name_bjr_tmp=currjson.name;
+						var baojiaID=currjson.baojiaID;
 						
 						var sql_url="";
 						var name_tmp_lx="";
 						if(type=="船盘"){
-							sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+							sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"&sid="+ id +"&bid=0\"";
 							name_tmp_lx="您对"+ name_bjr_tmp+"会员发布的船盘报价了，请等待联系"
 						}else{
-							sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+							sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"&sid="+ id +"&bid=0\"";
 							name_tmp_lx="您对"+ name_bjr_tmp+"会员发布的货盘报价了，请等待联系"
 						}
 						var tmp="<li><a "+ sql_url +" ><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ name_tmp_lx +"</h1><h2>"+baojiatime+"</h2></div></a> </li>";
@@ -89,14 +90,15 @@
 								var baojiatime=currjson.baojiatime;
 								var jiluID=currjson.jiluID;
 								var name_bjr_tmp=currjson.name;
+								var baojiaID=currjson.baojiaID;
 								
 								var sql_url="";
 								var name_tmp_lx="";
 								if(type=="船盘"){
-									sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"\"";
+									sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"&sid="+ id +"&bid=0\"";
 									name_tmp_lx="您对"+ name_bjr_tmp+"会员发布的船盘报价了，请等待联系"
 								}else{
-									sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"\"";
+									sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"&sid="+ id +"&bid=0\"";
 									name_tmp_lx="您对"+ name_bjr_tmp+"会员发布的货盘报价了，请等待联系"
 								}
 								var tmp="<li><a "+ sql_url +" ><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ name_tmp_lx +"</h1><h2>"+baojiatime+"</h2></div></a> </li>";
