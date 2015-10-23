@@ -24,6 +24,7 @@
 	var uid="<%=uid%>";
 	var id="<%=id%>";
 	var sid="<%=sid%>";
+	var bid="<%=bid%>";
 	var post="post";
 	
 	
@@ -37,7 +38,7 @@
 			{  
 				type:'post',  
 				url : 'http://'+ post +'/palletdetail',
-				data:{"id":id},
+				data:{"id":id,"sid":bid,"uid",sid},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);
@@ -45,19 +46,12 @@
 						var json=$.parseJSON(data);
 						
 						$("#bid").html(json.gid);
-						
 						$("#titlesp").html(json.gid);
-						
 						$("#content").html(json.content);
-						
 						$("#oname").html(json.oname);
-						
 						$("#ophone").html(json.ophone);
-						
 						$("#qq").html(json.qq);
-						
 						$("#note").html(json.note)
-						
 						$("#gclass").html(json.gclass)
 						$("#bport2").html(json.bport2)
 						$("#eport2").html(json.eport2)
@@ -68,7 +62,7 @@
 						$("#gsaddr").html(json.gsaddr)
 						$("#packing").html(json.packing)
 					}catch(e){
-						alert(e.message);
+						//alert(e.message);
 					}
 				},  
 				error : function() {

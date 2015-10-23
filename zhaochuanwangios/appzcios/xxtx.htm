@@ -43,14 +43,15 @@
 						var type=currjson.type; 
 						var imageurl=currjson.imageurl;
 						var jiluID=currjson.chpid;
+						var biaojiaID=currjson.biaojiaID;
 						var inputtime=currjson.inputtime;
 						var content=currjson.content;
 
 						var sql_url="";
 						if(type=="1"){
-							sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+							sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"&sid="+ biaojiaID +"&bid="+ id +"\"";
 						}else{
-							sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+							sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"&sid="+ biaojiaID +"&bid="+ id +"\"";
 						}
 						
 						var tmp="<li><a "+ sql_url +"><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ content +"</h1><h2>"+inputtime+"</h2></div></a> </li>";
@@ -58,7 +59,7 @@
 						$("#listbody").append(tmp);
 					}
 				}catch(e){
-					alert(e.message);
+					//alert(e.message);
 				}
 			},  
 			error : function() {
@@ -85,13 +86,14 @@
 								var type=currjson.type; 
 								var imageurl=currjson.imageurl;
 								var jiluID=currjson.jiluID;
+								var biaojiaID=currjson.biaojiaID;
 								var inputtime=currjson.inputtime;
 								var content=currjson.content;
 								var sql_url="";
 								if(type=="船盘"){
-									sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+									sql_url=" href=\"http://detailperson/cp_detail_1.htm?id="+jiluID+"&sid="+ biaojiaID +"\"";
 								}else{
-									sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"&sid="+ id +"\"";
+									sql_url=" href=\"http://detailperson/hp_detail_1.htm?id="+jiluID+"&sid="+ biaojiaID +"\"";
 								}
 								
 								var tmp="<li><a "+ sql_url +"><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ content +"</h1><h2>"+inputtime+"</h2></div></a> </li>";

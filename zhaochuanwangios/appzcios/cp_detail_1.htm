@@ -24,6 +24,7 @@
 	var uid="<%=uid%>";
 	var id="<%=id%>";
 	var sid="<%=sid%>";
+	var bid="<%=bid%>";
 	var post="post";
 	
 	$(function(){
@@ -31,7 +32,7 @@
 			{  
 				type:'post',  
 				url : 'http://'+ post +'/shipdetail',
-				data:{"id":id},
+				data:{"id":id,"sid":bid,"uid",sid},
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  

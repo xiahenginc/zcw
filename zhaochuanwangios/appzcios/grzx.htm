@@ -44,7 +44,7 @@
 				
 			}  
 		});
-		
+		setTimeout(function(){
 		//查询新的消息提醒和报价提醒
 		$.post("http://"+ post +"/newMessageNumber",{uid:uid},function(data){
 			try{
@@ -57,6 +57,7 @@
 				//alert(e.message);
 			}
 		});
+		},100);
 		
 	})
 </script>
