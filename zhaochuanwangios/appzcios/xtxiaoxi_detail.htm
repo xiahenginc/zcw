@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<meta charset="gbk">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
+<link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript" src="swipe.js"></script></head>
+<script type="text/javascript" src="jrsc.js"></script>
+<body>
+<script type="text/javascript">
+	var post="post";
+	var ID="<%=id%>";
+	$(function(){
+		$.ajax(  
+			{  
+				type:'post',  
+				url : 'http://'+ post +'/xxtsdetail',
+				data:{"id":ID},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+					data=$.trim(data);  
+					try{
+						var json=$.parseJSON(data);
+						$("#title").html(json.title);
+						$("#content").html(json.content);
+					}catch(e){
+					}
+				},  
+				error : function() {
+				}  
+			}  
+		);
+	})
+</script>
+<div class="warp">
+  
+  <section class="content mt60">
+  <article class="mbox mt60 mt8">
+        <h1 style="font-size:15px; line-height:28px; padding:8px 0px; text-align:center; border-bottom:1px  dashed #CCC; margin-bottom:10px" id="title">
+        <span style="font-size:12px; font-weight:normal; display:block"></span>
+        </h1>
+        <p id="content"></p>
+  </article>
+    </section>
+</div>
+
+<script>
+    $(function($) {
+        $('ul.categoryList').not($('ul.categoryList')[0]).hide();
+        $('div.categoryBtn').click(function(event) {
+            $('div.over').removeClass('over');
+            $('ul.categoryList:visible').hide();
+            $(this).addClass('over').next('ul').show();
+        });
+        $('div.header a.menu').click(function(event) {
+            $('div.popup_overlay').height($(document).height()).show();
+            $('div.popup_container').show();
+            return false;
+        });
+        $('div.popup_overlay').click(function(event) {
+            $(this).next('div.popup_container').andSelf().hide();
+        });
+        $('div.letter > a').click(function(event) {
+            var top = $('dl.letterRow > dd').eq($(this).index()).offset().top - 80;
+            $('html,body').animate({
+                scrollTop: top
+            }, 'fast');
+            return false;
+            top
+        });
+        $('p.more > a').click(function(event) {
+            if ($(this).text() == '更多 >') {
+                $(this).text('< 收起');
+            } else {
+                $(this).text('更多 >');
+            }
+            ;
+            $(this).parent().prev().toggleClass("control");
+        });
+    });
+</script>
+<div class="popup_overlay" style="height: 919px; display: none;">&nbsp;</div>
+<div class="popup_container" style="display: none;">
+  <div class="arrow_up">&nbsp;</div>
+  <ul class="subNavi">
+    <li><a href="index.jsp"><i><img src="plugmenu6.png" alt=""></i>首页</a></li>
+    <li><a href="gxwdcb.jsp"><i><img src="n1.png" alt="更新我的船舶" title="更新我的船舶"></i>更新我的船舶</a></li>
+    <li><a href="fbxx.jsp"><i><img src="n2.png" alt="信息发布" title="信息发布"></i>信息发布</a></li>
+    <li><a href="hp.jsp"><i><img src="n3.png" alt="货盘信息" title="货盘信息"></i>货盘信息</a></li>
+    <li><a href="cp.jsp"><i><img src="n4.png" alt="船盘信息" title="船盘信息"></i>船盘信息</a></li>
+    <li><a href="zxtb.jsp"><i><img src="n5.png" alt="在线投保" title="在线投保"></i>在线投保</a></li>
+    <li><a href="wzsc.jsp"><i><img src="n6.png" alt="物资市场" title="物资市场"></i>物资市场</a></li>
+    <li><a href="cbjy.jsp"><i><img src="n7.png" alt="船舶交易" title="船舶交易"></i>船舶交易</a></li>
+    <li><a href="rczx.jsp"><i><img src="n8.png" alt="人才中心" title="人才中心"></i>人才中心</a></li>
+  </ul>
+</div>
+<aside class="phoneBox"> <a href="tel:400-068-2662"><i class="tel"><img src="telIcon.png" alt=""></i> <span class="telNum">400-068-2662</span> </a> <a href="tel:400-068-2662" class="posted">一键拨号</a> </aside>
+
+
+<script src="saved_resource.js"></script>
+<script src="header.js"></script>
+<script src="bckToTop.js"></script>
+<script>TMall.BackTop.init();</script>
+</body>
+</html>

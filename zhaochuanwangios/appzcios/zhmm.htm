@@ -20,13 +20,13 @@
 						data:{"reppwd":uname},
 						success  : function(json) {  
 							if(json=="0"){
-								alert('发送邮件失败，请稍后重试！');							
+								alert('短信发送失败，请稍后重试！');							
 							}else if(json=="none"){
 								alert("您输入的账号不存在，请重新输入!");			
 							}else if(json=="err"){
-								alert('发送邮件失败，请稍后重试！');	
+								alert('短信发送失败，请稍后重试！');	
 							}else if(json=="no"){
-								alert('发送邮件失败，请稍后重试！');	
+								alert('短信发送失败，请稍后重试！');	
 							}else{
 								var idjson=$.parseJSON(json);
 								location.href='http://localperson/zhmm_s2.htm?uid='+idjson.uid;
