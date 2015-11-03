@@ -223,6 +223,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dispatch_sync(dispatch_get_main_queue(), {
                 var title = ""
                 switch(uriid){
+                case "xtxiaoxi":
+                    title = "系统消息"
+                case "xtxiaoxi_detail":
+                    title = "系统消息详情"
+                case "lyxx":
+                    title = "消息提醒"
+                case "lyxx_detail":
+                    title = "消息提醒详情"
+                case "xxtx":
+                    title = "报价提醒"
+                case "wdbj":
+                    title = "我的报价"
+                case "trbj":
+                    title = "他人报价"
+                case "cp_detail_1":
+                    title = "船盘报价详情"
+                case "hp_detail_1":
+                    title = "货盘报价详情"
+                case "cp_detail_2":
+                    title = "船盘报价详情"
+                case "hp_detail_2":
+                    title = "货盘报价详情"
                 case "jbzl":
                     title = "基本资料"
                 case "xxtx":
