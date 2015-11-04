@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gbk">
-<meta charset="gbk">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <meta name="apple-itunes-app" content="app-id=">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="generator" content="editplus">
@@ -14,19 +14,16 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>ÕÒ´¬Íø</title>
+<title>æ‰¾èˆ¹ç½‘</title>
 <script type="text/javascript" src="jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="jquery.min.js"></script>
 <link href="index.css" rel="stylesheet" type="text/css">
 <link href="2-default.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="swipe.js"></script></head>
-<body>
 <script type="text/javascript">
-	var post="post";
 	var ID="<%=id%>";
+	var post="post";
+	var uid="<%=uid%>";
 	$(function(){
 		$.ajax(  
 			{  
@@ -49,6 +46,7 @@
 		);
 	})
 </script>
+<body>
 <div class="warp">
   <section class="content mt60">
   <article class="mbox mt60 mt8">
@@ -59,63 +57,6 @@
   </article>
     </section>
 </div>
-
-<script>
-    $(function($) {
-        $('ul.categoryList').not($('ul.categoryList')[0]).hide();
-        $('div.categoryBtn').click(function(event) {
-            $('div.over').removeClass('over');
-            $('ul.categoryList:visible').hide();
-            $(this).addClass('over').next('ul').show();
-        });
-        $('div.header a.menu').click(function(event) {
-            $('div.popup_overlay').height($(document).height()).show();
-            $('div.popup_container').show();
-            return false;
-        });
-        $('div.popup_overlay').click(function(event) {
-            $(this).next('div.popup_container').andSelf().hide();
-        });
-        $('div.letter > a').click(function(event) {
-            var top = $('dl.letterRow > dd').eq($(this).index()).offset().top - 80;
-            $('html,body').animate({
-                scrollTop: top
-            }, 'fast');
-            return false;
-            top
-        });
-        $('p.more > a').click(function(event) {
-            if ($(this).text() == '¸ü¶à >') {
-                $(this).text('< ÊÕÆğ');
-            } else {
-                $(this).text('¸ü¶à >');
-            }
-            ;
-            $(this).parent().prev().toggleClass("control");
-        });
-    });
-</script>
-<div class="popup_overlay" style="height: 919px; display: none;">&nbsp;</div>
-<div class="popup_container" style="display: none;">
-  <div class="arrow_up">&nbsp;</div>
-  <ul class="subNavi">
-    <li><a href="index.jsp"><i><img src="plugmenu6.png" alt=""></i>Ê×Ò³</a></li>
-    <li><a href="gxwdcb.jsp"><i><img src="n1.png" alt="¸üĞÂÎÒµÄ´¬²°" title="¸üĞÂÎÒµÄ´¬²°"></i>¸üĞÂÎÒµÄ´¬²°</a></li>
-    <li><a href="fbxx.jsp"><i><img src="n2.png" alt="ĞÅÏ¢·¢²¼" title="ĞÅÏ¢·¢²¼"></i>ĞÅÏ¢·¢²¼</a></li>
-    <li><a href="hp.jsp"><i><img src="n3.png" alt="»õÅÌĞÅÏ¢" title="»õÅÌĞÅÏ¢"></i>»õÅÌĞÅÏ¢</a></li>
-    <li><a href="cp.jsp"><i><img src="n4.png" alt="´¬ÅÌĞÅÏ¢" title="´¬ÅÌĞÅÏ¢"></i>´¬ÅÌĞÅÏ¢</a></li>
-    <li><a href="zxtb.jsp"><i><img src="n5.png" alt="ÔÚÏßÍ¶±£" title="ÔÚÏßÍ¶±£"></i>ÔÚÏßÍ¶±£</a></li>
-    <li><a href="wzsc.jsp"><i><img src="n6.png" alt="Îï×ÊÊĞ³¡" title="Îï×ÊÊĞ³¡"></i>Îï×ÊÊĞ³¡</a></li>
-    <li><a href="cbjy.jsp"><i><img src="n7.png" alt="´¬²°½»Ò×" title="´¬²°½»Ò×"></i>´¬²°½»Ò×</a></li>
-    <li><a href="rczx.jsp"><i><img src="n8.png" alt="ÈË²ÅÖĞĞÄ" title="ÈË²ÅÖĞĞÄ"></i>ÈË²ÅÖĞĞÄ</a></li>
-  </ul>
-</div>
-<aside class="phoneBox"> <a href="tel:400-068-2662"><i class="tel"><img src="telIcon.png" alt=""></i> <span class="telNum">400-068-2662</span> </a> <a href="tel:400-068-2662" class="posted">Ò»¼ü²¦ºÅ</a> </aside>
-
-
-<script src="saved_resource.js"></script>
-<script src="header.js"></script>
-<script src="bckToTop.js"></script>
-<script>TMall.BackTop.init();</script>
+<aside class="phoneBox"> <a href="tel:400-068-2662"><i class="tel"><img src="telIcon.png" alt=""></i> <span class="telNum">400-068-2662</span> </a> <a href="tel:400-068-2662" class="posted">ä¸€é”®æ‹¨å·</a> </aside>
 </body>
 </html>
