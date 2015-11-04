@@ -21,8 +21,6 @@
 <link href="2-default.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
 <script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="swipe.js"></script>
-<script type="text/javascript" src="WdatePicker.js"></script>
 <link href="WdatePicker.css" rel="stylesheet" type="text/css">
 <link href="datepicker.css" rel="stylesheet" type="text/css">
 <link rel="Stylesheet" type="text/css" href="logindialog.css" />
@@ -52,7 +50,7 @@
 								var name=currjson.title; 							
 								var intime=currjson.intime;
 								
-								var tmp="<tr><td class=\"th1bg\">"+ name +"</td><td>"+ intime +"</td><td><a href=\"http://detailperson/xtxiaoxi_detail.htm?id="+id+"\" >查看</a></td> </tr>";
+								var tmp="<tr><td class=\"th1bg\">"+ name +"</td><td>"+ intime +"</td><td><a href=\"http://lx2:9013/zcwios/xtxiaoxi_detail.htm?id="+id+"\" onclick=\"alert(1);\" >查看</a></td> </tr>";
 								$("#listbody").append(tmp);
 							}
 						}else{
