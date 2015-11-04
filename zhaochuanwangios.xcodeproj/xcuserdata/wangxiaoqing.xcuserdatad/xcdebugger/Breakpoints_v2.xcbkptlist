@@ -15,14 +15,14 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "12"
             endingLineNumber = "12"
-            landmarkName = "navto_webinfo(_:_:)"
+            landmarkName = "navto_webinfo(_:title:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zhaochuanwangios/NavigationFunc.swift"
@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
             endingLineNumber = "74"
-            landmarkName = "navtocbqg_detail_personal(_:_:_:)"
+            landmarkName = "navtocbqg_detail_personal(_:title:paramdict:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
