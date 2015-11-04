@@ -50,8 +50,9 @@
 								var name=currjson.title; 							
 								var intime=currjson.intime;
 								
-								var tmp="<tr><td class=\"th1bg\">"+ name +"</td><td>"+ intime +"</td><td><a href=\"http://lx2:9013/zcwios/xtxiaoxi_detail.htm?id="+id+"\" onclick=\"alert(1);\" >查看</a></td> </tr>";
+								var tmp="<tr><td class=\"th1bg\">"+ name +"</td><td>"+ intime +"</td><td><a href=\"http://detailperson/xtxiaoxi_detail.htm?id="+id+"\" >查看</a></td> </tr>";
 								$("#listbody").append(tmp);
+								
 							}
 						}else{
 							$("#more").html('没有更多啦');
