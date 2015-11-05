@@ -29,7 +29,7 @@
 								alert('短信发送失败，请稍后重试！');	
 							}else{
 								var idjson=$.parseJSON(json);
-								location.href='http://localperson/zhmm_s2.htm?uid='+idjson.uid;
+								location.href='http://localperson/zhmm_s2.htm?uid='+idjson.uid+'&phone='+ idjson.phone +'';
 							}
 						},  
 						error : function(json) { 

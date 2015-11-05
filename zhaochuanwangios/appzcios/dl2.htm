@@ -32,6 +32,8 @@
 						data:{"login":encodeURIComponent(data)},
 						success  : function(json) {
 							if(json!="0"){
+								localStorage.uname = uname;
+								localStorage.upswd = upswd;
 								location.href='http://skip/cylt.htm';	
 							}else{
 								alert("登录失败!");

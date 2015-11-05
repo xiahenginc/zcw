@@ -13,6 +13,38 @@
 <link rel="stylesheet" type="text/css" href="indexall.css">
 <script type="text/javascript" src="zepto.js"></script>
 <script type="text/javascript" src="swipe.js"></script>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var uname=localStorage.uname;
+		var upswd=localStorage.upswd;
+		
+		if(uname!="" && upswd!=""){
+			var json={uid:"",uname:uname,upswd:upswd};
+			var data=JSON.stringify(json);
+			$.ajax(  
+				{  
+					type:'post',  
+					url : 'http://post/login', 
+					data:{"login":encodeURIComponent(data)},
+					success  : function(json) {
+						if(json!="0"){
+							localStorage.uname = uname;
+							localStorage.upswd = upswd;
+							
+						}else{
+							//alert("登录失败!");
+						}
+					},  
+					error : function(XHR, textStatus, errorThrown) { 
+						//alert("登录失败!");
+					}  
+				}  
+			); 
+		}
+	
+	});
+</script>
 </head>
 <body>
 <div class="index-nav"><img src="logo.jpg" class="logo"></div>
