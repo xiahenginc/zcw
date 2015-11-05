@@ -18,8 +18,8 @@
 	$(function(){
 		var uname=localStorage.uname;
 		var upswd=localStorage.upswd;
-		
-		if(uname!="" && upswd!=""){
+		var uid='<%=uid%>'
+		if(uname!="" && upswd!="" && uid==''){
 			var json={uid:"",uname:uname,upswd:upswd};
 			var data=JSON.stringify(json);
 			$.ajax(  
@@ -31,7 +31,6 @@
 						if(json!="0"){
 							localStorage.uname = uname;
 							localStorage.upswd = upswd;
-							
 						}else{
 							//alert("登录失败!");
 						}
