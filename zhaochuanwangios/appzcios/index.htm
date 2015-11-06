@@ -18,8 +18,9 @@
 	$(function(){
 		var uname=localStorage.uname;
 		var upswd=localStorage.upswd;
-		var uid='<%=uid%>'
-		if(uname!="" && upswd!="" && uid==''){
+		
+		var uid='<%=uid%>';
+		if(uname!="" && typeof(uname)!="undefined" && upswd!="" && typeof(upswd)!="undefined" && uid==''){
 			var json={uid:"",uname:uname,upswd:upswd};
 			var data=JSON.stringify(json);
 			$.ajax(  
