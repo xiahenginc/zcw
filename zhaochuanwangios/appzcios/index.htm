@@ -19,8 +19,8 @@
 		var uname=localStorage.uname;
 		var upswd=localStorage.upswd;
 		var uid='<%=uid%>';
-		alert("-uname:"+uname+"-  -upswd:"+upswd+"-  -uid:"+uid);
-		if(uname!="" && typeof(uname)!="undefined" && upswd!="" && typeof(upswd)!="undefined" && uid==''){
+		
+		if(uname!="" && typeof(uname)!="undefined" && uname!=null && uname!="null" && upswd!="" && typeof(upswd)!="undefined" && upswd!=null && upswd!="null"  && uid==''){
 			var json={uid:"",uname:uname,upswd:upswd};
 			var data=JSON.stringify(json);
 			$.ajax(  
@@ -29,7 +29,6 @@
 					url : 'http://post/login', 
 					data:{"login":encodeURIComponent(data)},
 					success  : function(json) {
-						alert(json);
 						if(json!="0"){
 							localStorage.uname = uname;
 							localStorage.upswd = upswd;
