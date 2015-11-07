@@ -18,8 +18,8 @@
 	$(function(){
 		var uname=localStorage.uname;
 		var upswd=localStorage.upswd;
-		
 		var uid='<%=uid%>';
+		alert("-uname:"+uname+"-  -upswd:"+upswd+"-  -uid:"+uid);
 		if(uname!="" && typeof(uname)!="undefined" && upswd!="" && typeof(upswd)!="undefined" && uid==''){
 			var json={uid:"",uname:uname,upswd:upswd};
 			var data=JSON.stringify(json);
@@ -29,6 +29,7 @@
 					url : 'http://post/login', 
 					data:{"login":encodeURIComponent(data)},
 					success  : function(json) {
+						alert(json);
 						if(json!="0"){
 							localStorage.uname = uname;
 							localStorage.upswd = upswd;
