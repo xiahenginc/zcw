@@ -10,8 +10,6 @@
 		$("#showcard").click(function(){
 				var uid="";
 				var post="post";
-				
-				
 				var uname=$("#uname").val();
 				var upswd=$("#upswd").val();
 				
@@ -23,11 +21,8 @@
 					alert('密码不能为空！');
 					return;
 				}
-				
 				var json={uid:"",uname:uname,upswd:upswd};
-				
 				var data=JSON.stringify(json);
-				
 				$.ajax(  
 					{  
 						type:'post',  

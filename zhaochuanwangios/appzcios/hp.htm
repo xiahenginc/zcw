@@ -300,7 +300,7 @@
                   <td><input class="input-text" type="text" name="eport" id="eport" value=""></td>
                 </tr>
                 <tr id="dr_row_kport2">
-                  <th><label style="color:#f00">*</label> 货源名称： </th>
+                  <th><label style="color:#f00">*</label> 货物名称： </th>
                   <td><input class="input-text" type="text" name="type" id="type" value=""></td>
                 </tr>
                 <tr id="dr_row_snum">
@@ -317,12 +317,13 @@
                             <option value="拼箱">拼箱</option>
                             <option value="桶装">桶装</option>
                             <option value="罐装">罐装</option>
+			    <option value="袋装">袋装</option>
                             <option value="其它">其它</option>
                         </select>
                   </td>
                 </tr>
                 <tr id="dr_row_gclass">
-                  <th><label style="color:#f00">*</label> 受载日期： </th>
+                  <th><label style="color:#f00">*</label> 装载日期： </th>
                   <td><input class="Wdate input-text" type="text" name="sdate" id="sdate" value="" onClick="WdatePicker({readOnly:true})"></td>
                 </tr>
                 <tr id="dr_row_kfdate">
@@ -408,7 +409,7 @@
         <table width="100%" class="table_form">
               <tbody>
                 <tr id="dr_row_tuoyun">
-                  <th> 托运量： </th>
+                  <th> 货物吨位： </th>
             <td><input class="input-text" name="sweight" id="sweight" value="" style="width:60px;">至
                     <input class="input-text" type="text" name="eweight" id="eweight" value="" style="width:60px;">
                     吨 </td>
@@ -423,11 +424,11 @@
                   <td><input class="input-text" name="eport_" id="eport_" value=""></td>
                 </tr>
                 <tr id="dr_row_gclass">
-                  <th> 货源名称： </th>
+                  <th> 货物名称： </th>
             <td><input class="input-text" name="type_" id="type_" value=""></td>
                 </tr>
                 <tr id="dr_row_bfdate">
-                  <th> 受载日期： </th>
+                  <th> 装载日期： </th>
                   <td><input type="hidden" value="" name="sdate_" id="sdate_">
                     <input type="text" readonly class="Wdate date input-text" value="" id="calendar_bdate" onClick="WdatePicker({readOnly:true})"></td>
                 </tr>

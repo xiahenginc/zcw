@@ -51,7 +51,7 @@
 						$("#zaihuo").html(json.zaihuo)
 						$("#kport2").html(json.kport2)
 						$("#cnangrong").html(json.cnangrong)
-						$("#khdate").html(json.khdate)
+						$("#khdate").html(json.khdate + "天")
 						$("#gsaddr").html(json.gsaddr)
 						$("#gsname").html(json.gsname)
 						$("#email").html(json.email)
@@ -93,17 +93,8 @@
         <div class="cardexplain">
           <ul class="round" style="border:none">
     <form action="javascript:;" method="post" id="cpbj">
+			  
 			  <li class="nob">
-        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tbody>
-            <tr>
-                      <th style="border-right:1px solid #dadada;"><label></label>船型:</th>
-                      <td style="padding-left:8px"><span id="chuanxing"></span></td>
-                    </tr>
-          </tbody>
-                </table>
-      </li>
-              <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
@@ -113,6 +104,18 @@
           </tbody>
                 </table>
       </li>
+      
+              <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>船型:</th>
+                      <td style="padding-left:8px"><span id="chuanxing"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
+      
               <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
@@ -127,7 +130,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th style="border-right:1px solid #dadada;"><label></label>到达港:</th>
+                      <th style="border-right:1px solid #dadada;"><label></label>航向:</th>
                       <td style="padding-left:8px"><span id="cnangrong"></span></td>
                     </tr>
           </tbody>

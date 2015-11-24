@@ -60,11 +60,14 @@
 						$("#bport2").html(json.bport2)
 						$("#eport2").html(json.eport2)
 						$("#bdate").html(json.bdate)
-						$("#hdate").html(json.hdate)
+						$("#hdate").html(json.hdate + "天")
 						$("#gsname").html(json.gsname)
 						$("#email").html(json.email)
 						$("#gsaddr").html(json.gsaddr)
 						$("#packing").html(json.packing)
+						
+						$("#tuoyun").html(json.ton + "吨");//货物吨位
+						
 					}catch(e){
 					alert(e.message);
 					}
@@ -104,6 +107,17 @@
         <div class="cardexplain">
           <ul class="round" style="border:none">
     <form  method="post" id="hpbj">
+    
+    <li class="nob">
+        <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+            <tr>
+                      <th style="border-right:1px solid #dadada;"><label></label>货盘编号:</th>
+                      <td style="padding-left:8px"><span id="bid"></span></td>
+                    </tr>
+          </tbody>
+                </table>
+      </li>
               <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
@@ -114,21 +128,24 @@
           </tbody>
                 </table>
       </li>
+              
+      <!--2015-11-21--ty-->
               <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th style="border-right:1px solid #dadada;"><label></label>货盘编号:</th>
-                      <td style="padding-left:8px"><span id="bid"></span></td>
+                      <th style="border-right:1px solid #dadada;"><label></label>货物吨位:</th>
+                      <td style="padding-left:8px"><span id="tuoyun"></span></td>
                     </tr>
           </tbody>
                 </table>
       </li>
+      <!--2015-11-21--ty-->
 	  <li class="nob">
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                      <th style="border-right:1px solid #dadada;"><label></label>空船港:</th>
+                      <th style="border-right:1px solid #dadada;"><label></label>发货港:</th>
                       <td style="padding-left:8px"><span id="bport2"></span></td>
                     </tr>
           </tbody>

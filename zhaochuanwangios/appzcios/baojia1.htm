@@ -51,10 +51,6 @@
 					alert("货物不能为空！");
 					return;
 				}
-				if(sinfo==null || sinfo==""){
-					alert("详细内容不能为空！");
-					return;
-				}
 				
 				
 				var json={uid:uid,id:id,baojialxr:sname,baojialxdh:sphone,baojia:baojia,bz:sinfo,huowu:huowu};
@@ -231,7 +227,7 @@
         <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tbody>
             <tr>
-                       <th><label>*</label> 详细内容：</th>
+                       <th><label></label> 详细内容：</th>
 <td>
 <textarea style="height:100px; width:220px;" name="data[sinfo]" id="dr_sinfo" class="px"></textarea>
 </td>
