@@ -599,6 +599,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dispatch_sync(dispatch_get_main_queue(), {
                 var title = ""
                 switch uriid{
+                case "grzxxxhf":
+                    title = "发送消息"
                 case "xtxiaoxi_detail":
                     title = "系统消息详情"
                 case "lyxx_detail":
