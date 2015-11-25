@@ -21,6 +21,31 @@
 <script type="text/javascript">
 	var uid="<%=uid%>";
 	$(function(){
+	
+		//获取用户基本信息
+		$.ajax(  
+			{  
+				type:'post',  
+				url : 'http://post/boatinit',
+				data:{"uid":uid},
+				success  : function(data2) {  
+					var json_=$.trim(data2);  
+					try{
+						var json=$.parseJSON(json_); 
+						$("#contact").val(json.mname);
+						$("#mphone").val(json.phone);
+						$("#email").val(json.email);
+						$("#qq").val(json.qq);
+						$("#cname").val(json.cname);
+					}catch(e){
+					}
+				},  
+				error : function() { 
+					
+				}  
+			}  
+		);
+	
 		$("#showcard").click(function(){
 				if(uid==""){
 					alert('登录后才能进行发布信息操作！');

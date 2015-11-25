@@ -30,6 +30,33 @@
 	var currPageNum=1;
 	var searchJson="{\"sweight\":\"\",\"eweight\":\"\",\"sport\":\"\",\"eport\":\"\",\"type\":\"\",\"sdate\":\"\",\"vdate\":\"\"}";
 	$(function(){
+	
+		setTimeout(function(){
+			$.ajax( 
+				{
+					type:'post',  
+					url : 'http://post/boatinit',
+					data:{"uid":"<%=uid%>"},
+					jsonp:"jsoncallback",  
+					success  : function(data) {  
+						data=$.trim(data);  
+						try{
+							var json=$.parseJSON(data);
+							$("#linkman").val(json.mname);
+							$("#phone").val(json.phone);
+							$("#email").val(json.email);
+							$("#qq").val(json.qq);
+							$("#cname").val(json.cname);
+						}catch(e){
+						}
+					},  
+					error : function() { 
+						
+					}  
+				}  
+			); 
+		},1000);
+	
 		$.ajax({
 			type:'post',  
 			url : 'http://post/goodsinfo',
@@ -196,7 +223,7 @@
 			var sport=$("#sport_").val();
 			var eport=$("#eport_").val();
 			var type=$("#type_").val();
-			var sdate=$("#sdate_").val();
+			var sdate=$("#calendar_bdate").val();
 			var vdate=$("#vdate_").val();
 			searchJson="{\"sweight\":\""+ sweight +"\",\"eweight\":\""+ eweight +"\",\"sport\":\""+ sport +"\",\"eport\":\""+ eport +"\",\"type\":\""+ type +"\",\"sdate\":\""+ sdate +"\",\"vdate\":\""+ vdate +"\"}";
 			

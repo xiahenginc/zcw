@@ -30,6 +30,33 @@
 	var currPageNum=1;
 	var searchJson="{\"sweight\":\"\",\"eweight\":\"\",\"emptyport\":\"\",\"eport\":\"\",\"edate\":\"\",\"vdate\":\"\"}";
 	$(function(){
+	
+		setTimeout(function(){
+			$.ajax( 
+				{
+					type:'post',  
+					url : 'http://post/boatinit',
+					data:{"uid":"<%=uid%>"},
+					jsonp:"jsoncallback",  
+					success  : function(data) {  
+						data=$.trim(data);  
+						try{
+							var json=$.parseJSON(data);
+							$("#linkman").val(json.mname);
+							$("#phone").val(json.phone);
+							$("#email").val(json.email);
+							$("#qq").val(json.qq);
+							$("#cname").val(json.cname);
+						}catch(e){
+						}
+					},  
+					error : function() { 
+						
+					}  
+				}  
+			); 
+		},1000);
+	
 		$.ajax({
 			type:'post',  
 			url : 'http://post/boatinfo',
