@@ -248,7 +248,7 @@ function bindmyfriend(){
 </script>
 </head>
 <body>
-<div class="m-tool mb60" style="display: block;">
+<div class="m-tool" style="display: block;">
   <div class="container">
     <div id="content">
       <header class=" none ">
@@ -291,7 +291,7 @@ function bindmyfriend(){
       <a class="ybxie" href="http://local/lt_2.htm"></a></div>
   </div>
 </div>
-<div class="m-tool mb60" style="display: none;">
+<div class="m-tool" style="display: none;">
   <ul class="mnews-b" id="mycyul">
     
   </ul>
@@ -303,15 +303,5 @@ function bindmyfriend(){
     </ul>
   </div>
 </aside>
-<script type="text/javascript">
-	var form_url="";	
-					
-	$(document).ready(function(){
-		$(".g-tool li").click(function(){
-		$(".g-tool li").eq($(this).index()).addClass("first").siblings().removeClass('first');
-		$(".m-tool").hide().eq($(this).index()).show();
-		});
-	});						
-</script>
 </body>
 </html>

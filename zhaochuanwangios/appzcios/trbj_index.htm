@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="generator" content="editplus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>找船网</title>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="2-default.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+	var post="post";
+	var uid="<%=uid%>";
+
+	var currPageNum=1;
+	$(function(){
+		$.ajax({
+			type:'post',  
+			url : 'http://'+ post +'/trbj',  //http://www.zcwjson.com18.cn
+			data:{"pagenum":"1","uid":uid},
+			jsonp:"jsoncallback",  
+			success  : function(data) {
+				data=$.trim(data);  
+				try{
+					var json=$.parseJSON(data);
+					var son=json.newsremind;
+					for(var i=0;i<son.length;i++){
+						var currjson=son[i];
+						
+						var id=currjson.id;
+						var type=currjson.type; 
+						var imageurl=currjson.imageurl;
+						var baojiatime=currjson.baojiatime;
+						var jiluID=currjson.jiluID;
+						var name_bjr_tmp=currjson.name;
+						var baojiaID=currjson.baojiaID;
+						
+						var sql_url="";
+						var name_tmp_lx="";
+						if(type=="船盘"){
+							sql_url=" href=\"http://detail/cp_detail_index.htm?id="+jiluID+"&sid="+id+"&bid=0\"";
+							name_tmp_lx=name_bjr_tmp+"会员对您发布的船盘报价了，请及时联系"
+						}else{
+							sql_url=" href=\"http://detail/hp_detail_index.htm?id="+jiluID+"&sid="+id+"&bid=0\"";
+							name_tmp_lx=name_bjr_tmp+"会员对您发布的货盘报价了，请及时联系"
+						}
+						
+						var tmp="<li><a "+ sql_url +"><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ name_tmp_lx +"</h1><h2>"+baojiatime+"</h2></div></a> </li>";
+						
+						$("#listbody").append(tmp);
+					}
+				}catch(e){
+				}
+			},  
+			error : function() {
+			}  
+		});
+		
+		$("#more").click(function(){
+			currPageNum++;
+			$.ajax({
+				type:'post',  
+				url : 'http://'+ post +'/trbj', 
+				data:{"pagenum":currPageNum,"uid":uid},
+				jsonp:"jsoncallback",  
+				success  : function(data) {
+					data=$.trim(data);  
+					data=$.trim(data);  
+					try{
+						var json=$.parseJSON(data);
+						var son=json.newsremind;
+						if(son.length!=0){
+							for(var i=0;i<son.length;i++){
+								var currjson=son[i];
+								
+								var id=currjson.id;
+								var type=currjson.type; 
+								var imageurl=currjson.imageurl;
+								var baojiatime=currjson.baojiatime;
+								var jiluID=currjson.jiluID;
+								var name_bjr_tmp=currjson.jiluID;
+								var baojiaID=currjson.baojiaID;
+								
+								var sql_url="";
+								var name_tmp_lx="";
+								if(type=="船盘"){
+									sql_url=" href=\"http://detail/cp_detail_index.htm?id="+jiluID+"&sid="+id+"&bid=0\"";
+									name_tmp_lx=name_bjr_tmp+"会员对您发布的船盘报价了，请及时联系"
+								}else{
+									sql_url=" href=\"http://detail/hp_detail_index.htm?id="+jiluID+"&sid="+id+"&bid=0\"";
+									name_tmp_lx=name_bjr_tmp+"会员对您发布的货盘报价了，请及时联系"
+								}
+								
+								var tmp="<li><a "+ sql_url +"><div class=\"list-img\"><b><img src='"+ imageurl +"' /></b></div><div class=\"list-text\"><h1>"+ name_tmp_lx +"</h1><h2>"+baojiatime+"</h2></div></a> </li>";
+								
+								$("#listbody").append(tmp);
+							}
+						}else{
+							$("#more").html('没有更多啦');
+							$("#more").unbind("click");						
+						}
+					}catch(e){
+						$("#more").html('没有更多啦');
+						$("#more").unbind("click");
+					}
+				},  
+				error : function() {
+				}  
+			});	
+		});
+		
+		
+	});
+</script>
+
+
+</head>
+<body>
+<div class="warp">
+  <section class="content mt10">
+    <div class="list">
+      <ul id="listbody">
+       
+      </ul>
+    </div>
+	 <div class="more" style="margin-top:10px; margin-bottom:20px"> 
+		<a class="mt10 "  id="more" href="javascript:;" style="display:; text-align:center">加载更多<i class="phone-icon mico"></i></a> 
+	</div>
+  <style>
+  .more .mt10{
+	  display: block;
+	  color: #3399ff;
+	  border: 1px solid #6a8fba;
+	  background: -moz-linear-gradient(top,#fafcfe,#dde8f6);
+	  background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(#fafcfe), to(#dde8f6));
+	  background-image: -webkit-gradient(linear,left bottom,left top,color-start(0, #fafcfe),color-stop(1, #dde8f6));
+	  border-radius: 8px;
+	  font-size: 15px;
+	}
+  .more{
+    line-height: 38px;
+	  text-align: center;
+	  color: #3399ff;
+	  padding: 0 10px 0px;
+  }
+  </style>
+  </section>
+</div>
+<script src="saved_resource.js"></script>
+<script src="header.js"></script>
+<script src="bcktotop.js"></script>
+<script>TMall.BackTop.init();</script>
+</body>
+</html>
