@@ -41,13 +41,15 @@
 					}  
 				}  
 			); 
+		}
 			
 			//查询新报价
+		if(uid!=''){
 			setTimeout(function(){
 				$.ajax(  
 					{  
 						type:'post',  
-						url : 'http://lx2:9013/Boat/newbaojia', 
+					url : 'http://post/newbaojia', 
 						data:{"uid":uid},
 						success  : function(data) {
 							data=$.trim(data);
@@ -62,7 +64,6 @@
 		}
 				); 
 			},200);
-	
 		}
 	});
 </script>
