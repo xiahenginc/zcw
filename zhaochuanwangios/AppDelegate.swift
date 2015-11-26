@@ -286,6 +286,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         switch(uriid){
                             case "fbxx":
                                 title = "信息发布"
+							case "trbj_index":
+                                 title = "他人报价"	
                             case "hp":
                                  title = "货盘信息"
                             case "cp":
@@ -553,6 +555,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 switch uriid{
                 case "cbcs_detail":
                     title = "船舶交易详情"
+				case "hp_detail_index":
+                    title = "货盘报价详情"
+				case "cp_detail_index":
+                    title = "船盘报价详情"
                 case "cz_detail":
                     title = "船舶出租详情"
                 case "cbqg_detail":
