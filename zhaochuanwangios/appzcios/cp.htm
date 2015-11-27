@@ -26,6 +26,19 @@
 <link href="WdatePicker.css" rel="stylesheet" type="text/css">
 <link href="datepicker.css" rel="stylesheet" type="text/css">
 <link rel="Stylesheet" type="text/css" href="logindialog.css" />
+
+<script type="text/javascript">
+//ty---2015--11-27  验证登录
+$(function(){
+	var uid_first = "<%=uid%>";//IOS的高级写法
+	if(uid_first == ""){
+		alert('对不起，请先登录！');
+		location.href='http://local/dl3.htm';
+	}
+	return;
+});
+</script>
+
 <script type="text/javascript">
 	var currPageNum=1;
 	var searchJson="{\"sweight\":\"\",\"eweight\":\"\",\"emptyport\":\"\",\"eport\":\"\",\"edate\":\"\",\"vdate\":\"\"}";
@@ -79,7 +92,7 @@
 						var ton=currjson.ton;
 						var vdate=currjson.vdate;
 						
-							var tmp="<tr><td class=\"th1bg\" onclick=\"artdialog_form(&#39;c3&#39;,&#39;2030&#39;);\">"+ eport +"</td><td onclick=\"artdialog_form(&#39;c3&#39;,&#39;2030&#39;);\">"+ ton +"</td><td onclick=\"artdialog_form&#39;c3&#39;,&#39;2030&#39;);\">"+ vdate +"</td><td onClick=\"checkform();\"><a href=\"http://detail/cp_detail.htm?id="+ id +"\">查看</a></td></tr>";
+							var tmp="<tr><td class=\"th1bg\" onclick=\"artdialog_form(&#39;c3&#39;,&#39;2030&#39;);\">"+ eport +"</td><td onclick=\"artdialog_form(&#39;c3&#39;,&#39;2030&#39;);\">"+ ton +"</td><td onclick=\"artdialog_form&#39;c3&#39;,&#39;2030&#39;);\">"+ vdate +"</td><td onClick=\"return checkform();\"><a href=\"http://detail/cp_detail.htm?id="+ id +"\">查看</a></td></tr>";
 						
 						$("#listbody").append(tmp);
 					}

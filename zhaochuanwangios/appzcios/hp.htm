@@ -26,6 +26,19 @@
 <link href="WdatePicker.css" rel="stylesheet" type="text/css">
 <link href="datepicker.css" rel="stylesheet" type="text/css">
 <link rel="Stylesheet" type="text/css" href="logindialog.css" />
+
+<script type="text/javascript">
+//ty---2015--11-27  验证登录
+$(function(){
+	var uid_first = "<%=uid%>";//IOS的高级写法
+	if(uid_first == ""){
+		alert('对不起，请先登录！');
+		location.href='http://local/dl3.htm';
+	}
+	return;
+});
+</script>
+
 <script type="text/javascript">
 	var currPageNum=1;
 	var searchJson="{\"sweight\":\"\",\"eweight\":\"\",\"sport\":\"\",\"eport\":\"\",\"type\":\"\",\"sdate\":\"\",\"vdate\":\"\"}";
@@ -80,7 +93,7 @@
 							var vdate=currjson.vdate;
 							var ton=currjson.ton;
 							
-							var tmp="<tr><td class=\"th1bg\">"+ sport +"</td><td>"+ ton +"</td><td>"+ vdate +"</td><td onClick=\"checkform();\"><a href=\"http://detail/hp_detail.htm?id="+ id +"\">查看</a></td> </tr>";
+							var tmp="<tr><td class=\"th1bg\">"+ sport +"</td><td>"+ ton +"</td><td>"+ vdate +"</td><td onClick=\"return  checkform();\"><a href=\"http://detail/hp_detail.htm?id="+ id +"\">查看</a></td> </tr>";
 							
 							$("#listbody").append(tmp);
 						}	
@@ -442,7 +455,7 @@
                     吨 </td>
                 </tr>
                 <tr id="dr_row_bport">
-                  <th> 货盘港： </th>
+                  <th> 发货港： </th>
             <td><input class="input-text" type="text" name="sport_" id="sport_" value="">
             </td>
                 </tr>

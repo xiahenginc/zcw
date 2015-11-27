@@ -21,6 +21,19 @@
 <link href="datepicker.css" rel="stylesheet" type="text/css">
 <link href="index.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="onlinebooking.css" media="all">
+
+<script type="text/javascript">
+//ty---2015--11-27  验证登录
+$(function(){
+	var uid_first = "<%=uid%>";//IOS的高级写法
+	if(uid_first == ""){
+		alert('对不起，请先登录！');
+		location.href='http://local/dl3.htm';
+	}
+	return;
+});
+</script>
+
 <script type="text/javascript">
 	$(function(){
 		$("#showcard").click(function(){

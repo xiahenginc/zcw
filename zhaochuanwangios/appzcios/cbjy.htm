@@ -21,6 +21,19 @@
 <link rel="stylesheet" type="text/css" href="reset_1.css" media="all">
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="swipe.js"></script>
+
+<script type="text/javascript">
+//ty---2015--11-27  验证登录
+$(function(){
+	var uid_first = "<%=uid%>";//IOS的高级写法
+	if(uid_first == ""){
+		alert('对不起，请先登录！');
+		location.href='http://local/dl3.htm';
+	}
+	return;
+});
+</script>
+
 <script type="text/javascript">
 	var currPageNum=1;
 	var currPageNum2=1;
@@ -44,7 +57,7 @@
 						var pdate=currjson.pdate;
 						var vdate=currjson.vdate;
 						
-						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/cbcs_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"return checkform();\" val=\"20105935305609\" href=\"http://detail/cbcs_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 
 						
 						$("#listbody").append(tmp);
@@ -61,7 +74,7 @@
 						var pdate=currjson.pdate;
 						var vdate=currjson.vdate;
 						
-						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/cbqg_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"return checkform();\" val=\"20105935305609\" href=\"http://detail/cbqg_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 						
 						$("#listbody2").append(tmp);
 					}
@@ -96,7 +109,7 @@
 						var pdate=currjson.pdate;
 						var vdate=currjson.vdate;
 						
-						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/cbcs_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+						var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"return checkform();\" val=\"20105935305609\" href=\"http://detail/cbcs_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 						
 						$("#listbody").append(tmp);
 					}
@@ -136,7 +149,7 @@
 							var pdate=currjson.pdate;
 							var vdate=currjson.vdate;
 								
-								var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"checkform();\" val=\"20105935305609\" href=\"http://detail/cbqg_detail.htm?id="+ id +"\">"+ title +"</a></li>";
+								var tmp="<li><img src=\"icon20.png\"><span class=\"group\">["+ pdate +"]</span><a onClick=\"return checkform();\" val=\"20105935305609\" href=\"http://detail/cbqg_detail.htm?id="+ id +"\">"+ title +"</a></li>";
 								
 								$("#listbody2").append(tmp);
 							}	

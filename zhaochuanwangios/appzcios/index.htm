@@ -85,7 +85,7 @@
         <li class="on"></li>
       </ol>
     </div>
-		<div id="bj_num_div" style="width:100%; text-align:center; padding-top:5px;display:none;"><a href="http://local/trbj_index.htm" style="font-size:16px;">您有<i id="bj_num" style="color:#F00; font-weight:bold;">0</i>条新的报价信息!</a></div>
+		
   </div>
   <script>
 		$(function(){
@@ -117,12 +117,12 @@
       <ul class="app03-pic01 wbox">
         <li ><a href="http://local/hp.htm"><img alt="" src="index2.jpg"></a></li>
         <li><a href="http://local/cp.htm"><img alt="" src="index3.jpg"></a></li>
-        <li><a href="http://local/fbxx.htm" onClick="checkform();" ><img alt="" src="index1.jpg"></a></li>
+        <li><a href="http://local/fbxx.htm" onClick="return checkform();" ><img alt="" src="index1.jpg"></a></li>
       </ul>
     </div>
     <div class="app04 floor-area">
       <ul class="app04-pic01 wbox">
-        <li><a href="http://local/zxtb.htm"  onClick="checkform();"><img alt="" src="index4.png"></a></li>
+        <li><a href="http://local/zxtb.htm"  onClick="return checkform();"><img alt="" src="index4.png"></a></li>
         <li><a href="http://local/cywz.htm"><img alt="" src="index5.png"></a></li>
         <li ><a href="http://local/cbjy.htm"><img alt="" src="index6.png"></a></li>
       </ul>
@@ -136,6 +136,11 @@
         </div>
       </div>
     </div>
+    
+    <div style="height:20px;">&nbsp;</div>
+    <div id="bj_num_div" style="width:100%; text-align:center; padding-top:5px;display:none;"><a href="javascript:;" style="font-size:16px;">您有<i id="bj_num" style="color:#F00; font-weight:bold;">0</i>条新的报价信息，请到会员中心查看!</a></div>
+    <div style="height:20px;">&nbsp;</div>
+    
     <div style="padding-top:10px;"><a href="http://local/cpfb.htm"><img alt="" src="index11.jpg"></a></div>
   </div>
 <footer class="footer">
