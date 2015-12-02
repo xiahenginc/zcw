@@ -34,26 +34,22 @@
 		$.ajax({
 			type:'post',  
 			url : 'http://'+ post +'/lyxx',  
-			data:{"pagenum":"1","uid":uid},
+        data: {
+            "pagenum": "1",
+            "uid": uid
+        },
 			jsonp:"jsoncallback",  
 			success  : function(data) {
 				data=$.trim(data);  
 				try{
 					var json=$.parseJSON(data);
-//					var code=json.code;
-//					if(code=="ok"){
-//						var searchdata=json.search;
-						var son=json.goodsinfo;
+                var son = json.list;
 						if(son.length!=0){
 							for(var i=0;i<son.length;i++){
 								var currjson=son[i];
-								
 								var id=currjson.id;
 								var name=currjson.name; 							
 								var intime=currjson.intime;
-								
-								
-								//var tmp="<tr><td class=\"th1bg\">"+ sport +"</td><td>"+ ton +"</td><td>"+ vdate +"</td><td><a href=\"http://detailperson/hp_detail2.htm?id="+ id +"\">查看</a></td> </tr>";
 								var tmp="<tr style=\"border:1px solid #ccc;\"><td class=\"th1bg\">"+ name +"</td><td>"+ intime +"</td><td><a href=\"http://detailperson/lyxx_detail.htm?id="+id+"\" >查看</a></td> </tr>";
 								$("#listbody").append(tmp);
 							}
@@ -61,14 +57,12 @@
 							$("#more").html('没有更多啦');
 							$("#more").unbind("click");
 						}
-//					}
 				}catch(e){
 					$("#more").html('没有更多啦');
 					$("#more").unbind("click");
 				}
 			},  
-			error : function() {
-			}  
+        error: function() {}
 		});
 		
 		$("#more").click(function(){
@@ -76,25 +70,22 @@
 			$.ajax({
 				type:'post',  
 				url : 'http://'+ post +'/lyxx', 
-				data:{"pagenum":currPageNum,"uid":uid},
+            data: {
+                "pagenum": currPageNum,
+                "uid": uid
+            },
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
 					try{
 					var json=$.parseJSON(data);
-//					var code=json.code;
-//					if(code=="ok"){
-//						var searchdata=json.search;
-						var son=json.goodsinfo;
+                    var son = json.list;
 						if(son.length!=0){
 							for(var i=0;i<son.length;i++){
 								var currjson=son[i];
-								
 								var id=currjson.id;
 								var name=currjson.name; 							
 								var intime=currjson.intime;
-								
-								//var tmp="<tr><td class=\"th1bg\">"+ sport +"</td><td>"+ ton +"</td><td>"+ vdate +"</td><td><a href=\"http://detailperson/hp_detail2.htm?id="+ id +"\">查看</a></td> </tr>";
 								var tmp="<tr  style=\"border:1px solid #ccc;\"><td class=\"th1bg\">"+ name +"</td><td>"+ intime +"</td><td><a href=\"http://detailperson/lyxx_detail.htm?id="+id+"\" >查看</a></td> </tr>";
 								$("#listbody").append(tmp);
 							}
@@ -102,19 +93,15 @@
 							$("#more").html('没有更多啦');
 							$("#more").unbind("click");				
 						}
-//					}
 				}catch(e){
 					$("#more").html('没有更多啦');
 					$("#more").unbind("click");
 				}
 				},  
-				error : function() {
-				}  
+            error: function() {}
 			});	
 		});
 	});
-	
-
 	
 </script>
 </head>

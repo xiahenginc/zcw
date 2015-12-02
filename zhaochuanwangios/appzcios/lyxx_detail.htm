@@ -25,11 +25,12 @@
 	var post="post";
 	var uid="<%=uid%>";
 	$(function(){
-		$.ajax(  
-			{  
+    $.ajax({
 				type:'post',  
 				url : 'http://'+ post +'/lyxxdetail',
-				data:{"id":id},
+        data: {
+            "id": id
+        },
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
@@ -42,15 +43,10 @@
 						$("#showcard").click(function(){
 							location.href='http://detailperson/grzxxxhf.htm?id='+buid+'&bakurl=lyxx';
 						});
-					}catch(e){
-					}
+            } catch(e) {}
 				},  
-				error : function() {
-				}  
-			}  
-		);
-		
-		
+        error: function() {}
+    });
 		
 	})
 </script>

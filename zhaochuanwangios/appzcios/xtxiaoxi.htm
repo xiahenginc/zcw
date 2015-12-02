@@ -32,16 +32,16 @@
 		$.ajax({
 			type:'post',  
 			url : 'http://'+ post +'/xtxiaoxi',  
-			data:{"pagenum":"1","uid":uid},
+        data: {
+            "pagenum": "1",
+            "uid": uid
+        },
 			jsonp:"jsoncallback",  
 			success  : function(data) {
 				data=$.trim(data);  
 				try{
 					var json=$.parseJSON(data);
-//					var code=json.code;
-//					if(code=="ok"){
-//						var searchdata=json.search;
-						var son=json.goodsinfo;
+                var son = json.list;
 						if(son.length!=0){
 							for(var i=0;i<son.length;i++){
 								var currjson=son[i];
@@ -58,14 +58,12 @@
 							$("#more").html('没有更多啦');
 							$("#more").unbind("click");
 						}
-//					}
 				}catch(e){
 					$("#more").html('没有更多啦');
 					$("#more").unbind("click");
 				}
 			},  
-			error : function() {
-			}  
+        error: function() {}
 		});
 		
 		$("#more").click(function(){
@@ -73,16 +71,16 @@
 			$.ajax({
 				type:'post',  
 				url : 'http://'+ post +'/xtxiaoxi', 
-				data:{"pagenum":currPageNum,"uid":uid},
+            data: {
+                "pagenum": currPageNum,
+                "uid": uid
+            },
 				jsonp:"jsoncallback",  
 				success  : function(data) {
 					data=$.trim(data);  
 					try{
 					var json=$.parseJSON(data);
-//					var code=json.code;
-//					if(code=="ok"){
-//						var searchdata=json.search;
-						var son=json.goodsinfo;
+                    var son = json.list;
 						if(son.length!=0){
 							for(var i=0;i<son.length;i++){
 								var currjson=son[i];
@@ -98,20 +96,15 @@
 							$("#more").html('没有更多啦');
 							$("#more").unbind("click");				
 						}
-//					}
 				}catch(e){
 					$("#more").html('没有更多啦');
 					$("#more").unbind("click");
 				}
 				},  
-				error : function() {
-				}  
+            error: function() {}
 			});	
 		});
 	});
-	
-
-	
 </script>
 </head>
 <body>
