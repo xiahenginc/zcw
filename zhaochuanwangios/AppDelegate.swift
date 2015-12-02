@@ -227,7 +227,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     title = "系统消息"
 
                 case "lyxx":
-                    title = "消息提醒"
+                    title = "会员消息"
   
                 case "xxtx":
                     title = "报价提醒"
@@ -610,7 +610,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case "xtxiaoxi_detail":
                     title = "系统消息详情"
                 case "lyxx_detail":
-                    title = "消息提醒详情"
+                    title = "会员消息详情"
                 case "cp_detail_1":
                     title = "船盘报价详情"
                 case "hp_detail_1":
