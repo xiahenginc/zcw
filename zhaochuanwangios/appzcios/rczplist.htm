@@ -33,7 +33,7 @@
 			url : 'http://post/myreclist', 
 			data:{"pagenum":"1","uid":uid},
 			jsonp:"jsoncallback",  
-			success  : function(data) {
+			success  : function(data) { 
 				data=$.trim(data);  
 				try{
 					var json=$.parseJSON(data);
