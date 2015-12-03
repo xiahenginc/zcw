@@ -62,7 +62,7 @@
 						success  : function(data) {  
 							if(data=="1"){
 								alert('报价成功！');
-								location.href='http://skip/hp_detail.htm?id=<%=id%>';
+								location.href='http://skip/hp_detail.htm?id='+id;
 							}else{
 								alert('报价失败！请稍后重试！');
 							}
@@ -106,7 +106,7 @@
             <tr>
                      <th><label>*</label> 联系电话：</th>
 <td>
-<input class="px" type="text" name="data[sphone]" id="dr_sphone" value="" style="width:200px;" required="required">
+<input class="px" type="text" name="data[sphone]" id="dr_sphone" value="" style="width:200px;" required>
 </td>
                     </tr>
           </tbody>
@@ -117,7 +117,7 @@
                   <tbody>
             <tr>
                       <th><label>*</label> &nbsp;&nbsp;报价：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-<td><input class="px" type="text" name="data[baojia]" id="dr_baojia" value="" style="width:200px;" required="required">
+<td><input class="px" type="text" name="data[baojia]" id="dr_baojia" value="" style="width:200px;" required>
 </td>
                     </tr>
           </tbody>
@@ -129,7 +129,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;ID：
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="px" type="text" name="data[id]" id="dr_id" value="12376" style="width:200px;" required="required" readonly="">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="px" type="text" name="data[id]" id="dr_id" value="12376" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -141,7 +141,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>报价人ID：
-<input class="px" type="text" name="data[baojiaID]" id="dr_baojiaID" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[baojiaID]" id="dr_baojiaID" value="" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -153,7 +153,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>&nbsp;记录ID：
-&nbsp;&nbsp;<input class="px" type="text" name="data[jiluID]" id="dr_jiluID" value="" style="width:200px;" required="required" readonly="">
+&nbsp;&nbsp;<input class="px" type="text" name="data[jiluID]" id="dr_jiluID" value="" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -165,7 +165,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>类&nbsp;&nbsp;&nbsp;&nbsp;型：
-&nbsp;&nbsp;&nbsp;<input class="px" type="text" name="data[type]" id="dr_type" value="货盘" style="width:200px;" required="required" readonly="">
+&nbsp;&nbsp;&nbsp;<input class="px" type="text" name="data[type]" id="dr_type" value="货盘" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -177,7 +177,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>发布人ID：
-<input class="px" type="text" name="data[faburenID]" id="dr_faburenID" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[faburenID]" id="dr_faburenID" value="" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -189,7 +189,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp; </th>
 <td>报价时间：
-<input class="px" type="text" name="data[baojiatime]" id="dr_baojiatime" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[baojiatime]" id="dr_baojiatime" value="" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -201,7 +201,7 @@
             <tr>
                      <th><font color="red">*</font>&nbsp; </th>
 <td>报价编号：
-<input class="px" type="text" name="data[bjbh]" id="dr_bjbh" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[bjbh]" id="dr_bjbh" value="" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>

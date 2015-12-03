@@ -65,7 +65,7 @@
 						success  : function(data) {  
 							if(data=="1"){
 								alert('报价成功！');
-								location.href='http://skip/cp_detail.htm?id=<%=id%>';
+								location.href='http://skip/cp_detail.htm?id='+id;
 								}else{
 								alert('报价失败！请稍后重试！');
 							}
@@ -97,7 +97,7 @@
             <tr>
                       <th><label>*</label> 联系人：</th>
 <td>
-<input class="px" type="text" name="data[sname]" id="dr_sname" value="" style="width:200px;" required="required">
+<input class="px" type="text" name="data[sname]" id="dr_sname" value="" style="width:200px;" required>
 </td>
                     </tr>
           </tbody>
@@ -109,7 +109,7 @@
             <tr>
                       <th><label>*</label> 联系电话：</th>
 <td>
-<input class="px" type="text" name="data[sphone]" id="dr_sphone" value="" style="width:200px;" required="required">
+<input class="px" type="text" name="data[sphone]" id="dr_sphone" value="" style="width:200px;" required>
 </td>
                     </tr>
           </tbody>
@@ -121,7 +121,7 @@
             <tr>
                       <th><label>*</label> &nbsp;&nbsp;报价：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 <td>
-<input class="px" type="text" name="data[baojia]" id="dr_baojia" value="" style="width:200px;" required="required">
+<input class="px" type="text" name="data[baojia]" id="dr_baojia" value="" style="width:200px;" required>
 </td>
                     </tr>
           </tbody>
@@ -133,7 +133,7 @@
             <tr>
                        <th><label>*</label> 货物名称：</th>
 <td>
-<input class="px" type="text" name="data[huowu]" id="dr_huowu" value="" style="width:200px;" required="required">
+<input class="px" type="text" name="data[huowu]" id="dr_huowu" value="" style="width:200px;" required>
 </td>
                     </tr>
           </tbody>
@@ -145,7 +145,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp;ID： </th>
 <td>
-<input class="px" type="text" name="data[id]" id="dr_id" value="dr_id" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[id]" id="dr_id" value="dr_id" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -157,7 +157,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp;报价人ID： </th>
 <td>
-<input class="px" type="text" name="data[biaojiaID]" id="dr_biaojiaID" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[biaojiaID]" id="dr_biaojiaID" value="" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -169,7 +169,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp;记录ID： </th>
 <td>
-<input class="px" type="text" name="data[jiluID]" id="dr_jiluID" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[jiluID]" id="dr_jiluID" value="" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -181,7 +181,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp;类型： </th>
 <td>
-<input class="px" type="text" name="data[type]" id="dr_type" value="货盘" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[type]" id="dr_type" value="货盘" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -193,7 +193,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp;发布人ID： </th>
 <td>
-<input class="px" type="text" name="data[faburenID]" id="dr_faburenID" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[faburenID]" id="dr_faburenID" value="" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -205,7 +205,7 @@
             <tr>
                       <th><font color="red">*</font>&nbsp;报价时间： </th>
 <td>
-<input class="px" type="text" name="data[baojiatime]" id="dr_baojiatime" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[baojiatime]" id="dr_baojiatime" value="" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
@@ -217,7 +217,7 @@
             <tr>
                      <th><font color="red">*</font>&nbsp;报价编号： </th>
 <td>
-<input class="px" type="text" name="data[bjbh]" id="dr_bjbh" value="" style="width:200px;" required="required" readonly="">
+<input class="px" type="text" name="data[bjbh]" id="dr_bjbh" value="" style="width:200px;" required readonly>
 </td>
                     </tr>
           </tbody>
