@@ -76,6 +76,31 @@
 					}  
 				);  
 		};
+		
+$(function(){
+	var uid = "<%=uid%>";
+	//获取用户基本信息
+	$.ajax(
+		{  
+			type:'post',  
+			url : 'http://post/boatinit',
+			data:{"uid":"<%=uid%>"},
+			jsonp:"jsoncallback",  
+			success  : function(data) {  
+				data=$.trim(data);  
+				try{
+					var json=$.parseJSON(data);
+					$("#dr_sname").val(json.mname);
+					$("#dr_sphone").val(json.phone);
+				}catch(e){
+				}
+			},  
+			error : function() { 
+				
+			}  
+		}  
+	);  
+});
 </script>
 </head>
 <body>
