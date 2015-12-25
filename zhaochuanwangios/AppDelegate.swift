@@ -9,39 +9,65 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
 
     var window: UIWindow?
     var indexNav:RootIndexNavigationViewController?
     var profileNav:RootNavigationViewController?
-    var adviceNav:RootNavigationViewController?
+    var adviceNav:RootNavigationViewController? 
     var curDetailView:WebBaseViewController?
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    var showuserInfo: [NSObject : AnyObject]?
+//    var strMsg = ""
+    func application(application: UIApplication, var didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+//        if (launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] != nil) {
+//                    let userInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary
+//            if let alertString = userInfo!["alert"] as? String {
+//                strMsg = alertString
+//            }
+
+//        var alertView:UIAlertView = UIAlertView(title: "收到一条通知", message: launchOptions!["aps"]as?,["alert"]as?, delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定", nil)
+        
 //        var urlString = "http:\\/\\/www.baidu.com/aa.jsp?id=1234"
 //        var strUrl = urlString.stringByReplacingOccurrencesOfString("\\/", withString: "/", options: NSStringCompareOptions.LiteralSearch, range: nil)
-//        println("url:\(urlString),url2:\(strUrl)");
-        //-------------------------start
-        if #available(iOS 8.0, *) {
+//        print("url:\(urlString),url2:\(strUrl)");
+//        -------------------------start
+        if #available(iOS 8.0, *)
+        {
             let myTypes: UIUserNotificationType = [UIUserNotificationType.Badge, UIUserNotificationType.Alert, UIUserNotificationType.Sound]
             let settings = UIUserNotificationSettings(forTypes: myTypes, categories: nil)
            
             application.registerUserNotificationSettings(settings)
         }
-        else{
+        else
+        {
             let myTypes: UIRemoteNotificationType = [UIRemoteNotificationType.Badge, UIRemoteNotificationType.Alert, UIRemoteNotificationType.Sound]
             application.registerForRemoteNotificationTypes(myTypes)
             
         }
+        
         // Fallback on earlier versions
    
         BPush.registerChannel(launchOptions, apiKey: "VCcGL2TbxAOkcSHPFU9mZbz6", pushMode: BPushMode.Production, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
    //     BPush.registerChannel(launchOptions, apiKey: "VCcGL2TbxAOkcSHPFU9mZbz6", pushMode: BPushMode.Development, withFirstAction: nil, withSecondAction: nil, withCategory: nil, isDebug: true)
+    
+        
+        //进程杀死，app后台清除，重启app，打开app，跳转到通知详情页面
+        
+
+        
+//        let userInfo = launchOptions.objectForKey(UIApplicationLaunchOptionsRemoteNotificationKey);
+//        if (userInfo) {
+//            NSLog(@"从消息启动:%@",userInfo);
+//            [BPush handleNotification:userInfo];
+//        }
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         //-------------------------end
         defaultusername = getDefaultUserName()
         defaultpassword = getDefaultPassword()
         
- 
+        
+        
         _setupProxy()
 
         if(getIsSkipguide()){
@@ -51,14 +77,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             setSkipguide(true)
         }
 
-        testNotify()
+        //testNotify()
+        if launchOptions != nil
+        {
+            if let userInfo = launchOptions![UIApplicationLaunchOptionsRemoteNotificationKey] as? [NSObject : AnyObject] {
+                showuserInfo = userInfo
+                if let message = userInfo["aps"]?["alert"]{
+                    let alertView:UIAlertView = UIAlertView(title: "收到一条通知", message: message as! String!, delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+                    alertView.show()
+                }
+                BPush.handleNotification(userInfo)
+                
+            }
+            
+        }
         return true
     }
     
     
     func testNotify(){
   
-        //oswift.sendLocalMessage("测试一个数据看看呢")
+//        oswift.sendLocalMessage("测试一个数据看看呢 哈哈哈哈哈哈哈")
     }
     
     @available(iOS 8.0, *)
@@ -81,17 +120,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError){
         
     }
+    func alertView(alertView: UIAlertView,
+        didDismissWithButtonIndex buttonIndex: Int){
+            if( buttonIndex == 1){
+                showUrlDialog(showuserInfo!)
+
+            }
+    }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]){
+    func showUrlDialog(userInfo: [NSObject : AnyObject]){
+        
         BPush.handleNotification(userInfo)
+        //        print("--------%@--------------",userInfo);
         
         let theJSONData = try? NSJSONSerialization.dataWithJSONObject(
             userInfo ,
             options: NSJSONWritingOptions(rawValue: 0))
         let theJSONText = NSString(data: theJSONData!,
             encoding: NSASCIIStringEncoding)
-        
-//
+        //
         var strMsg = ""
         var strId = ""
         var strUrl = ""
@@ -111,16 +158,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             strUrl = urlString.stringByReplacingOccurrencesOfString("\\/", withString: "/", options: NSStringCompareOptions.LiteralSearch, range: nil)
         }
         
-      //  showWarning("",subtitle: "JSON string = \(theJSONText!),strUrl=\(strUrl)");
+        //      showWarning("",subtitle: "JSON string = \(theJSONText!),strUrl=\(strUrl)");
+        
         showMsgInfo(strUrl)
+    }
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]){
+        showUrlDialog(userInfo)
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification){
         BPush.showLocalNotificationAtFront(notification,identifierKey: nil)
     }
 
-
-    
     func setAppviewAsRootView(){
         
         // Override point for customization after application launch.
@@ -174,13 +223,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         profileNav = RootNavigationViewController(rootViewController:dvcLogin)
 
     }
+    
     func showMsgInfo(msgUrl:String){
         let storyBoardWeb = UIStoryboard(name:"infodetail",bundle:nil)
         let dvcMsg = storyBoardWeb.instantiateViewControllerWithIdentifier("urlwebdetail") as! WebDetailUrlViewController
         dvcMsg.url = msgUrl
         dvcMsg.title = "消息"
         self.curDetailView?.navigationController?.pushViewController(dvcMsg, animated: true)
-      //  var popMsg = UINavigationController(rootViewController:dvcMsg)
+//        var popMsg = UINavigationController(rootViewController:dvcMsg)
         
     }
     
