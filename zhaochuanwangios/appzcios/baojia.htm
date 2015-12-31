@@ -59,6 +59,7 @@
 						url : 'http://post/baojia',
 						data:{"grelease":data},
 						jsonp:"jsoncallback",  
+						async:false,
 						success  : function(data) {  
 							if(data=="1"){
 								alert('报价成功！');
@@ -81,6 +82,7 @@ $(function(){
 			type:'post',  
 			url : 'http://post/boatinit',
 			data:{"uid":"<%=uid%>"},
+			async:false,
 			jsonp:"jsoncallback",  
 			success  : function(data) {  
 				data=$.trim(data);  

@@ -34,10 +34,14 @@
 							localStorage.upswd = upswd;
 						}else{
 							//alert("登录失败!");
+							localStorage.uname = "";
+							localStorage.upswd = "";
 						}
 					},  
 					error : function(XHR, textStatus, errorThrown) { 
 						//alert("登录失败!");
+						localStorage.uname = "";
+						localStorage.upswd = "";
 					}  
 				}  
 			); 

@@ -29,6 +29,7 @@
 					{  
 						type:'post',  
 						url : 'http://post/login', 
+						async:false,
 						data:{"login":encodeURIComponent(data)},
 						success  : function(json) {
 							if(json!="0"){

@@ -50,7 +50,7 @@ $(function(){
 					type:'post',  
 					url : 'http://post/boatinit',
 					data:{"uid":"<%=uid%>"},
-					jsonp:"jsoncallback",  
+					async:false,
 					success  : function(data) {  
 						data=$.trim(data);  
 						try{
@@ -75,6 +75,7 @@ $(function(){
 			url : 'http://post/goodsinfo',
 			data:{"pagenum":"1","goodsinfo":searchJson},
 			jsonp:"jsoncallback",  
+			async:false,
 			success  : function(data) {
 				data=$.trim(data);  
 				try{
@@ -110,6 +111,7 @@ $(function(){
 			$.ajax({
 				type:'post',  
 				url : 'http://post/goodsinfo', 
+				async:false,
 				data:{"pagenum":currPageNum,"goodsinfo":searchJson}, 
 				success  : function(data) {
 					data=$.trim(data);  
@@ -211,6 +213,7 @@ $(function(){
 						url : 'http://post/grelease',
 						data:{"grelease":data},
 						jsonp:"jsoncallback",  
+						async:false,
 						success  : function(data) {  
 							if(data=="1"){
 								alert('发布成功！');
@@ -245,6 +248,7 @@ $(function(){
 				url : 'http://post/goodsinfo', 
 				data:{"pagenum":"1","goodsinfo":searchJson},
 				jsonp:"jsoncallback",  
+				async:false,
 				success  : function(data) {
 					data=$.trim(data);  
 					try{
