@@ -27,19 +27,16 @@
 <link href="datepicker.css" rel="stylesheet" type="text/css">
 <link rel="Stylesheet" type="text/css" href="logindialog.css" />
 
-<script type="text/javascript">
-//ty---2015--11-27  验证登录
-$(function(){
-	var uid_first = "<%=uid%>";//IOS的高级写法
-	if(uid_first == ""){
-		alert('对不起，请先登录！');
-		location.href='http://local/dl3.htm';
-	}
-	return;
-});
-</script>
 
 <script type="text/javascript">
+	function showLayout(){
+		document.getElementById('light').style.display='block';document.getElementById('fade').style.display='none'
+	}
+	
+	function hideLayout(){
+		document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'
+	}
+
 	var currPageNum=1;
 	var searchJson="{\"sweight\":\"\",\"eweight\":\"\",\"sport\":\"\",\"eport\":\"\",\"type\":\"\",\"sdate\":\"\",\"vdate\":\"\"}";
 	$(function(){
@@ -50,7 +47,6 @@ $(function(){
 					type:'post',  
 					url : 'http://post/boatinit',
 					data:{"uid":"<%=uid%>"},
-					async:false,
 					success  : function(data) {  
 						data=$.trim(data);  
 						try{
@@ -70,12 +66,12 @@ $(function(){
 			); 
 		},1000);
 	
+		showLayout();
 		$.ajax({
 			type:'post',  
 			url : 'http://post/goodsinfo',
 			data:{"pagenum":"1","goodsinfo":searchJson},
 			jsonp:"jsoncallback",  
-			async:false,
 			success  : function(data) {
 				data=$.trim(data);  
 				try{
@@ -99,6 +95,7 @@ $(function(){
 							$("#listbody").append(tmp);
 						}	
 					}
+					hideLayout();
 				}catch(e){
 				}
 			},  
@@ -111,7 +108,6 @@ $(function(){
 			$.ajax({
 				type:'post',  
 				url : 'http://post/goodsinfo', 
-				async:false,
 				data:{"pagenum":currPageNum,"goodsinfo":searchJson}, 
 				success  : function(data) {
 					data=$.trim(data);  
@@ -213,7 +209,6 @@ $(function(){
 						url : 'http://post/grelease',
 						data:{"grelease":data},
 						jsonp:"jsoncallback",  
-						async:false,
 						success  : function(data) {  
 							if(data=="1"){
 								alert('发布成功！');
@@ -248,7 +243,6 @@ $(function(){
 				url : 'http://post/goodsinfo', 
 				data:{"pagenum":"1","goodsinfo":searchJson},
 				jsonp:"jsoncallback",  
-				async:false,
 				success  : function(data) {
 					data=$.trim(data);  
 					try{
@@ -424,6 +418,14 @@ $(function(){
 				opacity: '1'
 			}, 600);
 		}).on('click', function () {
+			// 2016.1.4 lx 新增
+			var luid="<%=uid%>";
+			if(luid!=""){
+				alert('对不起，请先登录！');
+				location.href='http://localperson/dl.htm';
+				return;
+			}
+			// 2016.1.4 lx 新增结束
 			$("body").append("<div id='mask'></div>");
 			$("#mask").addClass("mask").fadeIn("slow");
 			$("#LoginBox").fadeIn("slow");
@@ -496,6 +498,16 @@ $(function(){
 				opacity: '1'
 			}, 600);
 		}).on('click', function () {
+		
+			// 2016.1.4 lx 新增
+			var luid="<%=uid%>";
+			if(luid!=""){
+				alert('对不起，请先登录！');
+				location.href='http://localperson/dl.htm';
+				return;
+			}
+			// 2016.1.4 lx 新增结束
+		
 			$("body").append("<div id='mask_1'></div>");
 			$("#mask_1").addClass("mask_1").fadeIn("slow");
 			$("#LoginBox_1").fadeIn("slow");
@@ -564,6 +576,54 @@ $(function(){
     </article>
   </section>
 </div>
+
+<style>
+.black_overlay 
+{
+display: none;
+position: fixed; 
+top: 0%; 
+left: 0%;
+width: 100%; 
+height: 100%;
+background-color: black; 
+z-index:1001; 
+-moz-opacity: 0.4; 
+opacity:.40; 
+filter: alpha(opacity=40); 
+} 
+.white_content  
+{
+display: none; 
+position: fixed; 
+top: 40%; 
+left: 38%; 
+width: 20%; 
+height: 60px; 
+padding: 16px; 
+-moz-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius:15px;
+background-color: black; 
+-moz-opacity: 0.7; 
+opacity:.70; 
+filter: alpha(opacity=70);
+color:white; 
+z-index:1002; 
+overflow: auto;  
+} 
+</style>
+
+
+<div id="light" class="white_content">
+	<div style="width:100%;height:32px;background:url(b4cf7680895aa192750cc57f74b_p10_mk10.gif) 50% no-repeat;"></div>
+	<div style="margin-top:10px;text-align:center;">正在加载...</div>
+</div>
+<div id="fade" class="black_overlay" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+</div>
+
+
+
 <footer class="foot mt10">
   <p class="contact"><a href="http://local/about.htm">公司简介</a> | <a href="http://local/ssxw.htm">时事新闻</a> | <a href="http://local/qxxx.htm">气象信息</a> | <a href="http://local/yjjy.htm">意见建议</a> </p>
   <p>Copyright © 2014 找船网</p>

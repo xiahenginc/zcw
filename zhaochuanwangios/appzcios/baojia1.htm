@@ -52,7 +52,6 @@
 					return;
 				}
 				
-				
 				var json={uid:uid,id:id,baojialxr:sname,baojialxdh:sphone,baojia:baojia,bz:sinfo,huowu:huowu};
 				
 				var data=JSON.stringify(json);
@@ -61,8 +60,6 @@
 						type:'post',  
 						url : 'http://post/baojia1',
 						data:{"grelease":data},
-						jsonp:"jsoncallback",  
-						async:false,
 						success  : function(data) {  
 							if(data=="1"){
 								alert('报价成功！');
@@ -87,7 +84,6 @@ $(function(){
 			url : 'http://post/boatinit',
 			data:{"uid":"<%=uid%>"},
 			jsonp:"jsoncallback",  
-			async:false,
 			success  : function(data) {  
 				data=$.trim(data);  
 				try{

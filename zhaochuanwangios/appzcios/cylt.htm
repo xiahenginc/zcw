@@ -296,12 +296,22 @@ function bindmyfriend(){
     
   </ul>
 </div>
-<aside class="phoneBox" style="bottom:-40px;">
+<aside class="phoneBox" style="bottom:0;">
   <div class="g-tool">
     <ul>
       <li class="first"><a href="javascript:void(0);">论坛</a></li><li class="" onClick="bindmyfriend()"><a href="javascript:void(0);">我的船友</a></li>
     </ul>
   </div>
 </aside>
+<script type="text/javascript">
+	var form_url="";	
+					
+	$(document).ready(function(){
+		$(".g-tool li").click(function(){
+		$(".g-tool li").eq($(this).index()).addClass("first").siblings().removeClass('first');
+		$(".m-tool").hide().eq($(this).index()).show();
+		});
+	});						
+</script>
 </body>
 </html>
