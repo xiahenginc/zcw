@@ -22,9 +22,20 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="swipe.js"></script>
 <script type="text/javascript">
+
+	function showLayout(){
+		document.getElementById('light').style.display='block';document.getElementById('fade').style.display='none'
+	}
+	
+	function hideLayout(){
+		document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'
+	}
+
 	var currPageNum=1;
 	var currPageNum2=1;
 	$(function(){
+		showLayout();
+		
 		$.ajax({
 			type:'post',  
 			url : 'http://post/riversea',  //http://www.zcwjson.com18.cn
@@ -42,7 +53,7 @@
 						var title=currjson.title; 
 						var date=currjson.date;
 						
-						var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
+						var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"return checkform()\" val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
 						
 						$("#listbody").append(tmp);
 					}
@@ -55,11 +66,11 @@
 						var title=currjson.title; 
 						var date=currjson.date;
 						
-						var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
+						var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"return checkform()\" val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
 						
 						$("#listbody2").append(tmp);
 					}
-					
+					hideLayout();
 				}catch(e){
 				}
 			},  
@@ -89,7 +100,7 @@
 								var title=currjson.title; 
 								var date=currjson.date;
 								
-									var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
+									var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"return checkform()\"  val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
 								
 								$("#listbody").append(tmp);
 							}	
@@ -128,7 +139,7 @@
 								var title=currjson.title; 
 								var date=currjson.date;
 								
-								var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"clickLog(&#39;from=weizhan_tomegdetail&#39;);\" val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
+								var tmp="<li><img src=\"icon22.png\"><span class=\"group\">["+ date +"]</span><a onClick=\"return checkform()\" val=\"20105935305609\" href=\"http://detail/newsview.htm?id="+ id +"\">"+ title +"</a></li>";
 								
 								$("#listbody2").append(tmp);
 							}	
@@ -148,6 +159,18 @@
 		
 	});
 </script>
+<script type="text/javascript">
+	var uid="<%=uid%>";
+	function checkform(){
+	if(uid==""){
+					alert('对不起，请先登录！');
+					location.href='http://local/dl3.htm';
+					return false;
+				}
+	}
+</script>
+
+
 </head>
 <body>
 <div class="warp">
@@ -195,6 +218,53 @@
       <div class="more"><a href="javascript:;" id="more2" class="mt10">查看更多<i class="phone-icon mico"></i></a></div>
 	</article>
     
+<style>
+.black_overlay 
+{
+display: none;
+position: fixed; 
+top: 0%; 
+left: 0%;
+width: 100%; 
+height: 100%;
+background-color: black; 
+z-index:1001; 
+-moz-opacity: 0.4; 
+opacity:.40; 
+filter: alpha(opacity=40); 
+} 
+.white_content  
+{
+display: none; 
+position: fixed; 
+top: 40%; 
+left: 38%; 
+width: 20%; 
+height: 60px; 
+padding: 16px; 
+-moz-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius:15px;
+background-color: black; 
+-moz-opacity: 0.7; 
+opacity:.70; 
+filter: alpha(opacity=70);
+color:white; 
+z-index:1002; 
+overflow: auto;  
+} 
+</style>
+
+
+<div id="light" class="white_content">
+	<div style="width:100%;height:32px;background:url(b4cf7680895aa192750cc57f74b_p10_mk10.gif) 50% no-repeat;"></div>
+	<div style="margin-top:10px;text-align:center;">正在加载...</div>
+</div>
+<div id="fade" class="black_overlay" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+</div>   
+
+
+
     
     <article class="mbox" >
     	<h3 class="tit">天气信息</h3>

@@ -420,12 +420,13 @@
 		}).on('click', function () {
 			// 2016.1.4 lx 新增
 			var luid="<%=uid%>";
-			if(luid!=""){
+			if(luid==""){
 				alert('对不起，请先登录！');
 				location.href='http://localperson/dl.htm';
 				return;
 			}
 			// 2016.1.4 lx 新增结束
+			
 			$("body").append("<div id='mask'></div>");
 			$("#mask").addClass("mask").fadeIn("slow");
 			$("#LoginBox").fadeIn("slow");
@@ -501,12 +502,11 @@
 		
 			// 2016.1.4 lx 新增
 			var luid="<%=uid%>";
-			if(luid!=""){
+			if(luid==""){
 				alert('对不起，请先登录！');
 				location.href='http://localperson/dl.htm';
 				return;
 			}
-			// 2016.1.4 lx 新增结束
 		
 			$("body").append("<div id='mask_1'></div>");
 			$("#mask_1").addClass("mask_1").fadeIn("slow");
