@@ -32,14 +32,14 @@
 	$(function(){
 	if(uid==""){
 					alert('对不起，请先登录！');
-					location.href='http://localperson/dl.htm';
+			location.href='http://localadv/dl.htm';
 					return;
 				}
 		
 		$("#submit").click(function(){
 			if(uid==""){
 				alert('对不起，请先登录！');
-				location.href='http://localperson/dl.htm';
+				location.href='http://localadv/dl.htm';
 				return;
 			}
 				
@@ -60,7 +60,7 @@
 						success  : function(data) {  
 							if(data=="1"){
 								alert('发布成功！');
-								location.href='http://skip/index.htm';
+							location.href='http://skipadv/index.htm';
 							}else{
 								alert('发布失败！请稍后重试！');
 							}
