@@ -78,7 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
         }
 
         //testNotify()
-        //进程杀死，app后台清除，重启app，打开app，跳转到通知详情页面
         if launchOptions != nil
         {
             if let userInfo = launchOptions![UIApplicationLaunchOptionsRemoteNotificationKey] as? [NSObject : AnyObject] {
@@ -265,14 +264,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    //王朋   报价界面跳转（货盘信息）   2015  1.5朋仔
     func _setupProxy(){
-        WebViewProxy.handleRequestsWithHost("hostskip", handler: {
-            (req:NSURLRequest!,res:WVPResponse! )-> Void in
-            dispatch_sync(dispatch_get_main_queue(), {
-                self.curDetailView?.navigationController?.popViewControllerAnimated(true);
-            });
-        });
         WebViewProxy.handleRequestsWithHost("localperson", handler: {
             (req:NSURLRequest!,res:WVPResponse! )-> Void in
             //            //http://local/cbjy.htm#__webviewproxyreq__
@@ -332,6 +324,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
                 navto_webinfo_nofooter_personal(uriid,title: title)
             })
         })
+
         //普通点击页面
         WebViewProxy.handleRequestsWithHost("local", handler: {
             (req:NSURLRequest!,res:WVPResponse! )-> Void in
@@ -405,75 +398,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
                         }
                         navto_webinfo(uriid,title: title)
                     })
-//            self.curDetailView?.navigationController?.popViewControllerAnimated(true);
         })
-    
-        
-////////////////////////////////意见建议页面/////////////////////////////////////////////
-        
-        WebViewProxy.handleRequestsWithHost("localadv", handler: {
-            (req:NSURLRequest!,res:WVPResponse! )-> Void in
-            //            //http://local/cbjy.htm#__webviewproxyreq__
-            var uriid = self.getSubString(req.URLString,starts: "/",ends: ".htm")
-            print(uriid)
-            dispatch_sync(dispatch_get_main_queue(), {
-                var title = ""
-                switch(uriid){
-                case "xtxiaoxi":
-                    title = "系统消息"
-                    
-                case "lyxx":
-                    title = "会员消息"
-                    
-                case "xxtx":
-                    title = "报价提醒"
-                case "wdbj":
-                    title = "我的报价"
-                case "trbj":
-                    title = "他人报价"
-                    
-                case "jbzl":
-                    title = "基本资料"
-                case "xxtx":
-                    title = "消息提醒"
-                case "wdft":
-                    title = "我的发贴"
-                case "gz":
-                    title = "谁关注我"
-                case "mygz":
-                    title = "我的关注"
-                case "xgmm":
-                    title = "修改密码"
-                case "update":
-                    title = "版本更新"
-                    return
-                case "bz":
-                    title = "帮助"
-                case "zc":
-                    title = "注册"
-                    navto_webinfo_personal(uriid,title: title)
-                    return
-                case "tc":
-                    uid = ""
-                    sessionId = ""
-                    defaultusername = ""
-                    defaultpassword = ""
-                    setCheckPassword(true,Username: defaultusername,Password: defaultpassword)
-                    dispatch_async(dispatch_get_main_queue(), {
-                        NSNotificationCenter.defaultCenter().postNotificationName("onLoginRefresh", object: nil)
-                    })
-                    
-                    return
-                default:
-                    title = "个人信息"
-                }
-                navto_webinfo_localadv(uriid,title: title)///王朋   2016年1月5日修改
-            })
-        })
-        
-        
-
-        
         
         //发送数据页面
         WebViewProxy.handleRequestsWithHost("post", handler: {
@@ -602,45 +527,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
             }
         })
         
-        //////////添加skip我的建议界面跳转//////王朋/////////
-        
-        WebViewProxy.handleRequestsWithHost("skipadv", handler: {
-            (req:NSURLRequest!,res:WVPResponse! )-> Void in
-            
-            var uriid = self.getSubString(req.URLString,starts: "/",ends: ".htm")
-            print(uriid)
-            dispatch_sync(dispatch_get_main_queue(), {
-                //意见建议Skip  2016.1.5////王朋/////
-                 if(uriid == "yjjy"){
-                    var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    appDel.adviceNav?.popViewControllerAnimated(false)
-                    return
-                }
-
-            })
-
-        })
-        
-        ///发布报价，界面跳转  王朋  2016 1.5
-//        WebViewProxy.handleRequestsWithHost("hostskip", handler: {
-//            (req:NSURLRequest!,res:WVPResponse! )-> Void in
-//            
-//            var uriid = self.getSubString(req.URLString,starts: "/",ends: ".htm")
-//            print(uriid)
-//            dispatch_sync(dispatch_get_main_queue(), {
-//                //Skip  2016.1.5////王朋/////
-//                if(uriid == "hpfb"){
-//                    var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//                    appDel.indexNav?.popViewControllerAnimated(false)
-//                    return
-//                }
-//                
-//            })
-//            
-//        })
-
-        
-        
         //js控制跳转的页面
         WebViewProxy.handleRequestsWithHost("skip", handler: {
             (req:NSURLRequest!,res:WVPResponse! )-> Void in
@@ -700,24 +586,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
                     appDel.profileNav?.popViewControllerAnimated(false)
                     return
                 }
-//                    ///发布报价，界面跳转  王朋  2016 1.5
-//                else if(uriid == "hpfb"){
-//                    //skip
-//                    var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//                    appDel.profileNav?.popViewControllerAnimated(false)
-//                    return
-//                }
- 
-                    
-                    
-                    
-                    
-                    //意见建议Skip  2016.1.5//////王朋
-//                else if(uriid == "yjjy"){
-//                    var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//                    appDel.adviceNav?.popViewControllerAnimated(false)
-//                    return
-//                }（无用）
                 
                 navto_webinfo_nofooter_personal(uriid,title: title)
             })
