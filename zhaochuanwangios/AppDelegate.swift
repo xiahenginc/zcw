@@ -220,7 +220,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
         dvcLogin.refreshwhenappear  = true
         dvcLogin.tabBarItem = UITabBarItem(title:dvcLogin.title,image:UIImage(named:"ic_nav_me_normal"),tag:2)
         
-        //dvc.paramdict = paramdict
+//        dvc.paramdict = paramdict
         profileNav = RootNavigationViewController(rootViewController:dvcLogin)
 
     }
@@ -265,22 +265,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    //王朋   报价界面跳转（货盘信息）   2015  1.5朋仔
+    //王朋   报价界面跳转（货盘信息）   2015  1.5
     func _setupProxy(){
-        WebViewProxy.handleRequestsWithHost("hostskip", handler: {
+        WebViewProxy.handleRequestsWithHost("skip", handler: {
             (req:NSURLRequest!,res:WVPResponse! )-> Void in
             dispatch_sync(dispatch_get_main_queue(), {
                 self.curDetailView?.navigationController?.popViewControllerAnimated(true);
             });
         });
+        
         WebViewProxy.handleRequestsWithHost("localperson", handler: {
             (req:NSURLRequest!,res:WVPResponse! )-> Void in
             //            //http://local/cbjy.htm#__webviewproxyreq__
+            
+            //'http://localperson/zhmm_s2.htm?uid='+idjson.uid+'&phone='+ idjson.phone
             var uriid = self.getSubString(req.URLString,starts: "/",ends: ".htm")
             print(uriid)
             dispatch_sync(dispatch_get_main_queue(), {
                 var title = ""
                 switch(uriid){
+                    //截取手机号码
+                case "zhmm_s2":
+                    var phoneStr = self.getSubString(req.URLString, starts: "phone=", ends: "#")
+                    var uidStr = self.getSubString(req.URLString, starts: "uid=", ends: "&")
+                    //http://localperson/zhmm_s2.htm?uid=486&phone=130****383#__webviewproxyreq__
+                    title = ""
+                    var phone = (phoneStr as NSString).substringFromIndex(0)
+                    var id = (uidStr as NSString).substringFromIndex(0)
+                    print(phone)
+                    
+                     gloalphonenumber = phone
+                     uid = id
                 case "xtxiaoxi":
                     title = "系统消息"
 
@@ -330,6 +345,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
                     title = "个人信息"
                 }
                 navto_webinfo_nofooter_personal(uriid,title: title)
+
             })
         })
         //普通点击页面
@@ -405,7 +421,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
                         }
                         navto_webinfo(uriid,title: title)
                     })
-//            self.curDetailView?.navigationController?.popViewControllerAnimated(true);
         })
     
         
@@ -820,6 +835,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
     }
     //JSESSIONID=A7AC1D17A8A268D796E402A684B564F3; Path=/
     //getSubString("JSESSIONID=A7AC1D17A8A268D796E402A684B564F3; Path=/","=",";")->A7AC1D17A8A268D796E402A684B564F3
+    
+    
     func getSubString(s:String,starts:String,ends:String)->String{
         print("getSubString:\(s)")
         var rets = ""
@@ -831,7 +848,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
             }
         }
         return rets
+        
     }
+
+
+
     //id=5&af=7
     func getParams(s:String)->Dictionary<String,String>{
         var dict = Dictionary<String,String>()
@@ -844,7 +865,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
                     let key = "<%=" + paramsz[0] + "%>"
                     dict[key] = paramsz[1]
                     print("dict:\(dict)")
-                  //  dict.updateValue(paramsz[1], forKey: key)
+//                    dict.updateValue(paramsz[1], forKey: key)
                 }
             }
         }

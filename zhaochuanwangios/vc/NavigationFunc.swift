@@ -4,6 +4,7 @@ var curpageid = ""
 var curtab = 0
 var defaultusername = ""
 var defaultpassword = ""
+var gloalphonenumber = ""
 
 func navto_webinfo(uriid:String,title:String){
     let storyBoardTask = UIStoryboard(name:"infodetail",bundle:nil)
@@ -64,9 +65,13 @@ func navto_webinfo_nofooter_personal(uriid:String,title:String){
     dvc.detailname = uriid
     dvc.title = title
     dvc.paramdict["<%=uid%>"]=uid
+//    gloalphonenumber="&phone="
+    dvc.paramdict["<%=phone%>"]=gloalphonenumber
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     appDel.profileNav?.pushViewController(dvc,animated: true)
 }
+
+
 
 func navto_myprofile(){
     let storyBoardTask = UIStoryboard(name:"infodetail",bundle:nil)
